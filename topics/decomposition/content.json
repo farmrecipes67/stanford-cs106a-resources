@@ -1,0 +1,268 @@
+{
+  "topic": "Decomposition",
+  "topicIndex": 3,
+  "overview": "Decomposition is the practice of breaking a large programming problem into smaller, focused pieces. In CS106A, this usually means designing a program as a collection of short, single-purpose methods and, later, grouping related methods and data into classes. By separating concerns, you reduce complexity, make your code easier to reason about, test, and debug, and enable reuse of components across different parts of a program or even different assignments.\n\nIn a typical CS106A workflow, you use top-down design and stepwise refinement: start with a clear statement of the problem, outline high-level steps as method calls, then iteratively refine each method until it is straightforward to implement. Along the way, you define clear method signatures, document preconditions and postconditions, keep methods cohesive (each does one thing well), and minimize coupling (methods know as little as necessary about each other). This approach helps you produce clean, readable, and maintainable Java code.",
+  "teachingMaterials": {
+    "keyConceptsSummary": "Decomposition is central to programming methodology: you divide a complex task into a hierarchy of small, well-named, and well-scoped methods. Start with top-down design—write an outline that expresses the solution as a sequence of high-level steps, each encapsulated in a helper method. Then apply stepwise refinement—expand each helper method into simpler sub-steps until each method is easy to implement and test. Strong decomposition relies on clear method signatures (name, parameters, return type), explicit contracts (preconditions and postconditions), and purposeful naming that reveals intent. Good methods have high cohesion (do one thing) and participate in a design with low coupling (minimal knowledge of other parts). Use constants to avoid magic numbers, pass only the data a method needs, and return results rather than relying on global state. Early in development, write stubs (temporary method bodies) to compile and establish structure; then incrementally replace stubs with real logic and test each part in isolation. As you progress toward object-oriented design, you further decompose by grouping related state and behavior into classes with clear interfaces, preserving the same principles of abstraction, cohesion, and low coupling.",
+    "learningObjectives": [
+      "Apply top-down design to outline a program as a set of high-level helper methods.",
+      "Design clear method signatures with appropriate parameters and return types.",
+      "Document and honor method preconditions and postconditions to define contracts.",
+      "Refactor long or repetitive code into small, cohesive, reusable helper methods.",
+      "Use stubs and incremental testing to develop decomposed solutions reliably."
+    ],
+    "commonMistakes": [
+      "Writing a single large method that does everything instead of separating responsibilities.",
+      "Leaking unnecessary details between methods (high coupling) by sharing too much state or using global variables.",
+      "Choosing poor method names or signatures that obscure intent, lack needed parameters, or return the wrong information."
+    ],
+    "tipsForSuccess": [
+      "Draft the high-level algorithm as method calls first; fill in method bodies later.",
+      "Aim for methods under ~20–30 lines that each answer a single, well-named question.",
+      "Write small tests for helpers as you go; refactor early when you see duplication."
+    ]
+  },
+  "vocabulary": [
+    {
+      "term": "Decomposition",
+      "definition": "Breaking a complex problem into smaller, manageable parts (methods/classes).",
+      "example": "main() calls readData(), computeStats(), and printReport()."
+    },
+    {
+      "term": "Top-Down Design",
+      "definition": "Start with high-level steps, then refine into lower-level helper methods.",
+      "example": "processFile() -> open(), parseAll(), close()."
+    },
+    {
+      "term": "Stepwise Refinement",
+      "definition": "Iteratively detailing each step until implementation is straightforward.",
+      "example": "parseAll() -> parseLine(), toFields(), handleRecord()."
+    },
+    {
+      "term": "Abstraction",
+      "definition": "Hiding details behind a simple interface to reduce cognitive load.",
+      "example": "int max = maxOf3(a, b, c); // hides comparison logic"
+    },
+    {
+      "term": "Helper Method",
+      "definition": "A small, focused method that supports a larger task.",
+      "example": "boolean isVowel(char ch) { ... }"
+    },
+    {
+      "term": "Method Signature",
+      "definition": "The method’s name, parameter list, and return type.",
+      "example": "double pow(double base, int exp)"
+    },
+    {
+      "term": "Parameter",
+      "definition": "A variable in a method that receives an input value.",
+      "example": "void drawLine(int length) { ... }"
+    },
+    {
+      "term": "Return Value",
+      "definition": "The result a method gives back to its caller.",
+      "example": "int len = textLength(\"hi\");"
+    },
+    {
+      "term": "Precondition",
+      "definition": "A condition that must be true before a method is called.",
+      "example": "// requires: n >= 0"
+    },
+    {
+      "term": "Postcondition",
+      "definition": "A condition guaranteed to be true after a method finishes.",
+      "example": "// ensures: returns sum of 0..n"
+    },
+    {
+      "term": "Cohesion",
+      "definition": "How strongly related a method’s responsibilities are; higher is better.",
+      "example": "parseIntSafe() only parses; it does not print."
+    },
+    {
+      "term": "Coupling",
+      "definition": "Degree of interdependence between modules; lower is better.",
+      "example": "computeAverage(List<Integer> data) // no global state"
+    },
+    {
+      "term": "Interface (Programming)",
+      "definition": "The set of publicly visible methods/behaviors offered by a component.",
+      "example": "List interface: add(), get(), size()"
+    },
+    {
+      "term": "Encapsulation",
+      "definition": "Bundling data with methods and restricting direct access.",
+      "example": "private fields with public getters"
+    },
+    {
+      "term": "Stub",
+      "definition": "A temporary placeholder method that compiles but is not fully implemented.",
+      "example": "int parseScore(String s) { return 0; /* TODO */ }"
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Which is the primary benefit of decomposition in CS106A?",
+      "options": [
+        "A) It makes code run faster by default",
+        "B) It reduces complexity and improves readability/testability",
+        "C) It eliminates all bugs automatically",
+        "D) It avoids the need for comments entirely"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Decomposition mainly improves design quality: readability, modularity, and testability. It does not inherently guarantee speed or eliminate all bugs.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which method signature best follows good decomposition for checking evenness?",
+      "options": [
+        "A) void isEven()",
+        "B) boolean isEven()",
+        "C) boolean isEven(int n)",
+        "D) int isEven(int n)"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The method needs input (n) and returns a boolean result, so boolean isEven(int n) is appropriate.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "A precondition is best described as:",
+      "options": [
+        "A) A guarantee after a method executes",
+        "B) A requirement before calling a method",
+        "C) The same as a return value",
+        "D) The method’s runtime complexity"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Preconditions are requirements on inputs/state that must hold when a method is called.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which code smell suggests poor decomposition?",
+      "options": [
+        "A) Multiple short helper methods with clear names",
+        "B) A single 150-line method doing input, processing, and output",
+        "C) Using constants for configuration values",
+        "D) Documented pre/postconditions"
+      ],
+      "correctAnswer": "B",
+      "explanation": "An overly long, multi-purpose method indicates low cohesion and high complexity.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "You have methods readData(), computeStats(), and printReport(). What design principle is most improved?",
+      "options": [
+        "A) Coupling increases",
+        "B) Cohesion increases",
+        "C) Abstraction decreases",
+        "D) Runtime complexity decreases automatically"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Each method handles one focused responsibility, increasing cohesion.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which option minimizes coupling between methods?",
+      "options": [
+        "A) Accessing and modifying global variables in helpers",
+        "B) Passing only needed values as parameters and returning results",
+        "C) Using many public fields across classes",
+        "D) Performing I/O inside every helper"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Passing required data and returning results reduces shared state and interdependencies.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Given: // requires: arr.length > 0 // ensures: returns max element. Which is best?",
+      "options": [
+        "A) int max(int[] arr)",
+        "B) void max(int[] arr)",
+        "C) boolean max(int[] arr)",
+        "D) String max(int[] arr)"
+      ],
+      "correctAnswer": "A",
+      "explanation": "The method returns the maximum as an int; it needs the array as input.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "When starting a large assignment, why write method stubs first?",
+      "options": [
+        "A) They ensure optimal performance",
+        "B) They allow code to compile and support incremental development/testing",
+        "C) They eliminate the need for unit tests",
+        "D) They auto-generate method bodies"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Stubs let you compile and integrate structure early, then fill in logic incrementally.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which redesign best increases cohesion?",
+      "options": [
+        "A) Method process() handles input, parse, compute, print",
+        "B) Split into readInput(), parse(), compute(), print()",
+        "C) Move all code into main()",
+        "D) Replace parameters with global variables"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Separating responsibilities into distinct methods increases cohesion and clarity.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "You have two helpers: normalize(String s) and tokenize(String s). A new feature needs case-insensitive tokenization. What change keeps low coupling?",
+      "options": [
+        "A) Have tokenize() read from System.in directly",
+        "B) Store s in a global and let both helpers access it",
+        "C) Call normalize() first, then pass its result to tokenize()",
+        "D) Merge both into one large method"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Compose helpers by passing outputs to inputs; avoid global state and monolithic methods.",
+      "difficulty": "advanced"
+    }
+  ],
+  "pseudocodeExamples": [
+    {
+      "title": "Top-Down Design: Word Count from Console",
+      "description": "Demonstrates decomposing a simple console app into input, processing, and output helpers.",
+      "pseudocode": "main:\n  text <- readLineFromUser()\n  count <- countWords(text)\n  printReport(text, count)\n\nreadLineFromUser:\n  prompt user\n  return line\n\ncountWords(text):\n  split text on whitespace\n  return number of tokens\n\nprintReport(text, count):\n  print summary",
+      "javaCode": "import java.util.*;\n\npublic class WordCountApp {\n    public static void main(String[] args) {\n        String text = readLineFromUser();\n        int count = countWords(text);\n        printReport(text, count);\n    }\n\n    private static String readLineFromUser() {\n        Scanner sc = new Scanner(System.in);\n        System.out.print(\"Enter a line: \");\n        String line = sc.nextLine();\n        // sc not closed to avoid closing System.in\n        return line;\n    }\n\n    private static int countWords(String text) {\n        if (text == null || text.trim().isEmpty()) return 0;\n        String[] tokens = text.trim().split(\"\\\\s+\");\n        return tokens.length;\n    }\n\n    private static void printReport(String text, int count) {\n        System.out.println(\"You entered: \" + text);\n        System.out.println(\"Word count: \" + count);\n    }\n}\n"
+    },
+    {
+      "title": "Reusable Helpers: Password Validation",
+      "description": "Shows decomposing validation into small, testable checks that combine into a final decision.",
+      "pseudocode": "isValidPassword(pw):\n  return isLongEnough(pw) AND hasUpper(pw) AND hasDigit(pw)\n\nisLongEnough(pw):\n  return length(pw) >= 8\n\nhasUpper(pw):\n  for each char c in pw:\n    if isUppercase(c): return true\n  return false\n\nhasDigit(pw):\n  for each char c in pw:\n    if isDigit(c): return true\n  return false",
+      "javaCode": "public class PasswordValidator {\n    public static void main(String[] args) {\n        System.out.println(isValidPassword(\"Abcdef12\")); // true\n        System.out.println(isValidPassword(\"abcdef12\")); // false (no uppercase)\n    }\n\n    public static boolean isValidPassword(String pw) {\n        return isLongEnough(pw) && hasUpper(pw) && hasDigit(pw);\n    }\n\n    private static boolean isLongEnough(String pw) {\n        return pw != null && pw.length() >= 8;\n    }\n\n    private static boolean hasUpper(String pw) {\n        if (pw == null) return false;\n        for (char c : pw.toCharArray()) {\n            if (Character.isUpperCase(c)) return true;\n        }\n        return false;\n    }\n\n    private static boolean hasDigit(String pw) {\n        if (pw == null) return false;\n        for (char c : pw.toCharArray()) {\n            if (Character.isDigit(c)) return true;\n        }\n        return false;\n    }\n}\n"
+    },
+    {
+      "title": "Refactoring Loop Logic: Prime Listing",
+      "description": "Illustrates extracting helpers from a loop-heavy task to increase readability and testability.",
+      "pseudocode": "main:\n  n <- readUpperBound()\n  for i from 2 to n:\n    if isPrime(i):\n      print i\n\nreadUpperBound:\n  read int from user\n  return it\n\nisPrime(k):\n  if k < 2: return false\n  for d from 2 to floor(sqrt(k)):\n    if k % d == 0: return false\n  return true",
+      "javaCode": "import java.util.*;\n\npublic class PrimeLister {\n    public static void main(String[] args) {\n        int n = readUpperBound();\n        for (int i = 2; i <= n; i++) {\n            if (isPrime(i)) {\n                System.out.println(i);\n            }\n        }\n    }\n\n    private static int readUpperBound() {\n        Scanner sc = new Scanner(System.in);\n        System.out.print(\"List primes up to: \");\n        while (!sc.hasNextInt()) {\n            System.out.print(\"Enter a valid integer: \");\n            sc.next();\n        }\n        int n = sc.nextInt();\n        return Math.max(n, 0);\n    }\n\n    public static boolean isPrime(int k) {\n        if (k < 2) return false;\n        int limit = (int)Math.sqrt(k);\n        for (int d = 2; d <= limit; d++) {\n            if (k % d == 0) return false;\n        }\n        return true;\n    }\n}\n"
+    }
+  ],
+  "cheatsheet": {
+    "syntaxReference": [
+      "Method declaration: public static int max(int a, int b) { return (a > b) ? a : b; }",
+      "Void method (no return): private static void printTitle(String title) { System.out.println(title); }",
+      "Calling a helper: int m = max(x, y);",
+      "Pre/Post in comments: // requires: n >= 0\\n// ensures: returns sum 0..n",
+      "Using constants: private static final int MAX_TRIES = 5;",
+      "Overloading example: int abs(int x) { ... } double abs(double x) { ... }",
+      "Early return to simplify logic: if (!valid) return; // do rest",
+      "Composing helpers: String cleaned = normalize(input); List<String> words = tokenize(cleaned);"
+    ],
+    "commonPatterns": [
+      "Top-down outline: main -> readInput(); process(); report();",
+      "Loop with helper condition: while (!done(state)) { state = step(state); }",
+      "Validation pipeline: isValid = checkA(x) && checkB(x) && checkC(x);",
+      "Accumulator with helper: total += valueOf(item);",
+      "Sentinel input: int n = readIntWithSentinel(sc, -1); while (n != -1) { ...; n = readIntWithSentinel(sc, -1); }"
+    ],
+    "quickTips": [
+      "Name methods by intent (what) not implementation (how).",
+      "Prefer passing data as parameters over reading globals inside helpers.",
+      "Refactor duplication into a helper the second time you see it."
+    ]
+  }
+}
