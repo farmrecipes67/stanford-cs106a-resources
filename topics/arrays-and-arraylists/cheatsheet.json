@@ -1,0 +1,36 @@
+{
+  "topic": "Arrays and ArrayLists",
+  "cheatsheet": {
+    "syntaxReference": [
+      "Declare and allocate: int[] a = new int[5];",
+      "Declare and initialize: String[] words = {\"hi\", \"there\"};",
+      "Access/assign: a[2] = 42; int x = a[0];",
+      "Array length: int n = a.length; // no parentheses",
+      "2D array: int[][] grid = new int[rows][cols]; int cols = grid[0].length;",
+      "ArrayList declaration: ArrayList<String> list = new ArrayList<>();",
+      "Add/get/set/remove: list.add(\"hi\"); String s = list.get(0); list.set(0, \"bye\"); list.remove(0);",
+      "Size of list: int n = list.size();",
+      "Enhanced for: for (int v : a) { ... } for (String s : list) { ... }",
+      "Copy arrays: int[] b = Arrays.copyOf(a, a.length); // or a.clone()",
+      "System.arraycopy: System.arraycopy(src, 0, dst, 0, src.length);",
+      "Sort: Arrays.sort(a); Collections.sort(list);",
+      "Convert array->list (objects): ArrayList<String> L = new ArrayList<>(Arrays.asList(words));",
+      "Remove with predicate: list.removeIf(x -> x % 2 == 0);",
+      "Iterator removal: for (Iterator<Integer> it = list.iterator(); it.hasNext();) { if (it.next() % 2 == 0) it.remove(); }"
+    ],
+    "commonPatterns": [
+      "Sum array elements: int sum = 0; for (int x : a) { sum += x; }",
+      "Find index of target in array: int idx = -1; for (int i = 0; i < a.length; i++) { if (a[i] == target) { idx = i; break; } }",
+      "Resize array via copy: int[] bigger = Arrays.copyOf(a, a.length * 2);",
+      "Build list from array (primitives): ArrayList<Integer> L = new ArrayList<>(); for (int v : a) { L.add(v); }",
+      "Remove while iterating safely: list.removeIf(s -> s.isEmpty()); // or use Iterator.remove()",
+      "2D traversal: for (int r = 0; r < grid.length; r++) { for (int c = 0; c < grid[r].length; c++) { /* use grid[r][c] */ } }",
+      "Sort with custom order: list.sort(Comparator.reverseOrder());"
+    ],
+    "quickTips": [
+      "Use arrays for fixed-size data and tight inner loops; use ArrayList when you need dynamic resizing or frequent insertions/removals at the end.",
+      "Remember: arrays have length (field), ArrayList has size() (method). This catches many bugs.",
+      "When you intend to copy an array, do not write b = a; use Arrays.copyOf, clone, or System.arraycopy."
+    ]
+  }
+}
