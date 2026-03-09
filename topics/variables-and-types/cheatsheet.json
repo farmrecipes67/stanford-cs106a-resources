@@ -1,0 +1,29 @@
+{
+  "topic": "Variables and Types",
+  "cheatsheet": {
+    "syntaxReference": [
+      "Declare: int count;",
+      "Initialize: int count = 0;",
+      "Multiple declarations: int a = 1, b = 2;",
+      "Constant: final double PI = 3.14159;",
+      "Cast to double: double y = (double) x;",
+      "Integer division and modulo: int q = 7 / 2; // 3, int r = 7 % 2; // 1",
+      "Char and String literals: char c = 'Z'; String s = \"Hi\";",
+      "Concatenation: String msg = \"Score: \" + score;",
+      "Auto-widening: double d = 5; // 5 becomes 5.0",
+      "Readable numbers: int big = 1_000_000;"
+    ],
+    "commonPatterns": [
+      "Accumulator: int sum = 0; for (int x : arr) { sum += x; }",
+      "Average with cast: double avg = (double) sum / count;",
+      "String building: String full = first + \" \" + last;",
+      "Toggle boolean: flag = !flag;",
+      "Parse int from String: int n = Integer.parseInt(text);"
+    ],
+    "quickTips": [
+      "If you need a fractional result, ensure at least one operand is a double.",
+      "Use final constants for fixed values to avoid magic numbers and prevent accidental changes.",
+      "Prefer descriptive names (e.g., totalSeconds, taxRate) over single letters."
+    ]
+  }
+}
