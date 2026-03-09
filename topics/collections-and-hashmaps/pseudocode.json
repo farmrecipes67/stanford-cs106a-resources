@@ -1,0 +1,23 @@
+{
+  "topic": "Collections and HashMaps",
+  "examples": [
+    {
+      "title": "Count word frequencies with HashMap",
+      "description": "Demonstrates using getOrDefault to count occurrences of strings.",
+      "pseudocode": "create empty map counts from String to Integer\nfor each word in words:\n  old = counts.getOrDefault(word, 0)\n  counts.put(word, old + 1)\nprint counts",
+      "javaCode": "import java.util.*;\n\npublic class WordCountDemo {\n  public static Map<String,Integer> countWords(List<String> words) {\n    Map<String,Integer> counts = new HashMap<>();\n    for (String w : words) {\n      counts.put(w, counts.getOrDefault(w, 0) + 1);\n    }\n    return counts;\n  }\n\n  public static void main(String[] args) {\n    List<String> words = Arrays.asList(\"to\", \"be\", \"or\", \"not\", \"to\", \"be\");\n    System.out.println(countWords(words));\n  }\n}"
+    },
+    {
+      "title": "Invert a Map (value to set of keys)",
+      "description": "Builds a reverse index from Map<K,V> to Map<V, Set<K>>.",
+      "pseudocode": "create empty map inverse from V to Set<K>\nfor each (k, v) in original map:\n  if v not in inverse:\n    inverse[v] = empty set\n  add k to inverse[v]\nreturn inverse",
+      "javaCode": "import java.util.*;\n\npublic class InvertMapDemo {\n  public static <K,V> Map<V, Set<K>> invert(Map<K,V> original) {\n    Map<V, Set<K>> inverse = new HashMap<>();\n    for (Map.Entry<K,V> e : original.entrySet()) {\n      V v = e.getValue();\n      K k = e.getKey();\n      inverse.computeIfAbsent(v, key -> new HashSet<>()).add(k);\n    }\n    return inverse;\n  }\n\n  public static void main(String[] args) {\n    Map<String,String> advisor = new HashMap<>();\n    advisor.put(\"Alice\", \"ProfX\");\n    advisor.put(\"Bob\", \"ProfY\");\n    advisor.put(\"Cara\", \"ProfX\");\n    System.out.println(invert(advisor));\n  }\n}"
+    },
+    {
+      "title": "Group anagrams using canonical keys",
+      "description": "Uses a sorted-character key to group words that are anagrams.",
+      "pseudocode": "create empty map groups from String to List<String>\nfor each word:\n  key = sort letters of word\n  list = groups.get(key)\n  if list is null:\n    list = new empty list; put key->list in map\n  add word to list\nreturn groups.values()",
+      "javaCode": "import java.util.*;\n\npublic class AnagramGroupsDemo {\n  private static String sortedKey(String s) {\n    char[] a = s.toCharArray();\n    Arrays.sort(a);\n    return new String(a);\n  }\n\n  public static Collection<List<String>> groupAnagrams(List<String> words) {\n    Map<String, List<String>> groups = new HashMap<>();\n    for (String w : words) {\n      String key = sortedKey(w);\n      groups.computeIfAbsent(key, k -> new ArrayList<>()).add(w);\n    }\n    return groups.values();\n  }\n\n  public static void main(String[] args) {\n    List<String> words = Arrays.asList(\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\");\n    System.out.println(groupAnagrams(words));\n  }\n}"
+    }
+  ]
+}
