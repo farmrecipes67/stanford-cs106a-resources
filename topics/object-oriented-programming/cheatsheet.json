@@ -1,0 +1,29 @@
+{
+  "topic": "Object-Oriented Programming",
+  "cheatsheet": {
+    "syntaxReference": [
+      "Class and fields:\nclass Counter {\n  private int value; // field\n}",
+      "Constructor and this:\nclass Point {\n  private int x, y;\n  public Point(int x, int y) { this.x = x; this.y = y; }\n}",
+      "Instance method and return:\npublic int add(int a, int b) { return a + b; }",
+      "Static field/method:\nclass MathUtils { public static final double TAU = 6.28318; public static int sq(int n){ return n*n; } }",
+      "Inheritance and super:\nclass Animal { Animal(String name) {} }\nclass Dog extends Animal { Dog() { super(\"dog\"); } }",
+      "Interface and implementation:\ninterface Drawable { void draw(); }\nclass Button implements Drawable { public void draw() { /* ... */ } }",
+      "Abstract class and method:\nabstract class Shape { abstract double area(); }",
+      "Override annotation:\nclass A { void f(){} }\nclass B extends A { @Override void f() { /* new behavior */ } }",
+      "toString and equals skeleton:\n@Override public String toString(){ return \"Point(\"+x+\",\"+y+\")\"; }\n@Override public boolean equals(Object o){ if(!(o instanceof Point)) return false; Point p=(Point)o; return x==p.x && y==p.y; }",
+      "Package and import:\npackage edu.stanford.cs106a;\nimport java.util.ArrayList;"
+    ],
+    "commonPatterns": [
+      "Encapsulation with validation:\nclass BankAccount {\n  private double bal;\n  public BankAccount(double init){ bal = Math.max(0, init); }\n  public void deposit(double a){ if(a>0) bal+=a; }\n  public boolean withdraw(double a){ if(a>0 && a<=bal){ bal-=a; return true; } return false; }\n}",
+      "Immutable value object:\nfinal class Point2D {\n  private final int x, y;\n  public Point2D(int x, int y){ this.x=x; this.y=y; }\n  public int getX(){ return x; } public int getY(){ return y; }\n}",
+      "Polymorphic processing:\nList<Shape> shapes = List.of(new Circle(2), new Rectangle(3,4));\ndouble sum=0; for(Shape s:shapes) sum+=s.area();",
+      "Delegation via composition:\nclass StopWatch { long start; void tic(){ start=System.nanoTime(); } long toc(){ return System.nanoTime()-start; } }\nclass Sorter { private final StopWatch sw = new StopWatch(); void sort(int[] a){ sw.tic(); /* ... */ long t=sw.toc(); } }",
+      "Factory method:\nclass FileOpener {\n  public static InputStream open(String path) throws IOException {\n    return new FileInputStream(path);\n  }\n}"
+    ],
+    "quickTips": [
+      "Keep fields private; expose behavior with small, cohesive public methods.",
+      "Use @Override to catch signature mistakes when overriding methods.",
+      "Compare objects with equals (not ==); for Strings, use s.equals(\"text\")."
+    ]
+  }
+}
