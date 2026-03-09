@@ -1,0 +1,81 @@
+{
+  "topic": "Control Flow",
+  "totalTerms": 15,
+  "terms": [
+    {
+      "term": "Control Flow",
+      "definition": "The order in which individual statements, instructions, or function calls are executed.",
+      "example": "Sequence, if/else, and loops determine control flow in a Java method."
+    },
+    {
+      "term": "Sequence",
+      "definition": "Default top-to-bottom execution of statements in the order they appear.",
+      "example": "int x = 3; x = x + 1; System.out.println(x);"
+    },
+    {
+      "term": "Selection",
+      "definition": "Choosing between alternatives using conditional statements.",
+      "example": "if (score >= 90) grade = 'A'; else grade = 'B';"
+    },
+    {
+      "term": "if statement",
+      "definition": "Executes a block only if its boolean condition is true.",
+      "example": "if (x > 0) { System.out.println(\"positive\"); }"
+    },
+    {
+      "term": "if-else",
+      "definition": "Executes one block when condition is true, otherwise the else block.",
+      "example": "if (n % 2 == 0) { System.out.println(\"even\"); } else { System.out.println(\"odd\"); }"
+    },
+    {
+      "term": "else-if chain",
+      "definition": "Multiple conditional checks in sequence, the first true branch runs.",
+      "example": "if (x > 0) {...} else if (x == 0) {...} else {...}"
+    },
+    {
+      "term": "switch",
+      "definition": "Multi-way branch based on a single expression; cases may require break to avoid fall-through.",
+      "example": "switch(day) { case 1: name = \"Mon\"; break; default: name = \"?\"; }"
+    },
+    {
+      "term": "Boolean expression",
+      "definition": "An expression that evaluates to true or false.",
+      "example": "(age >= 18) && hasID"
+    },
+    {
+      "term": "Relational operator",
+      "definition": "Operators that compare values: ==, !=, <, >, <=, >=",
+      "example": "if (a != b) { ... }"
+    },
+    {
+      "term": "Logical operator",
+      "definition": "Combines boolean expressions: && (and), || (or), ! (not).",
+      "example": "if (inRange && !isBlocked) { move(); }"
+    },
+    {
+      "term": "Short-circuit evaluation",
+      "definition": "Java evaluates left-to-right and stops when the result is known for && and ||.",
+      "example": "if (x != 0 && 10 / x > 1) { ... } // safe from divide-by-zero"
+    },
+    {
+      "term": "while loop",
+      "definition": "Repeats while its condition remains true; checks before each iteration.",
+      "example": "while (count < 10) { count++; }"
+    },
+    {
+      "term": "for loop",
+      "definition": "Counter-controlled loop with initialization, condition, and update.",
+      "example": "for (int i = 0; i < 5; i++) { System.out.println(i); }"
+    },
+    {
+      "term": "do-while loop",
+      "definition": "Executes the body at least once, then repeats while condition is true.",
+      "example": "do { read(); } while (!isValid());"
+    },
+    {
+      "term": "Sentinel loop",
+      "definition": "Processes input until a special terminator value appears.",
+      "example": "while ((n = sc.nextInt()) != -1) { sum += n; }"
+    }
+  ]
+}
