@@ -1,0 +1,24 @@
+{
+  "topic": "Object-Oriented Programming",
+  "materials": {
+    "keyConceptsSummary": "OOP in Java centers on classes (blueprints) and objects (instances). A class defines fields (instance variables) to hold state and methods to provide behavior. Constructors initialize new objects and can enforce invariants. Encapsulation keeps fields private and exposes behavior through a small, well-documented public interface, which helps prevent bugs and makes changes safer.\n\nAccess modifiers (public, private, protected) control visibility. The keyword this refers to the current object, useful for disambiguating fields from parameters. Static members belong to the class itself rather than any instance (e.g., utility functions or shared constants). Inheritance lets a subclass reuse and extend a superclass; polymorphism enables code that uses a superclass or interface reference to operate on any subclass/implementer. Method overriding customizes behavior, and super can invoke superclass constructors or methods. Interfaces define contracts of behavior without implementation, enabling flexible design and decoupling. Together, these features help you build modular, reusable, and maintainable programs.",
+    "learningObjectives": [
+      "Design and implement Java classes with fields, constructors, and methods that enforce class invariants.",
+      "Apply encapsulation using appropriate access modifiers, getters/setters, and clear public interfaces.",
+      "Differentiate between instance and static members and use them appropriately.",
+      "Use inheritance, interfaces, and polymorphism to write general, extensible code.",
+      "Override toString, equals, and other methods to integrate with Java conventions and collections."
+    ],
+    "commonMistakes": [
+      "Exposing fields as public instead of keeping them private and validating via methods.",
+      "Using == to compare Strings or objects rather than equals, leading to incorrect comparisons.",
+      "Forgetting to call super(...) in subclass constructors or misunderstanding constructor chaining."
+    ],
+    "tipsForSuccess": [
+      "Write small, focused classes with a single responsibility; test behavior via public methods.",
+      "Document class invariants and method contracts; enforce them in constructors and setters.",
+      "Prefer composition over inheritance when the relationship is \"has-a\" rather than \"is-a\"."
+    ]
+  },
+  "overview": "In CS106A, Object-Oriented Programming (OOP) is the organizing principle that helps you structure Java programs around objects that contain both data (state) and behavior (methods). Instead of writing one long script, you design classes that model concepts from your problem domain—like BankAccount, Student, or Shape—and then create instances (objects) that collaborate to solve the task. This approach scales from small assignments to large software systems because it promotes modularity, readability, and reuse.\n\nYou will practice key OOP ideas such as encapsulation (hiding internal details behind a clear public interface), constructors (initializing object state), and method design. You’ll also get an introduction to inheritance, interfaces, and polymorphism to write general code that works across different types. By the end, you’ll be able to design clean, testable classes, use standard patterns, and reason about object interactions—skills that carry across languages and projects."
+}
