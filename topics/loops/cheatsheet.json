@@ -1,0 +1,24 @@
+{
+  "topic": "Loops",
+  "cheatsheet": {
+    "syntaxReference": [
+      "for (int i = 0; i < n; i++) { /* body */ }",
+      "while (condition) { /* body */ }",
+      "do { /* body */ } while (condition);",
+      "for (Type var : collectionOrArray) { /* body */ }",
+      "break; // exits nearest loop\ncontinue; // skips to next iteration"
+    ],
+    "commonPatterns": [
+      "Counter-controlled loop: int count = 0; for (int i = 0; i < n; i++) { count++; }",
+      "Accumulate sum/average: int sum = 0; for (int x : arr) { sum += x; } double avg = (arr.length>0)? (double)sum/arr.length : 0.0;",
+      "Find max/min: int max = Integer.MIN_VALUE; for (int x : arr) { if (x > max) max = x; }",
+      "Sentinel input: while ((x = scan.nextInt()) != -1) { /* process x */ }",
+      "Nested loops grid: for (int r=0;r<rows;r++){ for(int c=0;c<cols;c++){ System.out.print(\"*\"); } System.out.println(); }"
+    ],
+    "quickTips": [
+      "Prefer i < array.length over i <= array.length to avoid IndexOutOfBoundsException.",
+      "Ensure each loop makes progress toward termination (update counters or state every iteration).",
+      "Keep loop bodies small; extract helper methods for clarity and testability."
+    ]
+  }
+}
