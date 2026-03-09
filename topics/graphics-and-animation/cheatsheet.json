@@ -1,0 +1,37 @@
+{
+  "topic": "Graphics and Animation",
+  "cheatsheet": {
+    "syntaxReference": [
+      "Program skeleton: public class MySketch extends GraphicsProgram { public void run() { /* ... */ } }",
+      "Add objects: GRect r = new GRect(80,40); add(r, 100, 120);",
+      "Colors and fill: rect.setFilled(true); rect.setFillColor(Color.BLUE); rect.setColor(Color.BLACK);",
+      "Movement: obj.move(dx, dy); obj.setLocation(x, y);",
+      "Animation loop: while (true) { /* update */ pause(20); }",
+      "Canvas size: double w = getWidth(); double h = getHeight();",
+      "Z-order: obj.sendToFront(); obj.sendToBack();",
+      "Text: GLabel lbl = new GLabel(\"Hello\"); lbl.setFont(\"SansSerif-18\"); add(lbl, x, y);",
+      "Images: GImage img = new GImage(\"pic.png\"); add(img, x, y); img.scale(0.5);",
+      "Groups: GCompound c = new GCompound(); c.add(new GOval(20,20), 0, 0); add(c, 50, 50);",
+      "Mouse input: addMouseListeners(); public void mousePressed(MouseEvent e) { /* ... */ }",
+      "Keyboard input: addKeyListeners(); public void keyPressed(KeyEvent e) { if (e.getKeyCode()==KeyEvent.VK_LEFT) {...} }",
+      "Collision sample: GObject hit = getElementAt(x, y); if (hit != null) { /* collide */ }",
+      "Bounds: GRectangle b = obj.getBounds(); if (b.getX()+b.getWidth()>=getWidth()) { /* ... */ }",
+      "Fonts and metrics: lbl.getAscent() to baseline-align labels (y is baseline)."
+    ],
+    "commonPatterns": [
+      "Game loop with velocity: double dx=3, dy=2; while(true){ obj.move(dx,dy); if(hitWall()) dx=-dx; pause(16); }",
+      "Drag-and-drop: on mousePressed->selected=getElementAt; store offset; on mouseDragged->selected.setLocation(e.getX()-offX, e.getY()-offY);",
+      "Keyboard movement: addKeyListeners(); keyPressed-> if(VK_LEFT) player.move(-SPEED,0); if(VK_RIGHT) player.move(SPEED,0);",
+      "Centering object: add(obj, getWidth()/2 - obj.getWidth()/2, getHeight()/2 - obj.getHeight()/2);",
+      "Point-sampling collision: GObject hit = getElementAt(ball.getX()+r, ball.getY()+r); if(hit!=null){ dy=-dy; }",
+      "Boundary clamp: x = Math.max(0, Math.min(x, getWidth()-obj.getWidth())); obj.setLocation(x, obj.getY());",
+      "Parallax/background: background.sendToBack(); move foreground faster than background for depth effect.",
+      "Timer alternative: new javax.swing.Timer(16, e->{ step(); }).start(); // if using Swing timer instead of while+pause"
+    ],
+    "quickTips": [
+      "Use small, consistent time steps (e.g., 16–20 ms) and tune speeds in pixels/frame for smooth motion.",
+      "Sample multiple points around fast-moving objects to avoid tunneling through thin paddles or walls.",
+      "Keep drawing and game logic separate; write helper methods like updateBall(), checkCollisions(), and handleInput() for clarity."
+    ]
+  }
+}
