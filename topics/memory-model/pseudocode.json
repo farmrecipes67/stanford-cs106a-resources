@@ -1,0 +1,23 @@
+{
+  "topic": "Memory Model",
+  "examples": [
+    {
+      "title": "Pass-by-Value: Rebinding vs Mutation",
+      "description": "Shows that rebinding a parameter to a new object does not affect the caller, while mutating the object does.",
+      "pseudocode": "define class Counter with field n\nmake Counter c with n = 0\ncall bump(c) which sets c.n = 5\nobserve caller sees n = 5 (same object mutated)\ncall rebind(c) which sets c = new Counter(100)\nobserve caller still sees n = 5 (parameter rebind doesn't escape)",
+      "javaCode": "class Counter { int n; Counter(int n){ this.n = n; } }\n\nstatic void bump(Counter c) { c.n = 5; }\nstatic void rebind(Counter c) { c = new Counter(100); }\n\npublic static void main(String[] args) {\n  Counter c = new Counter(0);\n  bump(c); // mutates heap object\n  System.out.println(c.n); // 5\n  rebind(c); // reassigns local copy of reference only\n  System.out.println(c.n); // still 5\n}"
+    },
+    {
+      "title": "Avoiding Aliasing with Arrays",
+      "description": "Demonstrates aliasing via assignment and how to avoid it with copying.",
+      "pseudocode": "create array a = [1,2,3]\nlet b = a (alias)\nset b[0] = 9 => a[0] is now 9\nto avoid: let c = copy of a\nset c[1] = 99 => a unchanged",
+      "javaCode": "int[] a = {1,2,3};\nint[] b = a; // alias\nb[0] = 9;\nSystem.out.println(a[0]); // 9\n\nint[] c = Arrays.copyOf(a, a.length); // new array\nc[1] = 99;\nSystem.out.println(a[1]); // 2 (unchanged)"
+    },
+    {
+      "title": "Equality vs Identity with Strings",
+      "description": "Highlights the difference between == and equals when comparing Strings.",
+      "pseudocode": "make s1 = new String(\"hi\")\nmake s2 = new String(\"hi\")\nidentity check (s1 == s2) is false\ncontent check (s1.equals(s2)) is true",
+      "javaCode": "String s1 = new String(\"hi\");\nString s2 = new String(\"hi\");\nSystem.out.println(s1 == s2);     // false (different references)\nSystem.out.println(s1.equals(s2)); // true (same content)"
+    }
+  ]
+}
