@@ -1,0 +1,24 @@
+{
+  "topic": "Strings",
+  "materials": {
+    "keyConceptsSummary": "• Strings are objects: variables hold references to String instances created via literals (\"...\") or constructors. Strings store Unicode text and are zero-indexed.\n• Immutability: all String methods that \"change\" text return a new String. Original references keep their original value. This has implications for memory and performance, especially in loops.\n• Core operations: length() gives character count; charAt(i) retrieves a char; substring(start, end) returns a half-open slice [start, end); indexOf/lastIndexOf search for substrings and return -1 when not found; equals and equalsIgnoreCase compare content; compareTo provides lexicographic ordering; trim removes leading/trailing whitespace; replace replaces characters/substrings; case conversion via toUpperCase/toLowerCase.\n• Concatenation: + can join strings and other types; evaluation is left-to-right. Be mindful of numeric addition vs concatenation order. String.format provides powerful, readable templating.\n• Efficiency: concatenating inside a loop can be O(n^2). Use StringBuilder (append, toString) to build large strings efficiently. Choose the right tool for readability and performance.",
+    "learningObjectives": [
+      "Use String methods (length, charAt, substring, indexOf) to inspect, slice, and search text",
+      "Compare strings correctly with equals and equalsIgnoreCase and explain why == is wrong for content",
+      "Apply substring’s half-open indexing and avoid off-by-one errors in loops over characters",
+      "Choose between +, String.format, and StringBuilder based on readability and performance needs",
+      "Implement small text-processing tasks (counting, parsing, normalization) using string APIs"
+    ],
+    "commonMistakes": [
+      "Using == instead of equals to compare two strings, leading to incorrect results",
+      "Forgetting substring’s end index is exclusive, causing off-by-one bugs or StringIndexOutOfBoundsException",
+      "Building long strings with + inside a loop instead of using StringBuilder, causing poor performance"
+    ],
+    "tipsForSuccess": [
+      "Write small helper methods (e.g., isVowel, normalize) to keep string logic readable and testable",
+      "Check edge cases: empty strings, single-character strings, and not-found cases (indexOf returns -1)",
+      "Print intermediate results while debugging to verify indexes and substrings are what you expect"
+    ]
+  },
+  "overview": "Strings in Java represent immutable sequences of Unicode characters and are one of the most-used data types in CS106A. You will use strings to read user input, parse files, build messages, and implement algorithms that process text. Because strings are objects, they come with a rich set of methods for inspection (length, charAt), searching (indexOf, lastIndexOf), slicing (substring), and transforming (toUpperCase, toLowerCase, trim, replace).\n\nA key idea is immutability: once created, a String's contents never change. Methods that seem like they \"modify\" a string actually return a new one. This affects performance and correctness—avoid repeatedly concatenating with + inside loops; prefer StringBuilder for efficient construction. Other core practices include using equals (not ==) for content comparison, remembering that substring end indexes are exclusive, and handling \"not found\" results from indexOf as -1."
+}
