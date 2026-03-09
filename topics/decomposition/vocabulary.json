@@ -1,0 +1,81 @@
+{
+  "topic": "Decomposition",
+  "totalTerms": 15,
+  "terms": [
+    {
+      "term": "Decomposition",
+      "definition": "Breaking a complex problem into smaller, manageable parts (methods/classes).",
+      "example": "main() calls readData(), computeStats(), and printReport()."
+    },
+    {
+      "term": "Top-Down Design",
+      "definition": "Start with high-level steps, then refine into lower-level helper methods.",
+      "example": "processFile() -> open(), parseAll(), close()."
+    },
+    {
+      "term": "Stepwise Refinement",
+      "definition": "Iteratively detailing each step until implementation is straightforward.",
+      "example": "parseAll() -> parseLine(), toFields(), handleRecord()."
+    },
+    {
+      "term": "Abstraction",
+      "definition": "Hiding details behind a simple interface to reduce cognitive load.",
+      "example": "int max = maxOf3(a, b, c); // hides comparison logic"
+    },
+    {
+      "term": "Helper Method",
+      "definition": "A small, focused method that supports a larger task.",
+      "example": "boolean isVowel(char ch) { ... }"
+    },
+    {
+      "term": "Method Signature",
+      "definition": "The method’s name, parameter list, and return type.",
+      "example": "double pow(double base, int exp)"
+    },
+    {
+      "term": "Parameter",
+      "definition": "A variable in a method that receives an input value.",
+      "example": "void drawLine(int length) { ... }"
+    },
+    {
+      "term": "Return Value",
+      "definition": "The result a method gives back to its caller.",
+      "example": "int len = textLength(\"hi\");"
+    },
+    {
+      "term": "Precondition",
+      "definition": "A condition that must be true before a method is called.",
+      "example": "// requires: n >= 0"
+    },
+    {
+      "term": "Postcondition",
+      "definition": "A condition guaranteed to be true after a method finishes.",
+      "example": "// ensures: returns sum of 0..n"
+    },
+    {
+      "term": "Cohesion",
+      "definition": "How strongly related a method’s responsibilities are; higher is better.",
+      "example": "parseIntSafe() only parses; it does not print."
+    },
+    {
+      "term": "Coupling",
+      "definition": "Degree of interdependence between modules; lower is better.",
+      "example": "computeAverage(List<Integer> data) // no global state"
+    },
+    {
+      "term": "Interface (Programming)",
+      "definition": "The set of publicly visible methods/behaviors offered by a component.",
+      "example": "List interface: add(), get(), size()"
+    },
+    {
+      "term": "Encapsulation",
+      "definition": "Bundling data with methods and restricting direct access.",
+      "example": "private fields with public getters"
+    },
+    {
+      "term": "Stub",
+      "definition": "A temporary placeholder method that compiles but is not fully implemented.",
+      "example": "int parseScore(String s) { return 0; /* TODO */ }"
+    }
+  ]
+}
