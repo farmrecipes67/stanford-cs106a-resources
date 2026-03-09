@@ -1,0 +1,81 @@
+{
+  "topic": "Event-Driven Programming",
+  "totalTerms": 15,
+  "terms": [
+    {
+      "term": "Event",
+      "definition": "A notification that something happened (e.g., button click, mouse move, timer tick).",
+      "example": "// ActionEvent fired when a JButton is clicked"
+    },
+    {
+      "term": "Listener",
+      "definition": "An object that registers interest in certain events and provides callback methods.",
+      "example": "addActionListeners(); // GraphicsProgram listens for ActionEvents"
+    },
+    {
+      "term": "Callback",
+      "definition": "A method invoked by the framework when a corresponding event occurs.",
+      "example": "public void actionPerformed(ActionEvent e) { /* handle click */ }"
+    },
+    {
+      "term": "ActionEvent",
+      "definition": "An event representing an action on an interactor (e.g., button press, Enter in text field) or a timer tick.",
+      "example": "String cmd = e.getActionCommand();"
+    },
+    {
+      "term": "MouseEvent",
+      "definition": "An event carrying mouse details such as coordinates and button state.",
+      "example": "public void mousePressed(MouseEvent e) { int x = e.getX(); }"
+    },
+    {
+      "term": "KeyEvent",
+      "definition": "An event representing keyboard input (press, release, type).",
+      "example": "public void keyPressed(KeyEvent e) { int code = e.getKeyCode(); }"
+    },
+    {
+      "term": "Interactor",
+      "definition": "A UI control (e.g., JButton, JTextField) that can generate ActionEvents.",
+      "example": "add(new JButton(\"Go\"), SOUTH);"
+    },
+    {
+      "term": "Action Command",
+      "definition": "A string associated with an ActionEvent, often the button text or a custom command.",
+      "example": "if (e.getActionCommand().equals(\"Go\")) { /* ... */ }"
+    },
+    {
+      "term": "Registration",
+      "definition": "The act of subscribing to events so callbacks will be invoked.",
+      "example": "addMouseListeners(); addKeyListeners();"
+    },
+    {
+      "term": "Event Loop",
+      "definition": "Framework-managed loop that dequeues events and dispatches them to listeners.",
+      "example": "// Managed by ACM/Swing; you provide handlers only"
+    },
+    {
+      "term": "Timer",
+      "definition": "Generates periodic ActionEvents at a fixed delay, useful for animation.",
+      "example": "Timer t = new Timer(20, this); t.start();"
+    },
+    {
+      "term": "GObject",
+      "definition": "Base class for graphical objects on the GCanvas.",
+      "example": "GObject obj = getElementAt(x, y);"
+    },
+    {
+      "term": "Hit-Testing",
+      "definition": "Determining which GObject is under a given point.",
+      "example": "GObject obj = getElementAt(e.getX(), e.getY());"
+    },
+    {
+      "term": "Drag Offset",
+      "definition": "Stored dx, dy between mouse press point and object origin to enable smooth dragging.",
+      "example": "dx = e.getX() - obj.getX(); dy = e.getY() - obj.getY();"
+    },
+    {
+      "term": "Event Source",
+      "definition": "The object that fired the event (e.g., a specific JButton or Timer).",
+      "example": "if (e.getSource() == startButton) { /* ... */ }"
+    }
+  ]
+}
