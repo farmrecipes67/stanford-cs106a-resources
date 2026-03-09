@@ -1,0 +1,24 @@
+{
+  "topic": "Graphics and Animation",
+  "materials": {
+    "keyConceptsSummary": "GraphicsProgram provides a drawing canvas where you add and manipulate GObject instances (e.g., GRect, GOval, GLine, GImage, GLabel). The coordinate system has (0,0) at the top-left; x increases to the right, y increases downward. You can place objects with add(obj, x, y), move them using setLocation or move(dx, dy), and control appearance with setColor, setFilled, and setFillColor. Z-order determines which objects appear on top; you can adjust it with sendToFront/sendToBack.\n\nAnimation in CS106A typically uses a loop with small movement steps and pause(milliseconds) to throttle speed and yield to the event system. Velocity variables (dx, dy) encode motion; you update position then reflect or clamp when hitting boundaries. Collision detection ranges from point sampling (e.g., getElementAt(x,y)) to bounding-box checks via getBounds() on GObject and GRectangle intersection tests. Interactivity is handled through mouse and keyboard listeners: addMouseListeners/addKeyListeners plus methods like mousePressed, mouseDragged, and keyPressed.\n\nImages (GImage) and groups (GCompound) enable richer scenes and modular composition: build complex sprites by combining primitives into a single movable unit. Robust programs separate constants (sizes, speeds) from logic, and follow an incremental workflow—draw, move, then handle collisions and input—while using debugging aids like outlines, labels, and color changes.",
+    "learningObjectives": [
+      "Create a GraphicsProgram and add, position, and style shapes, text, and images on the canvas.",
+      "Animate objects using a time-stepped loop with pause, managing velocities and frame rates.",
+      "Implement collision detection using point sampling, object bounds, and simple reflection/bounce logic.",
+      "Handle mouse and keyboard events to enable dragging, clicking, and character or paddle control.",
+      "Compose scenes with GCompound and manage layering (z-order) for correct drawing and interaction."
+    ],
+    "commonMistakes": [
+      "Forgetting to call setFilled(true) when expecting a shape’s fill color to appear (setColor only affects outlines unless filled).",
+      "Using canvas dimensions (getWidth/getHeight) or object dimensions incorrectly in boundary checks, causing objects to clip or escape the window.",
+      "Not calling addMouseListeners/addKeyListeners (or not overriding the correct handler names), resulting in unresponsive input."
+    ],
+    "tipsForSuccess": [
+      "Use named constants for sizes, speeds, and timings; this makes tuning animations easier and safer.",
+      "Develop incrementally: first draw static objects, then add motion, then add collisions and input, testing after each step.",
+      "Visualize debugging info: temporarily draw hitboxes, change colors on collisions, or print positions to track logic errors."
+    ]
+  },
+  "overview": "In CS106A, Graphics and Animation introduce you to event-driven programming and visual problem solving using the ACM Graphics library. You work in a GraphicsProgram, add graphical objects (GObject) like GRect, GOval, and GLabel to a canvas, set their colors and layering, and position them using a 2D coordinate system with the origin at the top-left. You’ll also learn to load images, group shapes, and display text to create interactive visual programs.\n\nAnimation is built around a simple game loop: update object state (e.g., position), render, and pause for a short time step to control frame rate. Combining this with mouse and keyboard listeners lets you build interactive projects like bouncing balls, drag-and-drop interfaces, simple arcade games (Breakout), and data visualizations. You’ll practice timing, collision detection, and incremental design to keep programs smooth, responsive, and easy to debug."
+}
