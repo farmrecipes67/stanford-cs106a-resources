@@ -1,0 +1,81 @@
+{
+  "topic": "Graphics and Animation",
+  "totalTerms": 15,
+  "terms": [
+    {
+      "term": "GraphicsProgram",
+      "definition": "A program type with a drawing canvas and animation utilities like pause().",
+      "example": "public class MyArt extends GraphicsProgram { public void run() { /* draw here */ } }"
+    },
+    {
+      "term": "GObject",
+      "definition": "Base class for all drawable objects (shapes, images, labels) on the canvas.",
+      "example": "GObject obj = new GRect(50, 50); add(obj, 10, 10);"
+    },
+    {
+      "term": "GRect",
+      "definition": "A rectangle graphic with width and height.",
+      "example": "GRect box = new GRect(80, 40); box.setFilled(true); add(box, 100, 100);"
+    },
+    {
+      "term": "GOval",
+      "definition": "An ellipse/circle defined by width and height.",
+      "example": "GOval ball = new GOval(30, 30); ball.setFilled(true); add(ball, 200, 150);"
+    },
+    {
+      "term": "GLabel",
+      "definition": "Drawable text string.",
+      "example": "GLabel score = new GLabel(\"Score: 0\"); add(score, 10, 20);"
+    },
+    {
+      "term": "GLine",
+      "definition": "A straight line between two points.",
+      "example": "GLine diag = new GLine(0, 0, 100, 100); add(diag);"
+    },
+    {
+      "term": "GImage",
+      "definition": "An image loaded from a file.",
+      "example": "GImage sprite = new GImage(\"player.png\"); add(sprite, 50, 50);"
+    },
+    {
+      "term": "GCompound",
+      "definition": "A group of GObjects that move together as one.",
+      "example": "GCompound ship = new GCompound(); ship.add(new GRect(40, 10), 0, 0); add(ship, 100, 300);"
+    },
+    {
+      "term": "setFilled / setFillColor",
+      "definition": "Controls whether a shape is filled and its fill color.",
+      "example": "rect.setFilled(true); rect.setFillColor(Color.BLUE);"
+    },
+    {
+      "term": "move",
+      "definition": "Shifts an object by (dx, dy) relative to its current position.",
+      "example": "ball.move(dx, dy);"
+    },
+    {
+      "term": "setLocation",
+      "definition": "Places an object at an absolute (x, y) position.",
+      "example": "paddle.setLocation(mouseX - PADDLE_W/2.0, paddle.getY());"
+    },
+    {
+      "term": "pause",
+      "definition": "Delays the program for a number of milliseconds, enabling smooth animation.",
+      "example": "pause(20); // ~50 FPS"
+    },
+    {
+      "term": "getElementAt",
+      "definition": "Returns the topmost GObject at a canvas point, or null if none.",
+      "example": "GObject hit = getElementAt(x, y);"
+    },
+    {
+      "term": "Z-order",
+      "definition": "The drawing order (front-to-back layering) of objects on the canvas.",
+      "example": "player.sendToFront(); background.sendToBack();"
+    },
+    {
+      "term": "Event listeners",
+      "definition": "Mouse and keyboard handlers that respond to user input.",
+      "example": "addMouseListeners(); public void mouseDragged(MouseEvent e){ /* ... */ }"
+    }
+  ]
+}
