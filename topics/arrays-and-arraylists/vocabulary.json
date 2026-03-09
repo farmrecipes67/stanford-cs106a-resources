@@ -1,0 +1,81 @@
+{
+  "topic": "Arrays and ArrayLists",
+  "totalTerms": 15,
+  "terms": [
+    {
+      "term": "Array",
+      "definition": "A fixed-size, indexed collection storing elements of a single type (primitives or object references).",
+      "example": "int[] a = new int[10];"
+    },
+    {
+      "term": "Element",
+      "definition": "An individual value stored at a position in an array or ArrayList.",
+      "example": "a[2] = 42; // sets the third element"
+    },
+    {
+      "term": "Index",
+      "definition": "Zero-based position used to access elements in arrays and lists.",
+      "example": "int first = a[0];"
+    },
+    {
+      "term": "length (array)",
+      "definition": "A public field on arrays that gives the number of elements.",
+      "example": "for (int i = 0; i < a.length; i++) { ... }"
+    },
+    {
+      "term": "ArrayIndexOutOfBoundsException",
+      "definition": "Runtime exception thrown when accessing an invalid array index.",
+      "example": "int x = a[a.length]; // throws at runtime"
+    },
+    {
+      "term": "Enhanced for loop",
+      "definition": "Simplified loop for iterating over arrays or Iterable collections without indices.",
+      "example": "for (int x : a) { sum += x; }"
+    },
+    {
+      "term": "ArrayList",
+      "definition": "A resizable, ordered collection backed by an array; stores object references.",
+      "example": "ArrayList<String> names = new ArrayList<>();"
+    },
+    {
+      "term": "Generics (type parameter)",
+      "definition": "Specifies the element type of a collection, providing type safety at compile time.",
+      "example": "ArrayList<Integer> nums = new ArrayList<>();"
+    },
+    {
+      "term": "Autoboxing",
+      "definition": "Automatic conversion from primitive to corresponding wrapper type.",
+      "example": "nums.add(5); // int 5 becomes Integer.valueOf(5)"
+    },
+    {
+      "term": "Unboxing",
+      "definition": "Automatic conversion from wrapper type to primitive.",
+      "example": "int x = nums.get(0); // Integer -> int"
+    },
+    {
+      "term": "Wrapper class",
+      "definition": "Object type that wraps a primitive (e.g., Integer for int).",
+      "example": "Integer n = Integer.valueOf(7);"
+    },
+    {
+      "term": "Shallow copy",
+      "definition": "A new array/list structure that reuses the same object references as the original.",
+      "example": "String[] b = a.clone(); // shallow copy of references"
+    },
+    {
+      "term": "Deep copy",
+      "definition": "A copy that duplicates nested objects as well, producing fully independent structures.",
+      "example": "// Requires manual cloning of each element"
+    },
+    {
+      "term": "Arrays utility class",
+      "definition": "Provides static methods for arrays: sort, copyOf, equals, fill, toString.",
+      "example": "Arrays.sort(a);"
+    },
+    {
+      "term": "Collections utility class",
+      "definition": "Provides algorithms for collections: sort, shuffle, reverse, frequency.",
+      "example": "Collections.sort(names);"
+    }
+  ]
+}
