@@ -1,0 +1,126 @@
+{
+  "topic": "Variables and Types",
+  "totalQuestions": 10,
+  "questions": [
+    {
+      "question": "Which line both declares and initializes a variable correctly?",
+      "options": [
+        "A) int x; x == 5;",
+        "B) int x = 5;",
+        "C) int = 5 x;",
+        "D) x int = 5;"
+      ],
+      "correctAnswer": "B",
+      "explanation": "B uses correct Java syntax to declare an int and assign its initial value. A uses == (comparison) instead of assignment =.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What is the value of 3 / 2 when both operands are ints?",
+      "options": [
+        "A) 1",
+        "B) 1.5",
+        "C) 2",
+        "D) 2.0"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Integer division truncates toward zero, so 3 / 2 yields 1.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What is the type of the literal 'A' in Java?",
+      "options": [
+        "A) String",
+        "B) char",
+        "C) int",
+        "D) boolean"
+      ],
+      "correctAnswer": "B",
+      "explanation": "'A' (single quotes) is a char literal; \"A\" (double quotes) would be a String.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which expression correctly casts a double to an int?",
+      "options": [
+        "A) (int) 5.9",
+        "B) int(5.9)",
+        "C) Integer(5.9)",
+        "D) Math.toIntExact(5.9)"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Explicit cast syntax (int) 5.9 truncates to 5. The other options are invalid or for different types.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Given int max = 2147483647; max++; what is max after the increment?",
+      "options": [
+        "A) 2147483648",
+        "B) -2147483648",
+        "C) 0",
+        "D) It causes a runtime error"
+      ],
+      "correctAnswer": "B",
+      "explanation": "int overflow wraps around to the minimum int value, -2147483648.",
+      "difficulty": "advanced"
+    },
+    {
+      "question": "What is the result of 2 + 3 + \"4\" in Java?",
+      "options": [
+        "A) \"234\"",
+        "B) \"54\"",
+        "C) \"2+3+4\"",
+        "D) 9"
+      ],
+      "correctAnswer": "B",
+      "explanation": "2 + 3 is evaluated first as integers (5), then concatenated with \"4\" to produce \"54\".",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Evaluate: boolean b = (5 < 5) || !(3 == 4); What is b?",
+      "options": [
+        "A) true",
+        "B) false",
+        "C) It depends on short-circuiting",
+        "D) It does not compile"
+      ],
+      "correctAnswer": "A",
+      "explanation": "5 < 5 is false; 3 == 4 is false; !(false) is true; false || true is true.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "String s1 = \"hi\"; String s2 = s1; s1 = s1 + \"!\"; What is the value of s2?",
+      "options": [
+        "A) \"hi!\"",
+        "B) \"hi\"",
+        "C) null",
+        "D) It causes a mutation and both change"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Strings are immutable; s1 + \"!\" creates a new String and s2 still refers to the original \"hi\".",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "char c = 'A' + 1; What is the value of c?",
+      "options": [
+        "A) 'A'",
+        "B) 'B'",
+        "C) 66",
+        "D) It does not compile"
+      ],
+      "correctAnswer": "B",
+      "explanation": "'A' is 65; adding 1 yields 66, which corresponds to 'B'. Assignment to char is allowed here because it's a constant within range.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which assignment ensures x is 2.5?",
+      "options": [
+        "A) double x = 5 / 2;",
+        "B) double x = (double)(5 / 2);",
+        "C) double x = 5 / 2.0;",
+        "D) double x = (int)(5 / 2.0);"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Using a double operand forces floating-point division: 5 / 2.0 is 2.5. A and B produce 2.0; D truncates to 2.",
+      "difficulty": "beginner"
+    }
+  ]
+}
