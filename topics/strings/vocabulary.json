@@ -1,0 +1,81 @@
+{
+  "topic": "Strings",
+  "totalTerms": 15,
+  "terms": [
+    {
+      "term": "String literal",
+      "definition": "Text enclosed in double quotes that creates a String instance at compile time.",
+      "example": "String greeting = \"Hello, world!\";"
+    },
+    {
+      "term": "Concatenation (+)",
+      "definition": "Joining strings (and other values) into a single string; evaluated left-to-right.",
+      "example": "String msg = \"CS\" + 106 + \"A\"; // \"CS106A\""
+    },
+    {
+      "term": "length()",
+      "definition": "Returns the number of char units in the string.",
+      "example": "int n = \"Stanford\".length(); // 8"
+    },
+    {
+      "term": "charAt(int index)",
+      "definition": "Returns the char at a zero-based index.",
+      "example": "char c = \"Java\".charAt(2); // 'v'"
+    },
+    {
+      "term": "substring(int start, int end)",
+      "definition": "Returns the half-open slice [start, end); end is exclusive.",
+      "example": "String sub = \"Stanford\".substring(2, 6); // \"anfo\""
+    },
+    {
+      "term": "indexOf(String s)",
+      "definition": "Returns the first index where s occurs, or -1 if not found.",
+      "example": "int i = \"banana\".indexOf(\"na\"); // 2"
+    },
+    {
+      "term": "lastIndexOf(String s)",
+      "definition": "Returns the last index where s occurs, or -1 if not found.",
+      "example": "int j = \"banana\".lastIndexOf(\"na\"); // 4"
+    },
+    {
+      "term": "equals(Object other)",
+      "definition": "Checks content equality; use for comparing string values.",
+      "example": "\"cat\".equals(\"c\" + \"at\"); // true"
+    },
+    {
+      "term": "equalsIgnoreCase(String other)",
+      "definition": "Checks content equality ignoring letter case.",
+      "example": "\"Hello\".equalsIgnoreCase(\"hello\"); // true"
+    },
+    {
+      "term": "compareTo(String other)",
+      "definition": "Lexicographically compares two strings; negative, zero, or positive.",
+      "example": "\"Apple\".compareTo(\"Banana\"); // < 0"
+    },
+    {
+      "term": "toUpperCase()/toLowerCase()",
+      "definition": "Return new strings with all letters converted to upper/lower case.",
+      "example": "\"cs106a\".toUpperCase(); // \"CS106A\""
+    },
+    {
+      "term": "trim()",
+      "definition": "Removes leading and trailing whitespace.",
+      "example": "\"  hi  \".trim(); // \"hi\""
+    },
+    {
+      "term": "replace(old, new)",
+      "definition": "Returns a new string with all occurrences of old replaced by new.",
+      "example": "\"a-b-c\".replace(\"-\", \":\"); // \"a:b:c\""
+    },
+    {
+      "term": "StringBuilder",
+      "definition": "A mutable sequence of characters for efficient appending and editing.",
+      "example": "StringBuilder sb = new StringBuilder(); sb.append(\"hi\"); String s = sb.toString();"
+    },
+    {
+      "term": "String.format(...)",
+      "definition": "Creates formatted strings using printf-style placeholders.",
+      "example": "String id = String.format(\"%s-%03d\", \"CS\", 6); // \"CS-006\""
+    }
+  ]
+}
