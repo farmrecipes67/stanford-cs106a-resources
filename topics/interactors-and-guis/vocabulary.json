@@ -1,0 +1,81 @@
+{
+  "topic": "Interactors and GUIs",
+  "totalTerms": 15,
+  "terms": [
+    {
+      "term": "Interactor",
+      "definition": "A GUI widget (e.g., button, text field) that the user manipulates to control the program.",
+      "example": "JButton go = new JButton(\"Go\"); add(go, SOUTH);"
+    },
+    {
+      "term": "GraphicsProgram",
+      "definition": "ACM base class that provides a canvas for graphics and supports adding interactors around it.",
+      "example": "public class MyApp extends GraphicsProgram { public void run() { /* draw */ } }"
+    },
+    {
+      "term": "init()",
+      "definition": "Called before run(); used to build the UI (create components, add to window, register listeners).",
+      "example": "public void init() { add(new JButton(\"Start\"), SOUTH); addActionListeners(); }"
+    },
+    {
+      "term": "run()",
+      "definition": "Main program logic that executes after the window is displayed and init() completes.",
+      "example": "public void run() { /* animation or core logic */ }"
+    },
+    {
+      "term": "add(Component, region)",
+      "definition": "Adds an interactor to a layout region (NORTH, SOUTH, EAST, WEST) of the program window.",
+      "example": "add(new JTextField(12), NORTH);"
+    },
+    {
+      "term": "BorderLayout (NORTH/SOUTH)",
+      "definition": "Layout model that positions interactors around the central canvas. NORTH/SOUTH create horizontal strips.",
+      "example": "add(new JLabel(\"Controls\"), NORTH); add(new JButton(\"Go\"), SOUTH);"
+    },
+    {
+      "term": "ActionListener",
+      "definition": "Interface for receiving action events (e.g., button clicks, Enter in text fields).",
+      "example": "addActionListeners(); // Program listens for button actions"
+    },
+    {
+      "term": "actionPerformed(ActionEvent)",
+      "definition": "Callback invoked when an action occurs; write your response logic here.",
+      "example": "public void actionPerformed(ActionEvent e) { println(e.getActionCommand()); }"
+    },
+    {
+      "term": "ActionEvent",
+      "definition": "Event object describing an action (source component, command string, etc.).",
+      "example": "if (e.getSource() == nameField) handleName();"
+    },
+    {
+      "term": "JButton",
+      "definition": "Clickable button interactor that fires an ActionEvent on click.",
+      "example": "JButton clear = new JButton(\"Clear\"); add(clear, SOUTH);"
+    },
+    {
+      "term": "JTextField",
+      "definition": "Single-line text input. Pressing Enter can fire an ActionEvent if a listener is registered.",
+      "example": "JTextField tf = new JTextField(10); add(tf, SOUTH); tf.addActionListener(this);"
+    },
+    {
+      "term": "JCheckBox",
+      "definition": "Toggle interactor with checked/unchecked state; can use ItemListener or ActionListener.",
+      "example": "JCheckBox grid = new JCheckBox(\"Grid\"); add(grid, SOUTH);"
+    },
+    {
+      "term": "JRadioButton",
+      "definition": "Mutually exclusive option when grouped via ButtonGroup; fires actions on selection.",
+      "example": "JRadioButton red = new JRadioButton(\"Red\"); add(red, SOUTH);"
+    },
+    {
+      "term": "ButtonGroup",
+      "definition": "Groups radio buttons so only one is selected at a time.",
+      "example": "ButtonGroup g = new ButtonGroup(); g.add(red); g.add(blue);"
+    },
+    {
+      "term": "JComboBox",
+      "definition": "Drop-down list allowing one selection; can fire action events on selection change.",
+      "example": "JComboBox<String> shapes = new JComboBox<>(); shapes.addItem(\"Circle\"); add(shapes, SOUTH);"
+    }
+  ]
+}
