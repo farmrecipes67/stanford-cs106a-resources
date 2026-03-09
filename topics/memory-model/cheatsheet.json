@@ -1,0 +1,25 @@
+{
+  "topic": "Memory Model",
+  "cheatsheet": {
+    "syntaxReference": [
+      "Declare primitives: int n = 0; double d = 3.14; boolean ok = true;",
+      "Declare references: Point p; p = new Point(0,0);",
+      "Array creation: int[] a = new int[5]; int[] b = {1,2,3};",
+      "Copy arrays: int[] c = Arrays.copyOf(a, a.length); int[] d = a.clone();",
+      "String equality: s1.equals(s2); // not s1 == s2",
+      "Null check: if (obj != null) { obj.toString(); }",
+      "Method parameters: void f(int x, Point p) { /* pass-by-value */ }",
+      "Deep copy sketch: Point q = new Point(p.x, p.y); // copy fields"
+    ],
+    "commonPatterns": [
+      "Defensive copy of mutable input: void setData(int[] data){ this.data = Arrays.copyOf(data, data.length); }",
+      "Return new instead of mutating argument: Point moved(Point p){ return new Point(p.x + 1, p.y); }",
+      "Builder-style or copy constructor for deep copy: Matrix(Matrix m){ /* copy rows with Arrays.copyOf */ }"
+    ],
+    "quickTips": [
+      "Draw small stack/heap diagrams to predict side effects.",
+      "Prefer immutable data (e.g., Strings) to reduce aliasing bugs.",
+      "When in doubt, test with prints to see whether two variables reference the same object (System.out.println(a == b))."
+    ]
+  }
+}
