@@ -1,0 +1,23 @@
+{
+  "topic": "Object-Oriented Programming",
+  "examples": [
+    {
+      "title": "Encapsulated BankAccount",
+      "description": "Demonstrates encapsulation, constructor validation, instance methods, and toString.",
+      "pseudocode": "Define class BankAccount with private balance\nConstructor takes initial amount; if negative, set to 0\nProvide deposit(amount) that ignores non-positive inputs\nProvide withdraw(amount) that returns success/failure if funds are sufficient\nOverride toString to show balance\nIn main, create account, deposit, withdraw, and print",
+      "javaCode": "class BankAccount {\n  private double balance;\n\n  public BankAccount(double initial) {\n    if (initial < 0) {\n      this.balance = 0.0;\n    } else {\n      this.balance = initial;\n    }\n  }\n\n  public void deposit(double amount) {\n    if (amount > 0) {\n      balance += amount;\n    }\n  }\n\n  public boolean withdraw(double amount) {\n    if (amount > 0 && amount <= balance) {\n      balance -= amount;\n      return true;\n    }\n    return false;\n  }\n\n  public double getBalance() { return balance; }\n\n  @Override\n  public String toString() { return String.format(\"$%.2f\", balance); }\n}\n\nclass Demo {\n  public static void main(String[] args) {\n    BankAccount acc = new BankAccount(100);\n    acc.deposit(50);\n    boolean ok = acc.withdraw(120);\n    System.out.println(\"Withdraw success: \" + ok);\n    System.out.println(\"Balance: \" + acc);\n  }\n}"
+    },
+    {
+      "title": "Shape Hierarchy with Polymorphic Area",
+      "description": "Shows abstract classes, method overriding, and polymorphic processing over a list.",
+      "pseudocode": "Create abstract Shape with abstract area()\nImplement Circle and Rectangle overriding area()\nCreate a list of Shape references holding different concrete shapes\nIterate and sum areas without knowing concrete types",
+      "javaCode": "import java.util.*;\n\nabstract class Shape {\n  abstract double area();\n}\n\nclass Circle extends Shape {\n  private final double r;\n  public Circle(double r) { this.r = r; }\n  @Override double area() { return Math.PI * r * r; }\n}\n\nclass Rectangle extends Shape {\n  private final double w, h;\n  public Rectangle(double w, double h) { this.w = w; this.h = h; }\n  @Override double area() { return w * h; }\n}\n\nclass ShapeDemo {\n  static double totalArea(List<Shape> shapes) {\n    double sum = 0;\n    for (Shape s : shapes) sum += s.area();\n    return sum;\n  }\n  public static void main(String[] args) {\n    List<Shape> shapes = new ArrayList<>();\n    shapes.add(new Circle(2));\n    shapes.add(new Rectangle(3, 4));\n    System.out.println(\"Total area = \" + totalArea(shapes));\n  }\n}"
+    },
+    {
+      "title": "Interface Playable and Composition in MediaPlayer",
+      "description": "Illustrates an interface contract, multiple implementations, and a class that composes and uses them.",
+      "pseudocode": "Define interface Playable with play()\nImplement Song and Podcast as Playable\nMediaPlayer keeps a list of Playable and a playAll() method\nClient adds different Playable types and invokes playAll polymorphically",
+      "javaCode": "import java.util.*;\n\ninterface Playable { void play(); }\n\nclass Song implements Playable {\n  private final String title;\n  public Song(String title) { this.title = title; }\n  public void play() { System.out.println(\"Playing song: \" + title); }\n}\n\nclass Podcast implements Playable {\n  private final String episode;\n  public Podcast(String episode) { this.episode = episode; }\n  public void play() { System.out.println(\"Streaming podcast: \" + episode); }\n}\n\nclass MediaPlayer {\n  private final List<Playable> queue = new ArrayList<>();\n  public void add(Playable p) { queue.add(p); }\n  public void playAll() { for (Playable p : queue) p.play(); }\n}\n\nclass PlayerDemo {\n  public static void main(String[] args) {\n    MediaPlayer mp = new MediaPlayer();\n    mp.add(new Song(\"CS106A Theme\"));\n    mp.add(new Podcast(\"OOP Basics\"));\n    mp.playAll();\n  }\n}"
+    }
+  ]
+}
