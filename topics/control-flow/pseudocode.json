@@ -1,0 +1,23 @@
+{
+  "topic": "Control Flow",
+  "examples": [
+    {
+      "title": "Input validation: read an integer between 1 and 10",
+      "description": "Demonstrates a while loop that repeats until a valid value is provided.",
+      "pseudocode": "set value to an invalid number\nwhile value is not between 1 and 10 (inclusive)\n    prompt user for an integer 1..10\n    read value\nprint value",
+      "javaCode": "import java.util.*;\npublic class ValidateRange {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int value = -1;\n        while (value < 1 || value > 10) {\n            System.out.print(\"Enter an integer 1..10: \");\n            if (sc.hasNextInt()) {\n                value = sc.nextInt();\n            } else {\n                sc.next(); // consume invalid token\n            }\n        }\n        System.out.println(\"You entered: \" + value);\n        sc.close();\n    }\n}\n"
+    },
+    {
+      "title": "Sentinel-controlled sum",
+      "description": "Uses a while loop with a sentinel (-1) to sum inputs until termination.",
+      "pseudocode": "initialize sum to 0\nread number\nwhile number is not -1\n    add number to sum\n    read next number\nprint sum",
+      "javaCode": "import java.util.*;\npublic class SentinelSum {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int sum = 0;\n        System.out.print(\"Enter numbers (-1 to end): \");\n        int n = sc.nextInt();\n        while (n != -1) {\n            sum += n;\n            n = sc.nextInt();\n        }\n        System.out.println(\"Total = \" + sum);\n        sc.close();\n    }\n}\n"
+    },
+    {
+      "title": "Nested loops: multiplication table",
+      "description": "Shows nested for loops to generate a 2D table and demonstrates fencepost-aware formatting.",
+      "pseudocode": "for row from 1 to R\n    for col from 1 to C\n        compute product = row * col\n        print product with spacing (no trailing space at end of row)\n    print newline",
+      "javaCode": "public class MultTable {\n    public static void main(String[] args) {\n        int R = 5, C = 5;\n        for (int r = 1; r <= R; r++) {\n            for (int c = 1; c <= C; c++) {\n                System.out.printf(\"%4d\", r * c);\n            }\n            System.out.println();\n        }\n    }\n}\n"
+    }
+  ]
+}
