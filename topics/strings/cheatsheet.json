@@ -1,0 +1,32 @@
+{
+  "topic": "Strings",
+  "cheatsheet": {
+    "syntaxReference": [
+      "Declare: String s = \"hello\";",
+      "Escape sequences: \"\\n\" (newline), \"\\t\" (tab), \"\\\"\" (quote), \"\\\\\" (backslash)",
+      "Concatenate: String msg = \"CS\" + 106 + \"A\";",
+      "Length: int n = s.length();",
+      "Indexing: char c = s.charAt(0);",
+      "Substring: String sub = s.substring( start, end ); // end exclusive",
+      "Search: int i = s.indexOf(\"an\"); int j = s.lastIndexOf(\"an\");",
+      "Compare: boolean eq = s.equals(t); boolean ci = s.equalsIgnoreCase(t);",
+      "Ordering: int cmp = s.compareTo(t); // <0, 0, >0",
+      "Trim/case: s.trim(); s.toUpperCase(); s.toLowerCase();",
+      "Replace: String r = s.replace(\"-\", \":\");",
+      "Formatting: String out = String.format(\"%s-%03d\", \"CS\", 6);",
+      "StringBuilder: StringBuilder sb = new StringBuilder(); sb.append(x); String res = sb.toString();"
+    ],
+    "commonPatterns": [
+      "Iterate characters:\nfor (int i = 0; i < s.length(); i++) {\n  char c = s.charAt(i);\n  // process c\n}",
+      "Find all occurrences of a substring:\nint idx = s.indexOf(target);\nwhile (idx != -1) {\n  // use idx\n  idx = s.indexOf(target, idx + 1);\n}",
+      "Split on whitespace:\nString[] tokens = s.trim().split(\"\\\\s+\");",
+      "Build string in a loop:\nStringBuilder sb = new StringBuilder();\nfor (String part : parts) sb.append(part);\nString result = sb.toString();",
+      "Safe numeric concat:\nString line = \"Count=\" + count; // or String.format(\"Count=%d\", count)"
+    ],
+    "quickTips": [
+      "Use equals, not ==, for string content comparison.",
+      "Remember substring end index is exclusive; watch for off-by-one errors.",
+      "Prefer StringBuilder for heavy concatenation inside loops."
+    ]
+  }
+}
