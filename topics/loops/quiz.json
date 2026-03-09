@@ -1,0 +1,126 @@
+{
+  "topic": "Loops",
+  "totalQuestions": 10,
+  "questions": [
+    {
+      "question": "Which loop construct guarantees the body runs at least once?",
+      "options": [
+        "A) for",
+        "B) while",
+        "C) do-while",
+        "D) enhanced for"
+      ],
+      "correctAnswer": "C",
+      "explanation": "do-while checks its condition after the first iteration, so the body executes at least once.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What is printed? int sum = 0; for (int i = 1; i <= 3; i++) { sum += i; } System.out.println(sum);",
+      "options": [
+        "A) 3",
+        "B) 6",
+        "C) 7",
+        "D) 9"
+      ],
+      "correctAnswer": "B",
+      "explanation": "1 + 2 + 3 = 6.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which option correctly prints each element of int[] arr = {2,4,6};?",
+      "options": [
+        "A) for (int x : arr) { System.out.println(x); }",
+        "B) for (int i = 1; i <= arr.length; i++) { System.out.println(arr[i]); }",
+        "C) for (int i = 0; i <= arr.length; i++) { System.out.println(arr[i]); }",
+        "D) for (int x in arr) { System.out.println(x); }"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Enhanced for iterates elements directly. B/C use invalid or out-of-bounds indexing; D is not Java syntax.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which header runs exactly 10 times and visits i values 0..9?",
+      "options": [
+        "A) for (int i = 1; i <= 10; i++)",
+        "B) for (int i = 0; i <= 10; i++)",
+        "C) for (int i = 0; i < 10; i++)",
+        "D) for (int i = 1; i < 10; i++)"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Starting at 0 with condition i < 10 yields 10 iterations: 0 through 9.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Given int i = 0;, which loop is infinite?",
+      "options": [
+        "A) while (i < 5) { i++; }",
+        "B) for(;;) { }",
+        "C) do { i--; } while (i > -100);",
+        "D) while (true) { break; }"
+      ],
+      "correctAnswer": "B",
+      "explanation": "for(;;) has no condition or updates and runs forever unless a break/return occurs.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What does continue do inside a loop?",
+      "options": [
+        "A) Exits the entire method",
+        "B) Skips the rest of the current iteration and checks the loop condition",
+        "C) Exits the loop entirely",
+        "D) Repeats the current iteration without rechecking the condition"
+      ],
+      "correctAnswer": "B",
+      "explanation": "continue skips remaining body statements and proceeds to the next iteration's condition/update.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What is printed? int count = 0; for (int i=0; i<5; i++) { if (i == 2) continue; if (i == 4) break; count++; } System.out.println(count);",
+      "options": [
+        "A) 2",
+        "B) 3",
+        "C) 4",
+        "D) 5"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Increments when i=0,1,3 (skips 2, breaks at 4), so count is 3.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "How many asterisks are printed? for (int r=0; r<3; r++) { for (int c=0; c<4; c++) { System.out.print(\"*\"); } }",
+      "options": [
+        "A) 7",
+        "B) 12",
+        "C) 16",
+        "D) 24"
+      ],
+      "correctAnswer": "B",
+      "explanation": "3 rows × 4 columns = 12 total prints.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which is the correct Java syntax for a do-while loop?",
+      "options": [
+        "A) do { work(); } while (condition);",
+        "B) do while (condition) { work(); }",
+        "C) while (condition) do { work(); }",
+        "D) do { work(); } (condition);"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Java requires do { ... } while (condition); with a semicolon after the condition.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What happens? for (int i=0; i<3; i++) { } System.out.println(i);",
+      "options": [
+        "A) Prints 3",
+        "B) Prints 2",
+        "C) Compile-time error: i cannot be resolved",
+        "D) Runtime error: NullPointerException"
+      ],
+      "correctAnswer": "C",
+      "explanation": "i is scoped to the for loop header/body and not visible after the loop.",
+      "difficulty": "intermediate"
+    }
+  ]
+}
