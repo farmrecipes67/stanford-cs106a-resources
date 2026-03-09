@@ -1,0 +1,126 @@
+{
+  "topic": "Arrays and ArrayLists",
+  "totalQuestions": 10,
+  "questions": [
+    {
+      "question": "Which declaration creates an int array of size 5?",
+      "options": [
+        "A) int[5] nums;",
+        "B) int[] nums = new int[5];",
+        "C) int nums = new int[5];",
+        "D) int[] nums = {5};"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Arrays are declared with type[], and new int[5] allocates space for 5 ints. The other options are invalid or create a size-1 array with a single element 5.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Given int[] a = {1, 2, 3}; how do you access the last element?",
+      "options": [
+        "A) a[a.length]",
+        "B) a[last]",
+        "C) a[a.length - 1]",
+        "D) a[-1]"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Valid indices are 0..a.length-1; the last element is at index a.length - 1.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which statement about size is correct?",
+      "options": [
+        "A) Arrays use size()",
+        "B) ArrayList uses length",
+        "C) Arrays use length; ArrayList uses size()",
+        "D) ArrayList has capacity() for element count"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Arrays expose a length field; ArrayList exposes a size() method. There is no length on ArrayList.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What happens with: for (Integer x : list) { if (x % 2 == 0) list.remove(x); }",
+      "options": [
+        "A) It safely removes all even numbers.",
+        "B) It throws ConcurrentModificationException.",
+        "C) It does not compile.",
+        "D) It silently skips some elements but succeeds."
+      ],
+      "correctAnswer": "B",
+      "explanation": "Modifying an ArrayList during an enhanced for triggers ConcurrentModificationException. Use an Iterator with remove() or list.removeIf(...).",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "With ArrayList<Integer> list, what does list.add(5) do?",
+      "options": [
+        "A) Compile error: must write new Integer(5).",
+        "B) Stores primitive int directly in the list.",
+        "C) Autoboxes to Integer(5) and adds it.",
+        "D) Converts list to int[] and appends 5."
+      ],
+      "correctAnswer": "C",
+      "explanation": "Autoboxing converts the primitive 5 to an Integer object automatically.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Given int[] a = {1,2,3}; which statement aliases the same underlying array rather than copying it?",
+      "options": [
+        "A) int[] b = a;",
+        "B) int[] b = Arrays.copyOf(a, a.length);",
+        "C) int[] b = a.clone();",
+        "D) System.arraycopy(a, 0, b, 0, a.length);"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Assigning b = a makes b refer to the same array. The others create or perform copies (clone/copyOf/System.arraycopy).",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What are default initial values for new int[3] and new String[3]?",
+      "options": [
+        "A) Uninitialized; compile error on access.",
+        "B) int[] -> 0s; String[] -> nulls.",
+        "C) int[] -> nulls; String[] -> \"\".",
+        "D) Garbage values in both."
+      ],
+      "correctAnswer": "B",
+      "explanation": "Numeric primitives default to 0; object references default to null.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which code correctly removes all even numbers from ArrayList<Integer> list?",
+      "options": [
+        "A) for (int i = 0; i < list.size(); i++) if (list.get(i) % 2 == 0) list.remove(i);",
+        "B) for (Integer x : list) if (x % 2 == 0) list.remove(x);",
+        "C) list.removeIf(x -> x % 2 == 0);",
+        "D) Collections.remove(list, x -> x % 2 == 0);"
+      ],
+      "correctAnswer": "C",
+      "explanation": "removeIf safely removes elements matching a predicate. A) skips some elements; B) throws ConcurrentModificationException; D) is not a valid API.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Given int[][] m = new int[3][4]; which expression is the number of rows?",
+      "options": [
+        "A) m.length",
+        "B) m.size()",
+        "C) m[0].length",
+        "D) m.columns"
+      ],
+      "correctAnswer": "A",
+      "explanation": "For 2D arrays, outer length is the number of rows; inner length (m[0].length) is columns.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "How do you sort an ArrayList<String> names in ascending order?",
+      "options": [
+        "A) Arrays.sort(names);",
+        "B) Collections.sort(names);",
+        "C) names.sort();",
+        "D) names = names.sorted();"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Collections.sort(list) sorts a List in natural order. Arrays.sort is for arrays, and names.sort() requires an argument or Java 8 method reference but is not used as shown.",
+      "difficulty": "beginner"
+    }
+  ]
+}
