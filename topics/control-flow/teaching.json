@@ -1,0 +1,24 @@
+{
+  "topic": "Control Flow",
+  "materials": {
+    "keyConceptsSummary": "Control flow determines the order in which statements execute. The three pillars are sequence (default top-to-bottom execution), selection (if/else, else-if chains, switch) to choose among alternatives, and iteration (while, for, do-while) to repeat work. Conditions are boolean expressions built from relational operators (==, !=, <, >, <=, >=) and logical operators (&&, ||, !). Java uses short-circuit evaluation for && and ||, which can prevent unnecessary work and runtime errors (e.g., division by zero) when used carefully.\n\nLoops appear in several patterns. Counter-controlled loops (for) run a known number of times; sentinel-controlled loops (while) process input until a special value is encountered; input-validation loops (while) keep prompting until a condition is satisfied. Nested loops let you work in grids and generate patterns. Key pitfalls include off-by-one errors, incorrect loop conditions, and misusing == with Strings (use equals). Use braces consistently, leverage descriptive conditions, and test with boundary cases to ensure correctness.",
+    "learningObjectives": [
+      "Use if/else, else-if, and switch to implement multi-way decisions.",
+      "Write while, for, and do-while loops to implement counter-controlled and sentinel-controlled iteration.",
+      "Construct and evaluate boolean expressions with correct operator precedence and short-circuiting.",
+      "Design nested loops to generate 2D patterns and compute aggregate results.",
+      "Debug and prevent common control-flow errors such as off-by-one, infinite loops, and incorrect string comparisons."
+    ],
+    "commonMistakes": [
+      "Using == to compare Strings instead of calling equals, which causes unexpected false results.",
+      "Writing loop conditions that never become false (infinite loops) or are off by one (<= vs <).",
+      "Forgetting break statements in switch cases, unintentionally falling through to later cases."
+    ],
+    "tipsForSuccess": [
+      "Trace your code by hand with small inputs and boundary values to confirm conditions and loop counts.",
+      "Name boolean variables and methods clearly (e.g., isValid, hasNext) to make conditions readable.",
+      "Exploit short-circuiting to guard risky operations (first check non-null or non-zero, then compute)."
+    ]
+  },
+  "overview": "Control flow is how a program decides what to do next—whether to run code in sequence, make a decision, or repeat an action. In CS106A, you move from writing straight-line code to programs that react to conditions and iterate over data. You will practice reading input, branching with if/else and switch, and looping with while, for, and do-while. These constructs let you express algorithms like input validation, searching, counting, and pattern generation.\n\nBeyond learning syntax, you will develop fluency with boolean logic (relational and logical operators), nesting, and common loop patterns (counter-controlled, sentinel-controlled, and fencepost problems). You will also learn to reason about loop execution counts, avoid off-by-one errors, and write clear, structured code that is easy to test and debug."
+}
