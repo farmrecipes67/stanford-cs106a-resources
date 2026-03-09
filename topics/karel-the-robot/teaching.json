@@ -1,0 +1,24 @@
+{
+  "topic": "Karel the Robot",
+  "materials": {
+    "keyConceptsSummary": "Karel’s world is a 2D grid with walls and beepers. Karel executes primitive commands (move, turnLeft, putBeeper, pickBeeper) and can query the environment with boolean tests (frontIsClear, beepersPresent, etc.). Students learn to compose these basics with control structures—sequence, conditionals (if/else), and loops (while/for)—to create robust behaviors.\n\nDecomposition is central: large tasks are split into clear helper methods with documented preconditions (what must be true before calling) and postconditions (what will be true after). Students practice top-down design, defining methods like moveToWall, placeBeepersOnRow, or climbHurdle, each with a single, well-specified responsibility. Common algorithmic pitfalls (e.g., the fencepost bug) are introduced alongside strategies to avoid them (e.g., place-on-entry vs. place-on-exit patterns), reinforcing disciplined problem solving and testing.\n\nBy the end, learners not only command Karel effectively but also internalize core programming habits—abstraction, decomposition, invariants, and defensive checks—that directly generalize to standard Java programming.",
+    "learningObjectives": [
+      "Write Karel programs that correctly navigate a world using primitive commands and tests.",
+      "Apply control flow (if/else, while) to implement repeated and conditional behavior.",
+      "Design helper methods with clear preconditions and postconditions to decompose complex tasks.",
+      "Identify and avoid fencepost and off-by-one errors in traversal patterns.",
+      "Reason about Karel’s state (position, direction, beeper bag) to predict and debug program behavior."
+    ],
+    "commonMistakes": [
+      "Using while(frontIsClear()) with the wrong action order, causing a fencepost bug (missing the first or last corner).",
+      "Assuming turnRight() exists in base Karel (it does not—use SuperKarel or implement via three left turns).",
+      "Forgetting to test conditions before moving, leading to runtime errors when Karel runs into walls."
+    ],
+    "tipsForSuccess": [
+      "State preconditions/postconditions for each helper method and verify them at call sites.",
+      "Trace code mentally (or on paper) corner-by-corner before running to catch logic errors early.",
+      "Build incrementally: implement and test one small behavior at a time before combining them."
+    ]
+  },
+  "overview": "Karel the Robot is CS106A’s entry point into programming, offering a gentle, visual way to learn fundamental ideas such as sequencing, control flow, decomposition, and debugging. In a grid world of streets (rows) and avenues (columns), Karel follows simple commands—move, turn, and manipulate beepers—while responding to conditions like walls or the presence of beepers. This setting strips away distractions and emphasizes algorithmic thinking: breaking problems into steps, choosing appropriate control structures, and reasoning about preconditions and postconditions.\n\nWithin a few assignments, students progress from writing straight-line code to crafting reusable helper methods, mastering while/if logic, and recognizing patterns like the fencepost problem. Karel models best practices used later in full Java programs—abstraction, top-down design, and careful testing—making the transition to general Java programming (graphics, data, and beyond) both natural and confident."
+}
