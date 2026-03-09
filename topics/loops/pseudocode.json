@@ -1,0 +1,23 @@
+{
+  "topic": "Loops",
+  "examples": [
+    {
+      "title": "Sum of first N integers (definite loop)",
+      "description": "Uses a counter-controlled for loop to accumulate a sum from 1 to N.",
+      "pseudocode": "set sum to 0\nfor i from 1 to N inclusive\n  add i to sum\nprint sum",
+      "javaCode": "int N = 5;\nint sum = 0;\nfor (int i = 1; i <= N; i++) {\n    sum += i;\n}\nSystem.out.println(sum);"
+    },
+    {
+      "title": "Sentinel-controlled average until -1",
+      "description": "Reads integers until a sentinel value (-1) appears, then prints the average of the entered numbers.",
+      "pseudocode": "initialize total to 0 and count to 0\nrepeat\n  read x\n  if x is not -1\n    add x to total\n    increment count\nuntil x is -1\nif count > 0 then print total / count else print no data",
+      "javaCode": "java.util.Scanner scan = new java.util.Scanner(System.in);\nint total = 0;\nint count = 0;\nwhile (true) {\n    int x = scan.nextInt();\n    if (x == -1) break;\n    total += x;\n    count++;\n}\nif (count > 0) {\n    System.out.println((double) total / count);\n} else {\n    System.out.println(\"No data\");\n}"
+    },
+    {
+      "title": "Multiplication table with nested loops",
+      "description": "Generates an n by n multiplication table using nested loops.",
+      "pseudocode": "for row from 1 to n\n  for col from 1 to n\n    compute product = row * col\n    print product with spacing\n  end inner\n  print newline",
+      "javaCode": "int n = 4;\nfor (int r = 1; r <= n; r++) {\n    for (int c = 1; c <= n; c++) {\n        int prod = r * c;\n        System.out.printf(\"%4d\", prod);\n    }\n    System.out.println();\n}"
+    }
+  ]
+}
