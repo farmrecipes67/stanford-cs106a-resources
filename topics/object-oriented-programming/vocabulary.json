@@ -1,0 +1,81 @@
+{
+  "topic": "Object-Oriented Programming",
+  "totalTerms": 15,
+  "terms": [
+    {
+      "term": "Class",
+      "definition": "A blueprint that defines the structure and behavior of objects.",
+      "example": "class Point { int x, y; }"
+    },
+    {
+      "term": "Object",
+      "definition": "An instance of a class with its own state and behavior.",
+      "example": "Point p = new Point();"
+    },
+    {
+      "term": "Field (Instance Variable)",
+      "definition": "Data stored within an object; each instance has its own copy.",
+      "example": "private double balance;"
+    },
+    {
+      "term": "Method",
+      "definition": "A function defined in a class that operates on the object or class.",
+      "example": "public void deposit(double amt) { balance += amt; }"
+    },
+    {
+      "term": "Constructor",
+      "definition": "Special method that initializes a new object.",
+      "example": "public Point(int x, int y) { this.x = x; this.y = y; }"
+    },
+    {
+      "term": "Encapsulation",
+      "definition": "Hiding internal state and requiring all access through methods.",
+      "example": "private int age; public int getAge() { return age; }"
+    },
+    {
+      "term": "Access Modifier",
+      "definition": "Keywords controlling visibility: public, private, protected, and package-private.",
+      "example": "private String name;"
+    },
+    {
+      "term": "this",
+      "definition": "Reference to the current object; used to access fields/methods or chain constructors.",
+      "example": "this.x = x;"
+    },
+    {
+      "term": "Static",
+      "definition": "Belongs to the class, not instances; shared across all objects.",
+      "example": "public static final double PI = 3.14159;"
+    },
+    {
+      "term": "Inheritance",
+      "definition": "Mechanism where a class (subclass) acquires members of another (superclass).",
+      "example": "class Circle extends Shape { }"
+    },
+    {
+      "term": "Superclass",
+      "definition": "The parent class from which a subclass inherits.",
+      "example": "class Shape { double area() { return 0; } }"
+    },
+    {
+      "term": "Subclass",
+      "definition": "A class that extends another class, adding or overriding behavior.",
+      "example": "class Rectangle extends Shape { }"
+    },
+    {
+      "term": "Polymorphism",
+      "definition": "Different classes can be treated uniformly through a common type; method calls dispatch to the actual type.",
+      "example": "Shape s = new Circle(2.0); System.out.println(s.area());"
+    },
+    {
+      "term": "Interface",
+      "definition": "A contract specifying methods a class must implement, without implementations.",
+      "example": "interface Drawable { void draw(); }"
+    },
+    {
+      "term": "Abstract Class",
+      "definition": "A class that cannot be instantiated and may contain abstract methods.",
+      "example": "abstract class Shape { abstract double area(); }"
+    }
+  ]
+}
