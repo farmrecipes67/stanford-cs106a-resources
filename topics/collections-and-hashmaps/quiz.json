@@ -1,0 +1,126 @@
+{
+  "topic": "Collections and HashMaps",
+  "totalQuestions": 10,
+  "questions": [
+    {
+      "question": "Which Collection is best for fast membership tests and preventing duplicates?",
+      "options": [
+        "A) ArrayList",
+        "B) LinkedList",
+        "C) HashSet",
+        "D) TreeMap"
+      ],
+      "correctAnswer": "C",
+      "explanation": "HashSet provides expected O(1) add/contains and enforces uniqueness.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What does map.getOrDefault(key, d) return when key is not in the map?",
+      "options": [
+        "A) null",
+        "B) d",
+        "C) throws NoSuchElementException",
+        "D) an empty Optional"
+      ],
+      "correctAnswer": "B",
+      "explanation": "getOrDefault returns the provided default value when the key is absent.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What happens when you call put on a HashMap with a key that already exists?",
+      "options": [
+        "A) The call is ignored",
+        "B) The value is appended to a list automatically",
+        "C) The value is replaced and the old value is returned",
+        "D) A runtime error occurs"
+      ],
+      "correctAnswer": "C",
+      "explanation": "put replaces the old value for the key and returns the previous value (or null if none).",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which is the most efficient way to iterate keys and values of a HashMap?",
+      "options": [
+        "A) for (K k : map.keySet()) { V v = map.get(k); }",
+        "B) for (int i = 0; i < map.size(); i++) { ... }",
+        "C) for (Map.Entry<K,V> e : map.entrySet()) { K k = e.getKey(); V v = e.getValue(); }",
+        "D) Use map.values().toString()"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Iterating entrySet avoids repeated lookups and is the standard pattern.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "ArrayList get(i) is usually what time complexity?",
+      "options": [
+        "A) O(1)",
+        "B) O(log n)",
+        "C) O(n)",
+        "D) O(n log n)"
+      ],
+      "correctAnswer": "A",
+      "explanation": "ArrayList provides O(1) random access because it uses a backing array.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "If you override equals in a key class used in a HashMap, what must you also override?",
+      "options": [
+        "A) toString",
+        "B) compareTo",
+        "C) hashCode",
+        "D) clone"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The equals/hashCode contract requires that equal objects have equal hash codes.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is the expected (average) time complexity of HashMap get when hash codes are well-distributed?",
+      "options": [
+        "A) O(1)",
+        "B) O(log n)",
+        "C) O(n)",
+        "D) O(n log n)"
+      ],
+      "correctAnswer": "A",
+      "explanation": "HashMap is designed for constant-time average get/put with good hash distribution.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which statement about HashSet is true?",
+      "options": [
+        "A) It preserves insertion order",
+        "B) It allows duplicate elements",
+        "C) It is backed by a hash table",
+        "D) It sorts elements by natural order"
+      ],
+      "correctAnswer": "C",
+      "explanation": "HashSet is hash-table-backed and does not guarantee order or allow duplicates.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "You need to group students by their major (Map<String, List<String>>). Which update is most concise in Java 8+?",
+      "options": [
+        "A) map.put(major, new ArrayList<>()); map.get(major).add(name);",
+        "B) map.computeIfAbsent(major, k -> new ArrayList<>()).add(name);",
+        "C) map.getOrDefault(major, new ArrayList<>()).add(name);",
+        "D) map.putIfAbsent(major, List.of(name));"
+      ],
+      "correctAnswer": "B",
+      "explanation": "computeIfAbsent creates and inserts the list once, then returns it for the add.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is a safe way to remove items from a List while iterating?",
+      "options": [
+        "A) Use enhanced for and call list.remove(e) inside the loop",
+        "B) Iterate with an Iterator and call iterator.remove()",
+        "C) Convert to array and remove from the original list during iteration",
+        "D) Call list.clear() at the end"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Iterator.remove is the supported mechanism to avoid ConcurrentModificationException.",
+      "difficulty": "advanced"
+    }
+  ]
+}
