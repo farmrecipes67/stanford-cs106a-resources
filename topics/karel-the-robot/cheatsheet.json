@@ -1,0 +1,26 @@
+{
+  "topic": "Karel the Robot",
+  "cheatsheet": {
+    "syntaxReference": [
+      "Class and run: \nimport stanford.karel.*;\npublic class MyKarel extends Karel {\n    public void run() {\n        // commands here\n    }\n}",
+      "Movement and turns: \nmove();\nturnLeft();\n// In SuperKarel:\nturnRight(); turnAround();",
+      "Beepers: \nputBeeper();\npickBeeper();\nif (beepersPresent()) { pickBeeper(); }",
+      "Conditions: \nif (frontIsClear()) { move(); } else { turnLeft(); }\nwhile (frontIsClear()) { move(); }",
+      "Helper methods (decomposition): \nprivate void moveToWall() { while (frontIsClear()) { move(); } }",
+      "Implementing turnRight in base Karel: \nprivate void turnRight() { turnLeft(); turnLeft(); turnLeft(); }"
+    ],
+    "commonPatterns": [
+      "Fencepost (place-every-corner): \nputBeeper();\nwhile (frontIsClear()) { move(); putBeeper(); }",
+      "Move to wall safely: \nwhile (frontIsClear()) { move(); } // stop when frontIsBlocked()",
+      "Conditional action each step: \nwhile (frontIsClear()) { if (beepersPresent()) { pickBeeper(); } move(); }",
+      "Stair/hurdle climb (SuperKarel): \nturnLeft(); move(); turnRight(); move(); turnRight(); move(); turnLeft();",
+      "Check-last-corner cleanup: \n// For actions that must include the last corner, do the action after each move OR place before entering loop as needed.",
+      "Define and document helpers: \n// Pre: facing east anywhere on first street\n// Post: at wall, still facing east\nprivate void moveToWall() { while (frontIsClear()) { move(); } }"
+    ],
+    "quickTips": [
+      "Guard moves with frontIsClear() to avoid crashes.",
+      "Write small helpers for repeated sequences (e.g., turnRight, moveToWall).",
+      "State pre/postconditions for every helper and preserve them during refactors."
+    ]
+  }
+}
