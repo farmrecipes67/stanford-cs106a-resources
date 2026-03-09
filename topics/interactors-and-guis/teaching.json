@@ -1,0 +1,24 @@
+{
+  "topic": "Interactors and GUIs",
+  "materials": {
+    "keyConceptsSummary": "Event-driven programming: The program registers listeners and waits for user actions (clicks, typing, selections). When an event occurs, the system calls your callback (e.g., actionPerformed). You do not call the listener; it is invoked by the framework.\n\nInteractors (Swing components via ACM): JButton, JTextField, JCheckBox, JRadioButton, JComboBox, JLabel, etc. You add them to the Program window using add(component, region), where region is typically NORTH or SOUTH. The graphics canvas stays in the CENTER and is distinct from the control strip.\n\nLifecycle: Use init() to build the UI (create components, add them, register listeners). Use run() for the main logic and animation; it executes after the window is shown. Call addActionListeners() to listen to button actions. For JTextField Enter presses, explicitly register a listener on the field (textField.addActionListener(this)).\n\nEvent handling: Implement actionPerformed(ActionEvent e) to respond to actions. Identify the source using e.getSource() or the command string via e.getActionCommand(). Group mutually exclusive JRadioButtons with a ButtonGroup. Use ItemListeners for state changes like check boxes if you need item-level detail.\n\nLayout and state: BorderLayout regions (NORTH/SOUTH/EAST/WEST) determine where interactors appear. Keep a clean model-view separation: update the model (variables, data) in response to events, then update the view (labels, graphics). Validate and parse text input carefully (handle NumberFormatException). Enable/disable interactors based on current state when appropriate.",
+    "learningObjectives": [
+      "Add and position interactors using add(component, region) and understand the border layout regions",
+      "Register and implement listeners for buttons, text fields, and other interactors",
+      "Dispatch events correctly using e.getSource() and/or e.getActionCommand()",
+      "Parse and validate user input from text fields and update the graphics canvas accordingly",
+      "Design simple MVC-style GUI programs that keep UI and data model in sync"
+    ],
+    "commonMistakes": [
+      "Forgetting to call addActionListeners() (buttons won’t trigger actionPerformed) or neglecting textField.addActionListener(this) for Enter in text fields",
+      "Adding interactors in run() and then blocking the thread with long loops so controls feel unresponsive",
+      "Comparing action commands or strings with == instead of .equals(), or misidentifying the event source"
+    ],
+    "tipsForSuccess": [
+      "Build all interactors and register all listeners in init(); keep run() focused on program logic or animation",
+      "Use constants for action commands to avoid typos; consider setActionCommand on buttons for clarity",
+      "Validate inputs early; guard parsing with try/catch and provide user feedback via a JLabel"
+    ]
+  },
+  "overview": "In CS106A, Interactors are the GUI widgets (buttons, text fields, check boxes, etc.) that let users control your program. Using the ACM Java libraries on top of Swing, you place interactors around the graphics canvas using a simple border layout (NORTH, SOUTH, EAST, WEST) and write event handlers that respond when the user clicks, types, or changes a setting. Rather than polling for input, your program follows an event-driven model: the system calls your handler methods (like actionPerformed) whenever something happens.\n\nYou typically add interactors during the init() phase so they appear when the window opens, and you keep your main program logic in run(). Interactors communicate with your code through events, and you often dispatch behavior based on the event source or command. Mastering interactors means understanding listeners, layout regions, parsing user input from fields, and keeping your model (program state) in sync with what’s displayed."
+}
