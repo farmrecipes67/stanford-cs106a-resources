@@ -1,0 +1,126 @@
+{
+  "topic": "Graphics and Animation",
+  "totalQuestions": 10,
+  "questions": [
+    {
+      "question": "Where is the origin (0,0) on the GraphicsProgram canvas?",
+      "options": [
+        "A) Top-left corner",
+        "B) Top-right corner",
+        "C) Bottom-left corner",
+        "D) Center of the window"
+      ],
+      "correctAnswer": "A",
+      "explanation": "ACM Graphics uses a screen coordinate system with (0,0) at the top-left; x increases right, y increases downward.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which call properly places a GRect r at coordinates (100, 200)?",
+      "options": [
+        "A) r.setLocation(100, 200);",
+        "B) add(r).setLocation(100, 200);",
+        "C) add(r, 100, 200);",
+        "D) r.move(100, 200); add(r);"
+      ],
+      "correctAnswer": "C",
+      "explanation": "You can place while adding using add(r, x, y). setLocation is fine too, but only after the object is added; option A alone does not add the object.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What does pause(16) in an animation loop most directly control?",
+      "options": [
+        "A) The size of shapes",
+        "B) The frame timing (approx. 60 FPS)",
+        "C) The canvas dimensions",
+        "D) The z-order of objects"
+      ],
+      "correctAnswer": "B",
+      "explanation": "pause(16) delays about 16 ms per frame, targeting roughly 60 frames per second.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which method moves a GObject relative to its current position?",
+      "options": [
+        "A) setLocation(x, y)",
+        "B) translate(x, y)",
+        "C) move(dx, dy)",
+        "D) setPosition(dx, dy)"
+      ],
+      "correctAnswer": "C",
+      "explanation": "move(dx, dy) offsets the current position by the given deltas.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "To bounce a ball off the right wall, which condition is most appropriate?",
+      "options": [
+        "A) if (ball.getX() >= getWidth()) dx = -dx;",
+        "B) if (ball.getX() + ball.getWidth() >= getWidth()) dx = -dx;",
+        "C) if (ball.getX() <= getWidth()) dx = -dx;",
+        "D) if (ball.getWidth() >= getWidth()) dx = -dx;"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Check the ball’s right edge: x + width. When it reaches or exceeds the canvas width, reverse dx.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which call ensures a rectangle’s interior shows the chosen color?",
+      "options": [
+        "A) rect.setColor(Color.RED);",
+        "B) rect.fill(Color.RED);",
+        "C) rect.setFilled(true); rect.setFillColor(Color.RED);",
+        "D) rect.setBackground(Color.RED);"
+      ],
+      "correctAnswer": "C",
+      "explanation": "You must mark the shape as filled and set its fill color; setColor only changes the outline if not filled.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What is the best way to detect an object directly under a point (x, y)?",
+      "options": [
+        "A) getBounds().contains(x, y)",
+        "B) getElementAt(x, y)",
+        "C) contains(x, y) on every object manually",
+        "D) canvasAt(x, y)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "getElementAt(x, y) queries the canvas and returns the topmost GObject at that location.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "You wrote an infinite while loop without pause(). What is the most likely symptom?",
+      "options": [
+        "A) Shapes disappear randomly",
+        "B) Colors invert",
+        "C) The UI becomes unresponsive and animation runs too fast to see",
+        "D) The canvas resizes automatically"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Without pause, the loop monopolizes CPU and starves event handling and repainting, freezing the UI.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which method changes the layering so an object appears above others?",
+      "options": [
+        "A) bringToTop()",
+        "B) sendToFront()",
+        "C) raiseZ()",
+        "D) addOnTop()"
+      ],
+      "correctAnswer": "B",
+      "explanation": "sendToFront() places the GObject at the front of the z-order.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "You want arrow keys to move a player. What must be done first?",
+      "options": [
+        "A) Call addKeyListeners() and override keyPressed(KeyEvent e)",
+        "B) Override run(KeyEvent e)",
+        "C) Use getElementAt in run()",
+        "D) Call addMouseListeners()"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Register for keyboard events with addKeyListeners() and implement keyPressed/keyReleased to handle input.",
+      "difficulty": "intermediate"
+    }
+  ]
+}
