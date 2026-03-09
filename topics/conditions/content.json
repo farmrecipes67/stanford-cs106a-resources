@@ -1,0 +1,268 @@
+{
+  "topic": "Conditions",
+  "topicIndex": 6,
+  "overview": "Conditions let your program make decisions by evaluating boolean expressions that are either true or false. In CS106A, you use conditions to branch control flow with if, else-if, and else blocks, enabling different behavior based on user input, sensor data, or computed values. You’ll learn to combine comparisons (like <, <=, >, >=, ==, !=) with logical operators (&&, ||, !) to express complex rules clearly and correctly.\n\nBeyond basic syntax, you’ll practice reasoning about order of evaluation and short-circuit behavior, which affect performance and correctness (e.g., checking for null before accessing an object). You’ll compare Strings properly with equals, avoid pitfalls with floating-point comparisons, and write readable chains of conditions for classification tasks. Mastery of conditions is essential for input validation, guard clauses, robust error handling, and laying the groundwork for loops and algorithms later in the course.",
+  "teachingMaterials": {
+    "keyConceptsSummary": "A condition is a boolean expression whose value controls program flow. Core building blocks include relational operators (<, <=, >, >=), equality/inequality (==, !=) for primitives, and logical operators (&&, ||, !). Java evaluates && and || with short-circuit semantics: the right-hand side is evaluated only if needed, which you can use to guard against NullPointerException (e.g., s != null && s.length() > 0). Precedence rules place ! above && above ||; parentheses make intent explicit and prevent bugs.\n\nUse if, if-else, and else-if chains to select among alternatives; prefer mutually exclusive, ordered checks for ranges. Nesting ifs is sometimes necessary but can often be replaced with clearer combined conditions. For multi-way selection on a single expression (typically integral, enum, or string), switch can be more readable than long else-if chains. Compare Strings with equals or equalsIgnoreCase, not ==. When negating complex conditions, apply De Morgan's laws to maintain correctness. For readability and safety, use guard clauses (early returns) to handle invalid states before the main logic.",
+    "learningObjectives": [
+      "Write correct if, if-else, and else-if chains to implement branching logic",
+      "Combine relational and logical operators to express complex boolean conditions",
+      "Apply short-circuit evaluation to write safe null checks and guard clauses",
+      "Choose correct comparison methods for primitives vs. objects (e.g., equals for String)",
+      "Refactor nested or verbose conditions into clear, maintainable code using patterns like range checks and De Morgan's laws"
+    ],
+    "commonMistakes": [
+      "Using == to compare Strings instead of equals, causing unexpected false results",
+      "Incorrect range ordering in else-if chains (e.g., checking lower thresholds before higher ones and shadowing later cases)",
+      "Forgetting short-circuit or null checks before dereferencing objects, leading to NullPointerException"
+    ],
+    "tipsForSuccess": [
+      "Add parentheses liberally to document precedence and intention, even when not strictly required",
+      "Write and run tests around boundary values (e.g., 0, 1, -1, exact thresholds) to catch off-by-one and ordering bugs",
+      "Prefer early returns (guard clauses) to reduce nesting and make exceptional cases obvious"
+    ]
+  },
+  "vocabulary": [
+    {
+      "term": "Condition",
+      "definition": "A boolean expression that controls program flow by evaluating to true or false.",
+      "example": "if (age >= 18) { /* allowed */ }"
+    },
+    {
+      "term": "Boolean",
+      "definition": "A data type with two values: true and false.",
+      "example": "boolean done = false;"
+    },
+    {
+      "term": "Relational operator",
+      "definition": "Operators that compare numeric values: <, <=, >, >=.",
+      "example": "if (x < y) { min = x; }"
+    },
+    {
+      "term": "Equality operator",
+      "definition": "Operators that test primitive equality or inequality: == and !=.",
+      "example": "if (count == 0) { System.out.println(\"empty\"); }"
+    },
+    {
+      "term": "Logical operator",
+      "definition": "Operators that combine booleans: && (and), || (or), ! (not).",
+      "example": "if (x > 0 && y > 0) { /* first quadrant */ }"
+    },
+    {
+      "term": "Short-circuit evaluation",
+      "definition": "Evaluation strategy where && and || stop early if the result is already determined.",
+      "example": "if (s != null && s.length() > 0) { /* safe */ }"
+    },
+    {
+      "term": "If statement",
+      "definition": "Executes a block only when a condition is true.",
+      "example": "if (score >= 90) { grade = 'A'; }"
+    },
+    {
+      "term": "If-else statement",
+      "definition": "Chooses between two blocks based on a condition.",
+      "example": "if (n % 2 == 0) { evens++; } else { odds++; }"
+    },
+    {
+      "term": "Else-if chain",
+      "definition": "A sequence of conditions to select among multiple exclusive cases.",
+      "example": "if (t < 0) {...} else if (t < 100) {...} else {...}"
+    },
+    {
+      "term": "Nested if",
+      "definition": "An if statement inside another if/else block.",
+      "example": "if (x > 0) { if (y > 0) { /* both positive */ } }"
+    },
+    {
+      "term": "Switch statement",
+      "definition": "Multi-way selection based on a single expression’s value.",
+      "example": "switch(day){case 1:...; break; default:...;}"
+    },
+    {
+      "term": "Ternary operator",
+      "definition": "A concise conditional expression: condition ? valueIfTrue : valueIfFalse.",
+      "example": "String parity = (n % 2 == 0) ? \"even\" : \"odd\";"
+    },
+    {
+      "term": "Guard clause",
+      "definition": "An early return that exits a method when a precondition fails.",
+      "example": "if (s == null) return; // guard"
+    },
+    {
+      "term": "String comparison",
+      "definition": "Comparing String contents with equals or equalsIgnoreCase, not ==.",
+      "example": "if (name.equals(\"Ada\")) { ... }"
+    },
+    {
+      "term": "De Morgan's law",
+      "definition": "Rules for negating compound conditions: !(A || B) == (!A && !B), !(A && B) == (!A || !B).",
+      "example": "if (!(x > 0 || y > 0)) { /* x <= 0 && y <= 0 */ }"
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What is the result of: true || false && false?",
+      "options": [
+        "A) true",
+        "B) false",
+        "C) It depends on short-circuiting",
+        "D) Compiler error"
+      ],
+      "correctAnswer": "A",
+      "explanation": "&& has higher precedence than ||, so false && false is false, then true || false is true.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Given: int x = 10, y = 3; if (x > 5) if (y > 5) System.out.println(\"A\"); else System.out.println(\"B\"); What prints?",
+      "options": [
+        "A) A",
+        "B) B",
+        "C) Nothing",
+        "D) Compiler error"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The else pairs with the nearest unmatched if (y > 5). Since y > 5 is false, the else branch prints B.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "How do you correctly test two Strings s and t for content equality?",
+      "options": [
+        "A) if (s == t)",
+        "B) if (s.equals(t))",
+        "C) if (s.compareTo(t) == 1)",
+        "D) if (s.same(t))"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Use equals to compare the contents of String objects. == compares references.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What does this print? int n = 0; if (n > 0) System.out.print(\"pos\"); else if (n == 0) System.out.print(\"zero\"); else System.out.print(\"neg\");",
+      "options": [
+        "A) pos",
+        "B) zero",
+        "C) neg",
+        "D) Nothing"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Since n == 0, the else-if branch executes.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "String s = null; boolean b = (s != null && s.length() > 0); What happens?",
+      "options": [
+        "A) b is false; no exception is thrown",
+        "B) b is true",
+        "C) A NullPointerException is thrown",
+        "D) Compiler error"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Short-circuiting prevents s.length() from running when s != null is false, so b becomes false safely.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which is logically equivalent to !(x > 10 || y == 0)?",
+      "options": [
+        "A) x > 10 && y == 0",
+        "B) x <= 10 && y != 0",
+        "C) x >= 10 || y != 0",
+        "D) !(x > 10) || !(y == 0)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Apply De Morgan's law: !(A || B) == (!A && !B). ! (x > 10) is x <= 10; ! (y == 0) is y != 0.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "String label = (7 % 2 == 0) ? \"even\" : \"odd\"; What is label?",
+      "options": [
+        "A) even",
+        "B) odd",
+        "C) null",
+        "D) 7"
+      ],
+      "correctAnswer": "B",
+      "explanation": "7 is not divisible by 2, so the false branch \"odd\" is chosen.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "char g = 'B'; switch (g) { case 'A': case 'B': System.out.print(\"pass\"); break; default: System.out.print(\"other\"); } What prints?",
+      "options": [
+        "A) pass",
+        "B) other",
+        "C) passother",
+        "D) Nothing"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Cases 'A' and 'B' share the same print before break; for 'B' it prints pass.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which is the best way to check if doubles a and b are approximately equal?",
+      "options": [
+        "A) if (a == b)",
+        "B) if (Math.abs(a - b) < 1e-9)",
+        "C) if (a.equals(b))",
+        "D) if (a - b == 0.0)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Floating-point rounding makes exact equality unreliable; use an epsilon tolerance.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is wrong with: if (x = 5) { ... }",
+      "options": [
+        "A) Use == for comparison; = is assignment",
+        "B) Use equals for comparison",
+        "C) Use := for assignment",
+        "D) Nothing; it assigns 5 and tests it"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Java requires a boolean in an if condition; x = 5 assigns an int and causes a compile-time type error. Use x == 5.",
+      "difficulty": "beginner"
+    }
+  ],
+  "pseudocodeExamples": [
+    {
+      "title": "Categorize temperature with else-if ranges",
+      "description": "Demonstrates ordered else-if chains and boundary checks to select exactly one category.",
+      "pseudocode": "INPUT temp\nIF temp < 0\n    PRINT \"Freezing\"\nELSE IF temp < 10\n    PRINT \"Cold\"\nELSE IF temp < 25\n    PRINT \"Mild\"\nELSE IF temp < 35\n    PRINT \"Warm\"\nELSE\n    PRINT \"Hot\"\nEND IF",
+      "javaCode": "int temp = ...; // from user or sensor\nif (temp < 0) {\n    System.out.println(\"Freezing\");\n} else if (temp < 10) {\n    System.out.println(\"Cold\");\n} else if (temp < 25) {\n    System.out.println(\"Mild\");\n} else if (temp < 35) {\n    System.out.println(\"Warm\");\n} else {\n    System.out.println(\"Hot\");\n}"
+    },
+    {
+      "title": "Leap year check with logical operators",
+      "description": "Shows combining && and || with correct precedence and parentheses.",
+      "pseudocode": "INPUT year\nIF (year mod 400 == 0) OR (year mod 4 == 0 AND year mod 100 != 0)\n    PRINT \"Leap\"\nELSE\n    PRINT \"Common\"\nEND IF",
+      "javaCode": "int year = ...;\nboolean leap = (year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0));\nSystem.out.println(leap ? \"Leap\" : \"Common\");"
+    },
+    {
+      "title": "Guard clause for safe division",
+      "description": "Illustrates early return to handle invalid input before main logic, preventing divide-by-zero.",
+      "pseudocode": "FUNCTION safeDivide(a, b)\n    IF b == 0\n        PRINT \"Cannot divide by zero\"\n        RETURN 0\n    END IF\n    RETURN a / b\nEND FUNCTION",
+      "javaCode": "public static double safeDivide(double a, double b) {\n    if (b == 0.0) {\n        System.out.println(\"Cannot divide by zero\");\n        return 0.0; // guard clause\n    }\n    return a / b;\n}"
+    }
+  ],
+  "cheatsheet": {
+    "syntaxReference": [
+      "If: if (condition) { /* then */ }",
+      "If-else: if (cond) { ... } else { ... }",
+      "Else-if chain: if (a) { ... } else if (b) { ... } else { ... }",
+      "Nested ifs: if (a) { if (b) { ... } } // use braces to avoid dangling else",
+      "Logical operators: !a, a && b, a || b // precedence: ! > && > ||",
+      "String equality: if (s != null && s.equals(\"hi\")) { ... }",
+      "Ternary: String msg = ok ? \"yes\" : \"no\";",
+      "Switch: switch(x) { case 1: ...; break; case 2: ...; break; default: ...; }"
+    ],
+    "commonPatterns": [
+      "Range check: if (0 <= x && x <= 100) { ... }",
+      "Mutually exclusive buckets: if (score >= 90) {...} else if (score >= 80) {...} ... else {...}",
+      "Null guard: if (obj == null) return; // or: if (obj != null && obj.method())...",
+      "Safe String test: if (s != null && !s.isEmpty()) { ... }",
+      "De Morgan rewrite: if (!(a || b)) -> if (!a && !b)"
+    ],
+    "quickTips": [
+      "Prefer clear parentheses to relying on operator precedence.",
+      "Test boundary values around each comparison to catch off-by-one errors.",
+      "Minimize nesting with early returns (guard clauses) for invalid or special cases."
+    ]
+  }
+}
