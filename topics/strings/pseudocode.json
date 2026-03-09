@@ -1,0 +1,23 @@
+{
+  "topic": "Strings",
+  "examples": [
+    {
+      "title": "Reverse a String",
+      "description": "Demonstrates iterating over characters backward and building a new string efficiently.",
+      "pseudocode": "function reverse(s):\n  create empty StringBuilder sb\n  for i from s.length - 1 down to 0:\n    append s.charAt(i) to sb\n  return sb.toString()",
+      "javaCode": "public class ReverseString {\n  public static String reverse(String s) {\n    StringBuilder sb = new StringBuilder();\n    for (int i = s.length() - 1; i >= 0; i--) {\n      sb.append(s.charAt(i));\n    }\n    return sb.toString();\n  }\n  public static void main(String[] args) {\n    System.out.println(reverse(\"CS106A\")); // \"A601SC\"\n  }\n}"
+    },
+    {
+      "title": "Normalize and Compare Emails",
+      "description": "Shows trimming whitespace and comparing case-insensitively to determine equivalence.",
+      "pseudocode": "function sameEmail(a, b):\n  if a is null or b is null: return false\n  set na = lowercase(trim(a))\n  set nb = lowercase(trim(b))\n  return na equals nb",
+      "javaCode": "public class EmailCompare {\n  public static boolean sameEmail(String a, String b) {\n    if (a == null || b == null) return false;\n    String na = a.trim().toLowerCase();\n    String nb = b.trim().toLowerCase();\n    return na.equals(nb);\n  }\n  public static void main(String[] args) {\n    System.out.println(sameEmail(\"  STUDENT@stanford.edu \", \"student@stanford.edu\")); // true\n  }\n}"
+    },
+    {
+      "title": "Find Longest Word in a Sentence",
+      "description": "Splits on whitespace, cleans punctuation, and tracks the longest token.",
+      "pseudocode": "function longestWord(sentence):\n  if sentence is null or empty: return \"\"\n  words = split(trim(sentence)) on whitespace\n  longest = \"\"\n  for each w in words:\n    clean = remove non-letter chars from w\n    if length(clean) > length(longest): longest = clean\n  return longest",
+      "javaCode": "public class LongestWord {\n  public static String longestWord(String sentence) {\n    if (sentence == null || sentence.isEmpty()) return \"\";\n    String[] words = sentence.trim().split(\"\\\\s+\");\n    String longest = \"\";\n    for (String w : words) {\n      String clean = w.replaceAll(\"[^A-Za-z']\", \"\");\n      if (clean.length() > longest.length()) longest = clean;\n    }\n    return longest;\n  }\n  public static void main(String[] args) {\n    System.out.println(longestWord(\"Stanford's CS106A is fun!\")); // \"Stanford's\"\n  }\n}"
+    }
+  ]
+}
