@@ -1,0 +1,24 @@
+{
+  "topic": "Decomposition",
+  "materials": {
+    "keyConceptsSummary": "Decomposition is central to programming methodology: you divide a complex task into a hierarchy of small, well-named, and well-scoped methods. Start with top-down design—write an outline that expresses the solution as a sequence of high-level steps, each encapsulated in a helper method. Then apply stepwise refinement—expand each helper method into simpler sub-steps until each method is easy to implement and test. Strong decomposition relies on clear method signatures (name, parameters, return type), explicit contracts (preconditions and postconditions), and purposeful naming that reveals intent. Good methods have high cohesion (do one thing) and participate in a design with low coupling (minimal knowledge of other parts). Use constants to avoid magic numbers, pass only the data a method needs, and return results rather than relying on global state. Early in development, write stubs (temporary method bodies) to compile and establish structure; then incrementally replace stubs with real logic and test each part in isolation. As you progress toward object-oriented design, you further decompose by grouping related state and behavior into classes with clear interfaces, preserving the same principles of abstraction, cohesion, and low coupling.",
+    "learningObjectives": [
+      "Apply top-down design to outline a program as a set of high-level helper methods.",
+      "Design clear method signatures with appropriate parameters and return types.",
+      "Document and honor method preconditions and postconditions to define contracts.",
+      "Refactor long or repetitive code into small, cohesive, reusable helper methods.",
+      "Use stubs and incremental testing to develop decomposed solutions reliably."
+    ],
+    "commonMistakes": [
+      "Writing a single large method that does everything instead of separating responsibilities.",
+      "Leaking unnecessary details between methods (high coupling) by sharing too much state or using global variables.",
+      "Choosing poor method names or signatures that obscure intent, lack needed parameters, or return the wrong information."
+    ],
+    "tipsForSuccess": [
+      "Draft the high-level algorithm as method calls first; fill in method bodies later.",
+      "Aim for methods under ~20–30 lines that each answer a single, well-named question.",
+      "Write small tests for helpers as you go; refactor early when you see duplication."
+    ]
+  },
+  "overview": "Decomposition is the practice of breaking a large programming problem into smaller, focused pieces. In CS106A, this usually means designing a program as a collection of short, single-purpose methods and, later, grouping related methods and data into classes. By separating concerns, you reduce complexity, make your code easier to reason about, test, and debug, and enable reuse of components across different parts of a program or even different assignments.\n\nIn a typical CS106A workflow, you use top-down design and stepwise refinement: start with a clear statement of the problem, outline high-level steps as method calls, then iteratively refine each method until it is straightforward to implement. Along the way, you define clear method signatures, document preconditions and postconditions, keep methods cohesive (each does one thing well), and minimize coupling (methods know as little as necessary about each other). This approach helps you produce clean, readable, and maintainable Java code."
+}
