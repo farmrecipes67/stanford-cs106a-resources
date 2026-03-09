@@ -1,0 +1,126 @@
+{
+  "topic": "Decomposition",
+  "totalQuestions": 10,
+  "questions": [
+    {
+      "question": "Which is the primary benefit of decomposition in CS106A?",
+      "options": [
+        "A) It makes code run faster by default",
+        "B) It reduces complexity and improves readability/testability",
+        "C) It eliminates all bugs automatically",
+        "D) It avoids the need for comments entirely"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Decomposition mainly improves design quality: readability, modularity, and testability. It does not inherently guarantee speed or eliminate all bugs.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which method signature best follows good decomposition for checking evenness?",
+      "options": [
+        "A) void isEven()",
+        "B) boolean isEven()",
+        "C) boolean isEven(int n)",
+        "D) int isEven(int n)"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The method needs input (n) and returns a boolean result, so boolean isEven(int n) is appropriate.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "A precondition is best described as:",
+      "options": [
+        "A) A guarantee after a method executes",
+        "B) A requirement before calling a method",
+        "C) The same as a return value",
+        "D) The method’s runtime complexity"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Preconditions are requirements on inputs/state that must hold when a method is called.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which code smell suggests poor decomposition?",
+      "options": [
+        "A) Multiple short helper methods with clear names",
+        "B) A single 150-line method doing input, processing, and output",
+        "C) Using constants for configuration values",
+        "D) Documented pre/postconditions"
+      ],
+      "correctAnswer": "B",
+      "explanation": "An overly long, multi-purpose method indicates low cohesion and high complexity.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "You have methods readData(), computeStats(), and printReport(). What design principle is most improved?",
+      "options": [
+        "A) Coupling increases",
+        "B) Cohesion increases",
+        "C) Abstraction decreases",
+        "D) Runtime complexity decreases automatically"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Each method handles one focused responsibility, increasing cohesion.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which option minimizes coupling between methods?",
+      "options": [
+        "A) Accessing and modifying global variables in helpers",
+        "B) Passing only needed values as parameters and returning results",
+        "C) Using many public fields across classes",
+        "D) Performing I/O inside every helper"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Passing required data and returning results reduces shared state and interdependencies.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Given: // requires: arr.length > 0 // ensures: returns max element. Which is best?",
+      "options": [
+        "A) int max(int[] arr)",
+        "B) void max(int[] arr)",
+        "C) boolean max(int[] arr)",
+        "D) String max(int[] arr)"
+      ],
+      "correctAnswer": "A",
+      "explanation": "The method returns the maximum as an int; it needs the array as input.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "When starting a large assignment, why write method stubs first?",
+      "options": [
+        "A) They ensure optimal performance",
+        "B) They allow code to compile and support incremental development/testing",
+        "C) They eliminate the need for unit tests",
+        "D) They auto-generate method bodies"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Stubs let you compile and integrate structure early, then fill in logic incrementally.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which redesign best increases cohesion?",
+      "options": [
+        "A) Method process() handles input, parse, compute, print",
+        "B) Split into readInput(), parse(), compute(), print()",
+        "C) Move all code into main()",
+        "D) Replace parameters with global variables"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Separating responsibilities into distinct methods increases cohesion and clarity.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "You have two helpers: normalize(String s) and tokenize(String s). A new feature needs case-insensitive tokenization. What change keeps low coupling?",
+      "options": [
+        "A) Have tokenize() read from System.in directly",
+        "B) Store s in a global and let both helpers access it",
+        "C) Call normalize() first, then pass its result to tokenize()",
+        "D) Merge both into one large method"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Compose helpers by passing outputs to inputs; avoid global state and monolithic methods.",
+      "difficulty": "advanced"
+    }
+  ]
+}
