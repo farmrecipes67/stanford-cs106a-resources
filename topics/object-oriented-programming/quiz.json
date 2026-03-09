@@ -1,0 +1,126 @@
+{
+  "topic": "Object-Oriented Programming",
+  "totalQuestions": 10,
+  "questions": [
+    {
+      "question": "Which statement best describes encapsulation?",
+      "options": [
+        "A) Storing multiple objects in an array.",
+        "B) Hiding internal state and exposing behavior through a public interface.",
+        "C) Allowing a class to inherit from multiple superclasses.",
+        "D) Compiling code into bytecode for the JVM."
+      ],
+      "correctAnswer": "B",
+      "explanation": "Encapsulation hides fields and exposes behavior via methods, protecting invariants and reducing coupling.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What is the primary difference between a class and an object?",
+      "options": [
+        "A) A class runs code, while an object defines code.",
+        "B) A class is a blueprint; an object is an instance created from that blueprint.",
+        "C) A class stores data; an object stores methods.",
+        "D) There is no difference; they are synonyms."
+      ],
+      "correctAnswer": "B",
+      "explanation": "A class defines structure/behavior; an object is a concrete instance with its own state.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Given String a = new String(\"hi\"); String b = \"hi\"; which compares content correctly?",
+      "options": [
+        "A) a == b",
+        "B) a.equals(b)",
+        "C) a.compareTo(b) == 1",
+        "D) a = b"
+      ],
+      "correctAnswer": "B",
+      "explanation": "equals compares String content; == compares references.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which keyword is used in a subclass to invoke its superclass constructor?",
+      "options": [
+        "A) this",
+        "B) super",
+        "C) base",
+        "D) parent"
+      ],
+      "correctAnswer": "B",
+      "explanation": "super(...) must be the first statement to call a superclass constructor.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What happens when a subclass overrides a method of its superclass?",
+      "options": [
+        "A) The superclass method is permanently deleted.",
+        "B) At runtime, the method of the actual object type is called (dynamic dispatch).",
+        "C) The subclass cannot access any superclass fields.",
+        "D) The subclass must be abstract."
+      ],
+      "correctAnswer": "B",
+      "explanation": "Polymorphism ensures the most specific override is dispatched at runtime based on the object’s concrete type.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which is true about static members?",
+      "options": [
+        "A) Static fields are copied into every object.",
+        "B) Static methods can directly access instance fields.",
+        "C) Static members belong to the class, not any instance.",
+        "D) Static members are only available in interfaces."
+      ],
+      "correctAnswer": "C",
+      "explanation": "Static members are class-level; there is a single copy per class and they are accessed via ClassName.member.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which declaration correctly defines an interface in Java?",
+      "options": [
+        "A) abstract interface Runnable { void run() {} }",
+        "B) interface Runnable { void run(); }",
+        "C) class Runnable implements Interface { void run(); }",
+        "D) interface Runnable() { public void run(); }"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Interfaces declare method signatures without bodies (unless default/static).",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Consider: class A { void f() {} } class B extends A { void f() {} } A x = new B(); Which f is called by x.f()?",
+      "options": [
+        "A) A.f because x is declared as A",
+        "B) B.f because the object is a B",
+        "C) Neither; this is a compile error",
+        "D) Depends on JDK version"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Dynamic dispatch calls the method of the object’s actual type (B), not the reference type.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which design choice best indicates composition over inheritance?",
+      "options": [
+        "A) class Car extends Engine",
+        "B) class Engine extends Car",
+        "C) class Car { private Engine engine; }",
+        "D) interface Engine extends Car"
+      ],
+      "correctAnswer": "C",
+      "explanation": "A car has-an engine, so composition (a field) is preferred over is-a (inheritance).",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which equals implementation is most correct?",
+      "options": [
+        "A) public boolean equals(Object o) { return this == o; }",
+        "B) public boolean equals(Point p) { return x == p.x && y == p.y; }",
+        "C) public boolean equals(Object o) { if (!(o instanceof Point)) return false; Point p = (Point)o; return x == p.x && y == p.y; }",
+        "D) public boolean equals() { return true; }"
+      ],
+      "correctAnswer": "C",
+      "explanation": "equals must override the Object signature and handle non-Point inputs safely.",
+      "difficulty": "advanced"
+    }
+  ]
+}
