@@ -1,0 +1,27 @@
+{
+  "topic": "Interactors and GUIs",
+  "cheatsheet": {
+    "syntaxReference": [
+      "Add a button to the control strip:\nadd(new JButton(\"Go\"), SOUTH);",
+      "Register program-wide action listeners for buttons:\naddActionListeners();",
+      "Register Enter listener on a text field:\nJTextField tf = new JTextField(10);\nadd(tf, SOUTH);\ntf.addActionListener(this);",
+      "Identify event source vs command:\npublic void actionPerformed(ActionEvent e) {\n  Object src = e.getSource();\n  String cmd = e.getActionCommand();\n}",
+      "Group radio buttons:\nButtonGroup g = new ButtonGroup();\ng.add(red); g.add(green); g.add(blue);",
+      "Set a custom action command:\nJButton save = new JButton(\"💾 Save\");\nsave.setActionCommand(\"SAVE\");",
+      "Add a label and combo box to NORTH:\nadd(new JLabel(\"Shape:\"), NORTH);\nJComboBox<String> box = new JComboBox<>();\nbox.addItem(\"Circle\"); add(box, NORTH);",
+      "Enable/disable a control:\nrunBtn.setEnabled(false);\nrunBtn.setEnabled(true);",
+      "Parse integer from a text field safely:\ntry { int n = Integer.parseInt(tf.getText()); } catch (NumberFormatException ex) { /* handle */ }",
+      "Add a graphic to the canvas:\nGRect r = new GRect(20, 20, 80, 40);\nr.setFilled(true);\nadd(r);"
+    ],
+    "commonPatterns": [
+      "Control strip with dispatch by command:\npublic void init() {\n  add(new JButton(\"Start\"), SOUTH);\n  add(new JButton(\"Stop\"), SOUTH);\n  addActionListeners();\n}\npublic void actionPerformed(ActionEvent e) {\n  switch (e.getActionCommand()) {\n    case \"Start\": start(); break;\n    case \"Stop\": stop(); break;\n  }\n}",
+      "Text field and Enter mirrors button action:\npublic void init() {\n  nameField = new JTextField(12);\n  add(nameField, SOUTH);\n  add(new JButton(\"Greet\"), SOUTH);\n  addActionListeners();\n  nameField.addActionListener(this);\n}\npublic void actionPerformed(ActionEvent e) {\n  if (e.getActionCommand().equals(\"Greet\") || e.getSource() == nameField) greet();\n}",
+      "Radio buttons control appearance:\nButtonGroup g = new ButtonGroup();\ng.add(lineRB); g.add(fillRB);\nadd(lineRB, SOUTH); add(fillRB, SOUTH);\npublic void actionPerformed(ActionEvent e) {\n  shape.setFilled(fillRB.isSelected());\n}"
+    ],
+    "quickTips": [
+      "Name your interactors clearly (e.g., drawButton, sizeField) and keep them as instance variables if accessed in handlers.",
+      "Prefer comparing sources (e.getSource() == buttonVar) when multiple buttons share the same label.",
+      "Keep the UI responsive: avoid long blocking loops in actionPerformed; use run() with pauses or break work into smaller steps."
+    ]
+  }
+}
