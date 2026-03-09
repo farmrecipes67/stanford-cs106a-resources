@@ -1,0 +1,126 @@
+{
+  "topic": "Control Flow",
+  "totalQuestions": 10,
+  "questions": [
+    {
+      "question": "What is the value of boolean b after: boolean b = true || false && false;",
+      "options": [
+        "A) true",
+        "B) false",
+        "C) Compilation error",
+        "D) Depends on JVM"
+      ],
+      "correctAnswer": "A",
+      "explanation": "&& has higher precedence than ||, so expression is true || (false && false) => true || false => true.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Given: int x = 5; String s; if (x > 5) { s = \"A\"; } else if (x == 5) { s = \"B\"; } else { s = \"C\"; } What is s?",
+      "options": [
+        "A) A",
+        "B) B",
+        "C) C",
+        "D) null"
+      ],
+      "correctAnswer": "B",
+      "explanation": "x equals 5, so the else-if branch runs and assigns \"B\".",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "How many times does count increment? int count = 0; for (int i = 1; i <= 3; i++) { for (int j = 0; j < 2; j++) { count++; } }",
+      "options": [
+        "A) 3",
+        "B) 4",
+        "C) 5",
+        "D) 6"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Outer loop runs 3 times; inner runs 2 times each: 3*2 = 6 increments.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What is printed? int n = 2; String s = \"\"; switch (n) { case 1: s += \"a\"; case 2: s += \"b\"; break; case 3: s += \"c\"; } System.out.print(s);",
+      "options": [
+        "A) a",
+        "B) b",
+        "C) ab",
+        "D) bc"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Execution jumps to case 2 and appends \"b\" then breaks. No fall-through from case 1 occurs.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which loop guarantees the body executes at least once?",
+      "options": [
+        "A) for",
+        "B) while",
+        "C) do-while",
+        "D) All of them"
+      ],
+      "correctAnswer": "C",
+      "explanation": "do-while evaluates its condition after the first iteration.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What happens? int x = 0; if (x != 0 && 10 / x > 1) { System.out.println(\"yes\"); }",
+      "options": [
+        "A) Prints yes",
+        "B) No output; ArithmeticException thrown",
+        "C) No output; no exception due to short-circuit",
+        "D) Compilation error"
+      ],
+      "correctAnswer": "C",
+      "explanation": "x != 0 is false; with && the RHS is not evaluated, so no exception and nothing prints.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "How many numbers print? for (int i = 0; i <= 5; i++) { System.out.print(i + \" \"); }",
+      "options": [
+        "A) 5",
+        "B) 6",
+        "C) 7",
+        "D) Infinite"
+      ],
+      "correctAnswer": "B",
+      "explanation": "i takes values 0 through 5 inclusive, which is 6 numbers.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Using -1 as a sentinel, what sum is computed? int sum = 0; int val; // Input: 3 4 -1 5 while ((val = sc.nextInt()) != -1) { sum += val; } System.out.print(sum);",
+      "options": [
+        "A) 3",
+        "B) 4",
+        "C) 7",
+        "D) 12"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Only 3 and 4 are added before encountering -1. The 5 after -1 is not read.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which condition avoids NullPointerException if s may be null when checking for \"yes\"?",
+      "options": [
+        "A) s == \"yes\"",
+        "B) s.equals(\"yes\")",
+        "C) \"yes\".equals(s)",
+        "D) s.compareTo(\"yes\") == 0"
+      ],
+      "correctAnswer": "C",
+      "explanation": "\"yes\".equals(s) is safe when s is null; calling s.equals would throw a NullPointerException.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is printed? for (int i = 1; i <= 4; i++) { if (i % 2 == 0) continue; System.out.print(i); }",
+      "options": [
+        "A) 1234",
+        "B) 24",
+        "C) 13",
+        "D) 12"
+      ],
+      "correctAnswer": "C",
+      "explanation": "continue skips even i values, so prints 1 and 3.",
+      "difficulty": "beginner"
+    }
+  ]
+}
