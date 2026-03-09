@@ -1,0 +1,81 @@
+{
+  "topic": "Variables and Types",
+  "totalTerms": 15,
+  "terms": [
+    {
+      "term": "variable",
+      "definition": "A named storage location that holds a value during program execution.",
+      "example": "int score = 10;"
+    },
+    {
+      "term": "data type",
+      "definition": "A classification that determines what values a variable can hold and what operations can be performed.",
+      "example": "double pi = 3.14159;"
+    },
+    {
+      "term": "primitive type",
+      "definition": "A built-in type that stores a simple value directly (not an object).",
+      "example": "boolean isDone = false;"
+    },
+    {
+      "term": "reference type",
+      "definition": "A type whose variables store references to objects in memory.",
+      "example": "String name = \"Avery\";"
+    },
+    {
+      "term": "int",
+      "definition": "A 32-bit signed integer primitive type.",
+      "example": "int apples = 12;"
+    },
+    {
+      "term": "double",
+      "definition": "A 64-bit floating-point primitive type for fractional numbers.",
+      "example": "double avg = 7.0 / 3;"
+    },
+    {
+      "term": "boolean",
+      "definition": "A primitive type with two values: true or false.",
+      "example": "boolean passed = score >= 60;"
+    },
+    {
+      "term": "char",
+      "definition": "A 16-bit Unicode character primitive type.",
+      "example": "char initial = 'S';"
+    },
+    {
+      "term": "String",
+      "definition": "An immutable sequence of characters; a reference type.",
+      "example": "String msg = \"Hello, world!\";"
+    },
+    {
+      "term": "literal",
+      "definition": "A fixed value written directly in code.",
+      "example": "42, 3.14, 'A', true, \"hi\""
+    },
+    {
+      "term": "declaration",
+      "definition": "A statement that introduces a variable and its type.",
+      "example": "int count;"
+    },
+    {
+      "term": "initialization",
+      "definition": "The first assignment of a value to a variable.",
+      "example": "int count = 0;"
+    },
+    {
+      "term": "casting",
+      "definition": "Explicitly converting a value from one type to another.",
+      "example": "int whole = (int) 5.9;"
+    },
+    {
+      "term": "concatenation",
+      "definition": "Joining strings using the + operator, producing a new String.",
+      "example": "String s = \"Hi \" + name;"
+    },
+    {
+      "term": "constant (final)",
+      "definition": "A variable whose value cannot change after initialization.",
+      "example": "final double TAX_RATE = 0.0925;"
+    }
+  ]
+}
