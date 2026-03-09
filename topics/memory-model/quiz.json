@@ -1,0 +1,126 @@
+{
+  "topic": "Memory Model",
+  "totalQuestions": 10,
+  "questions": [
+    {
+      "question": "Where are local variables of a method stored during its execution?",
+      "options": [
+        "A) Heap",
+        "B) Stack",
+        "C) Constant pool",
+        "D) File system"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Each method call creates a stack frame that holds its locals and parameters.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What does a Java reference variable actually store?",
+      "options": [
+        "A) The object’s full data inline",
+        "B) A copy of the object’s fields",
+        "C) An address/pointer to a heap object",
+        "D) The class definition of the object"
+      ],
+      "correctAnswer": "C",
+      "explanation": "References are pointers to heap objects; the object data lives on the heap.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Given int[] a = {1,2}; int[] b = a; b[0] = 9;, what is a[0]?",
+      "options": [
+        "A) 1",
+        "B) 2",
+        "C) 9",
+        "D) Undefined"
+      ],
+      "correctAnswer": "C",
+      "explanation": "a and b alias the same array; modifying b modifies the same heap array.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Java parameter passing is best described as:",
+      "options": [
+        "A) Pass-by-reference for objects",
+        "B) Pass-by-value for primitives, pass-by-reference for objects",
+        "C) Pass-by-value for all parameters",
+        "D) Pass-by-name"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Java copies the value; for objects, the value copied is the reference.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Consider void foo(Point p){ p = new Point(5,5); }. If Point q = new Point(0,0); foo(q); what is q.x after the call?",
+      "options": [
+        "A) 0",
+        "B) 5",
+        "C) null",
+        "D) Compiler error"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Reassigning p only changes the local copy of the reference; q still points to (0,0).",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which comparison checks whether two String variables have the same sequence of characters?",
+      "options": [
+        "A) s1 == s2",
+        "B) s1.equals(s2)",
+        "C) s1.compareTo(s2) == -1",
+        "D) Objects.hash(s1) == Objects.hash(s2)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "equals compares content; == checks reference identity for objects.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which statement about Strings is true?",
+      "options": [
+        "A) Strings are mutable; concat changes the original",
+        "B) Strings are immutable; concat returns a new String",
+        "C) Strings live on the stack",
+        "D) Strings cannot be passed to methods"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Strings are immutable; operations produce new objects on the heap.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "When does a heap object become eligible for garbage collection?",
+      "options": [
+        "A) When it is large",
+        "B) When it goes out of scope",
+        "C) When no reachable reference points to it",
+        "D) When the program ends a method"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Eligibility occurs when the object is unreachable from any live reference chain.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is the primary risk of shallow copying a structure containing mutable objects?",
+      "options": [
+        "A) Compiler errors",
+        "B) Excessive memory use",
+        "C) Unintended aliasing and shared mutation",
+        "D) Slower garbage collection"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Shallow copies reuse references, so changes via one reference appear in the other.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Given int[] a = {1,2,3}; int[] b = Arrays.copyOf(a, a.length); b[1] = 99;, what is a[1]?",
+      "options": [
+        "A) 2",
+        "B) 99",
+        "C) 0",
+        "D) Throws an exception"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Arrays.copyOf creates a new array; no aliasing, so a is unchanged.",
+      "difficulty": "beginner"
+    }
+  ]
+}
