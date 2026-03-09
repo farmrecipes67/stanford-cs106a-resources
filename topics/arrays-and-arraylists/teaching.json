@@ -1,0 +1,24 @@
+{
+  "topic": "Arrays and ArrayLists",
+  "materials": {
+    "keyConceptsSummary": "Arrays are fixed-size, contiguous collections that store primitives or object references; they support O(1) indexed access via zero-based indices and expose their size through the length field. They can be single- or multi-dimensional (e.g., int[][] for grids), and elements default to type-appropriate values (0 for numeric primitives, false for boolean, null for object references). Common operations include traversal (for and enhanced for), searching, aggregation (sum, min/max), copying (Arrays.copyOf, clone, System.arraycopy), and sorting (Arrays.sort).\n\nArrayList<E> is a dynamic, resizable array-backed list for objects. You specify the element type via generics (e.g., ArrayList<String>), and interact through methods like add, get, set, remove, size, contains, and indexOf. It cannot store primitives directly; use wrapper types (Integer, Double) with autoboxing/unboxing. Iteration can use indices, enhanced for, listIterator/iterator, or higher-level operations like removeIf. Watch out for ConcurrentModificationException when removing during enhanced for, and understand the difference between logical size (size()) and capacity. Choose arrays for fixed-size, performance-critical tasks and ArrayList for flexible, dynamic collections.",
+    "learningObjectives": [
+      "Declare, initialize, and index into 1D and 2D arrays; use length and nested loops effectively.",
+      "Use ArrayList with generics to add, access, modify, and remove elements; differentiate size() from capacity.",
+      "Select appropriate iteration strategies (indexed for, enhanced for, iterator) and know when each is safe to modify.",
+      "Avoid common pitfalls: off-by-one errors, ArrayIndexOutOfBoundsException, aliasing vs copying, and modification during iteration.",
+      "Convert between arrays and ArrayLists; apply utility methods (Arrays.sort, Arrays.equals, Collections.sort, removeIf)."
+    ],
+    "commonMistakes": [
+      "Using arr[arr.length] or negative indices, causing ArrayIndexOutOfBoundsException.",
+      "Confusing array length with ArrayList size() or expecting ArrayList to hold primitives directly.",
+      "Aliasing arrays (int[] b = a) when a true copy is intended, leading to unintended side effects."
+    ],
+    "tipsForSuccess": [
+      "Draw memory diagrams for arrays and ArrayLists to reason about references, aliasing, and null values.",
+      "Write small helper methods (e.g., max, copy, toList) and unit-test them to localize bugs like off-by-one errors.",
+      "Prefer enhanced for for read-only traversal; use indices or iterators when you need to modify during traversal."
+    ]
+  },
+  "overview": "In CS106A, Arrays and ArrayLists are your primary tools for managing collections of values. Arrays provide fast, indexed access with a fixed size, making them efficient and predictable for tasks like processing sensor readings, image pixels, or characters in a string. You’ll learn to declare, initialize, index, iterate, and perform common operations such as searching, aggregating, and copying. You’ll also encounter multidimensional arrays (e.g., 2D arrays) to represent grids, boards, and matrices.\n\nArrayList is a resizable, object-based collection from Java’s standard library. It trades a bit of overhead for flexibility: you can add, remove, and insert elements dynamically without managing capacity manually. In CS106A you’ll practice when to choose arrays vs. ArrayList, how generics and autoboxing work (e.g., ArrayList<Integer>), how to iterate safely (for-each, indices, iterators), and how to avoid common pitfalls like off-by-one errors, aliasing instead of copying, and modifying lists during iteration."
+}
