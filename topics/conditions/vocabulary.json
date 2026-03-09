@@ -1,0 +1,81 @@
+{
+  "topic": "Conditions",
+  "totalTerms": 15,
+  "terms": [
+    {
+      "term": "Condition",
+      "definition": "A boolean expression that controls program flow by evaluating to true or false.",
+      "example": "if (age >= 18) { /* allowed */ }"
+    },
+    {
+      "term": "Boolean",
+      "definition": "A data type with two values: true and false.",
+      "example": "boolean done = false;"
+    },
+    {
+      "term": "Relational operator",
+      "definition": "Operators that compare numeric values: <, <=, >, >=.",
+      "example": "if (x < y) { min = x; }"
+    },
+    {
+      "term": "Equality operator",
+      "definition": "Operators that test primitive equality or inequality: == and !=.",
+      "example": "if (count == 0) { System.out.println(\"empty\"); }"
+    },
+    {
+      "term": "Logical operator",
+      "definition": "Operators that combine booleans: && (and), || (or), ! (not).",
+      "example": "if (x > 0 && y > 0) { /* first quadrant */ }"
+    },
+    {
+      "term": "Short-circuit evaluation",
+      "definition": "Evaluation strategy where && and || stop early if the result is already determined.",
+      "example": "if (s != null && s.length() > 0) { /* safe */ }"
+    },
+    {
+      "term": "If statement",
+      "definition": "Executes a block only when a condition is true.",
+      "example": "if (score >= 90) { grade = 'A'; }"
+    },
+    {
+      "term": "If-else statement",
+      "definition": "Chooses between two blocks based on a condition.",
+      "example": "if (n % 2 == 0) { evens++; } else { odds++; }"
+    },
+    {
+      "term": "Else-if chain",
+      "definition": "A sequence of conditions to select among multiple exclusive cases.",
+      "example": "if (t < 0) {...} else if (t < 100) {...} else {...}"
+    },
+    {
+      "term": "Nested if",
+      "definition": "An if statement inside another if/else block.",
+      "example": "if (x > 0) { if (y > 0) { /* both positive */ } }"
+    },
+    {
+      "term": "Switch statement",
+      "definition": "Multi-way selection based on a single expression’s value.",
+      "example": "switch(day){case 1:...; break; default:...;}"
+    },
+    {
+      "term": "Ternary operator",
+      "definition": "A concise conditional expression: condition ? valueIfTrue : valueIfFalse.",
+      "example": "String parity = (n % 2 == 0) ? \"even\" : \"odd\";"
+    },
+    {
+      "term": "Guard clause",
+      "definition": "An early return that exits a method when a precondition fails.",
+      "example": "if (s == null) return; // guard"
+    },
+    {
+      "term": "String comparison",
+      "definition": "Comparing String contents with equals or equalsIgnoreCase, not ==.",
+      "example": "if (name.equals(\"Ada\")) { ... }"
+    },
+    {
+      "term": "De Morgan's law",
+      "definition": "Rules for negating compound conditions: !(A || B) == (!A && !B), !(A && B) == (!A || !B).",
+      "example": "if (!(x > 0 || y > 0)) { /* x <= 0 && y <= 0 */ }"
+    }
+  ]
+}
