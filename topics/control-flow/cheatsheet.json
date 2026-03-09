@@ -1,0 +1,30 @@
+{
+  "topic": "Control Flow",
+  "cheatsheet": {
+    "syntaxReference": [
+      "if: if (condition) { /* code */ }",
+      "if-else: if (cond) { ... } else { ... }",
+      "else-if chain: if (a) { ... } else if (b) { ... } else { ... }",
+      "switch: switch (expr) { case VAL: ... break; default: ... }",
+      "while: while (condition) { ... }",
+      "for: for (init; condition; update) { ... }",
+      "do-while: do { ... } while (condition);",
+      "Logical operators: a && b, a || b, !a",
+      "Relational operators: ==, !=, <, >, <=, >=",
+      "String equality: if (\"yes\".equals(s)) { ... } // safer than s == \"yes\""
+    ],
+    "commonPatterns": [
+      "Counter-controlled loop: for (int i = 0; i < n; i++) { /* use i */ }",
+      "Sentinel loop: while ((x = in.nextInt()) != -1) { sum += x; }",
+      "Input validation: while (!in.hasNextInt()) { in.next(); } value = in.nextInt();",
+      "Guard with short-circuit: if (s != null && s.length() > 0) { ... }",
+      "Nested loops for grids: for (int r=0; r<R; r++) { for (int c=0; c<C; c++) { ... } }",
+      "Fencepost printing: for (int i=0; i<n; i++) { if (i>0) System.out.print(\", \"); System.out.print(arr[i]); }"
+    ],
+    "quickTips": [
+      "Read conditions aloud; if they sound confusing, refactor into named booleans or helper methods.",
+      "Prefer for loops when the number of iterations is known; use while for open-ended processes.",
+      "Test with boundary and edge cases (0, 1, max/min, empty input) to catch off-by-one and infinite loops."
+    ]
+  }
+}
