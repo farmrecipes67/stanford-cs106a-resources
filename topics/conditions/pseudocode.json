@@ -1,0 +1,23 @@
+{
+  "topic": "Conditions",
+  "examples": [
+    {
+      "title": "Categorize temperature with else-if ranges",
+      "description": "Demonstrates ordered else-if chains and boundary checks to select exactly one category.",
+      "pseudocode": "INPUT temp\nIF temp < 0\n    PRINT \"Freezing\"\nELSE IF temp < 10\n    PRINT \"Cold\"\nELSE IF temp < 25\n    PRINT \"Mild\"\nELSE IF temp < 35\n    PRINT \"Warm\"\nELSE\n    PRINT \"Hot\"\nEND IF",
+      "javaCode": "int temp = ...; // from user or sensor\nif (temp < 0) {\n    System.out.println(\"Freezing\");\n} else if (temp < 10) {\n    System.out.println(\"Cold\");\n} else if (temp < 25) {\n    System.out.println(\"Mild\");\n} else if (temp < 35) {\n    System.out.println(\"Warm\");\n} else {\n    System.out.println(\"Hot\");\n}"
+    },
+    {
+      "title": "Leap year check with logical operators",
+      "description": "Shows combining && and || with correct precedence and parentheses.",
+      "pseudocode": "INPUT year\nIF (year mod 400 == 0) OR (year mod 4 == 0 AND year mod 100 != 0)\n    PRINT \"Leap\"\nELSE\n    PRINT \"Common\"\nEND IF",
+      "javaCode": "int year = ...;\nboolean leap = (year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0));\nSystem.out.println(leap ? \"Leap\" : \"Common\");"
+    },
+    {
+      "title": "Guard clause for safe division",
+      "description": "Illustrates early return to handle invalid input before main logic, preventing divide-by-zero.",
+      "pseudocode": "FUNCTION safeDivide(a, b)\n    IF b == 0\n        PRINT \"Cannot divide by zero\"\n        RETURN 0\n    END IF\n    RETURN a / b\nEND FUNCTION",
+      "javaCode": "public static double safeDivide(double a, double b) {\n    if (b == 0.0) {\n        System.out.println(\"Cannot divide by zero\");\n        return 0.0; // guard clause\n    }\n    return a / b;\n}"
+    }
+  ]
+}
