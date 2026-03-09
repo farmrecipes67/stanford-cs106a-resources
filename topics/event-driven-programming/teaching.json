@@ -1,0 +1,24 @@
+{
+  "topic": "Event-Driven Programming",
+  "materials": {
+    "keyConceptsSummary": "At the core of event-driven programming are events, listeners, and callbacks. Events represent occurrences (button clicks, mouse moves, key presses, or timer ticks). Listeners are objects (often your GraphicsProgram) that subscribe to receive notifications about those events. Callbacks are the methods invoked by the framework when an event happens. In CS106A with the ACM libraries, you register for events using helper methods such as addActionListeners(), addMouseListeners(), and addKeyListeners(). Interactors (like JButton and JTextField) and graphical objects (GObject, GOval, GRect) connect user input to program behavior.\n\nHandlers should be short and state-based. They read from the event object (e.g., coordinates from MouseEvent, command strings from ActionEvent), update program state, and request or cause a redraw (moving GObjects, changing labels). Timers (javax.swing.Timer) generate periodic ActionEvents for animation and repeated tasks, keeping the UI responsive. Best practices include separating model from view, storing minimal persistent state (like selected objects and drag offsets), and discriminating among multiple event sources via e.getSource() or e.getActionCommand().",
+    "learningObjectives": [
+      "Register and handle UI events (action, mouse, keyboard) in a GraphicsProgram",
+      "Use ActionEvent, MouseEvent, and KeyEvent objects to read user input details",
+      "Implement drag-and-drop behavior and hit-testing with getElementAt(x, y)",
+      "Animate graphics using javax.swing.Timer without blocking the UI",
+      "Maintain clean state to coordinate event handlers and rendering"
+    ],
+    "commonMistakes": [
+      "Forgetting to call addActionListeners(), addMouseListeners(), or addKeyListeners(), resulting in handlers that never run",
+      "Comparing strings with == instead of .equals(), causing action command checks to fail",
+      "Doing long-running work inside handlers, freezing the UI and missing subsequent events"
+    ],
+    "tipsForSuccess": [
+      "Keep handlers short: update state, adjust visuals, and return quickly",
+      "Track the minimum state needed (e.g., selected GObject and drag offsets) to make handlers simple",
+      "Use a Timer for smooth, consistent animation instead of while loops with pause"
+    ]
+  },
+  "overview": "Event-driven programming is a style where your program reacts to events—user actions like clicks and key presses, or time-based triggers—rather than running a single top-to-bottom script. In CS106A’s Java context, you’ll use the ACM libraries (GraphicsProgram and interactors) to register listeners that respond to specific events. The framework runs an event loop behind the scenes, places incoming events on a queue, and calls your handler methods (callbacks) when those events occur.\n\nInstead of polling for input, you write small, focused methods such as actionPerformed, mousePressed, mouseDragged, and keyPressed that update state and the display. This encourages a clean separation of concerns: events capture user intent, handlers update the model (program state), and the canvas (GCanvas) visually reflects those changes via GObjects. Timers add time-based events for animation, enabling smooth motion without blocking the user interface."
+}
