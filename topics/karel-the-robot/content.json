@@ -1,0 +1,267 @@
+{
+  "topic": "Karel the Robot",
+  "topicIndex": 1,
+  "overview": "Karel the Robot is CS106A’s entry point into programming, offering a gentle, visual way to learn fundamental ideas such as sequencing, control flow, decomposition, and debugging. In a grid world of streets (rows) and avenues (columns), Karel follows simple commands—move, turn, and manipulate beepers—while responding to conditions like walls or the presence of beepers. This setting strips away distractions and emphasizes algorithmic thinking: breaking problems into steps, choosing appropriate control structures, and reasoning about preconditions and postconditions.\n\nWithin a few assignments, students progress from writing straight-line code to crafting reusable helper methods, mastering while/if logic, and recognizing patterns like the fencepost problem. Karel models best practices used later in full Java programs—abstraction, top-down design, and careful testing—making the transition to general Java programming (graphics, data, and beyond) both natural and confident.",
+  "teachingMaterials": {
+    "keyConceptsSummary": "Karel’s world is a 2D grid with walls and beepers. Karel executes primitive commands (move, turnLeft, putBeeper, pickBeeper) and can query the environment with boolean tests (frontIsClear, beepersPresent, etc.). Students learn to compose these basics with control structures—sequence, conditionals (if/else), and loops (while/for)—to create robust behaviors.\n\nDecomposition is central: large tasks are split into clear helper methods with documented preconditions (what must be true before calling) and postconditions (what will be true after). Students practice top-down design, defining methods like moveToWall, placeBeepersOnRow, or climbHurdle, each with a single, well-specified responsibility. Common algorithmic pitfalls (e.g., the fencepost bug) are introduced alongside strategies to avoid them (e.g., place-on-entry vs. place-on-exit patterns), reinforcing disciplined problem solving and testing.\n\nBy the end, learners not only command Karel effectively but also internalize core programming habits—abstraction, decomposition, invariants, and defensive checks—that directly generalize to standard Java programming.",
+    "learningObjectives": [
+      "Write Karel programs that correctly navigate a world using primitive commands and tests.",
+      "Apply control flow (if/else, while) to implement repeated and conditional behavior.",
+      "Design helper methods with clear preconditions and postconditions to decompose complex tasks.",
+      "Identify and avoid fencepost and off-by-one errors in traversal patterns.",
+      "Reason about Karel’s state (position, direction, beeper bag) to predict and debug program behavior."
+    ],
+    "commonMistakes": [
+      "Using while(frontIsClear()) with the wrong action order, causing a fencepost bug (missing the first or last corner).",
+      "Assuming turnRight() exists in base Karel (it does not—use SuperKarel or implement via three left turns).",
+      "Forgetting to test conditions before moving, leading to runtime errors when Karel runs into walls."
+    ],
+    "tipsForSuccess": [
+      "State preconditions/postconditions for each helper method and verify them at call sites.",
+      "Trace code mentally (or on paper) corner-by-corner before running to catch logic errors early.",
+      "Build incrementally: implement and test one small behavior at a time before combining them."
+    ]
+  },
+  "vocabulary": [
+    {
+      "term": "Karel",
+      "definition": "A simple robot that executes primitive commands in a grid world.",
+      "example": "public class MyKarel extends Karel { public void run() { move(); } }"
+    },
+    {
+      "term": "World",
+      "definition": "A grid of streets (rows) and avenues (columns) containing walls and beepers.",
+      "example": "// Karel starts at 1st Street, 1st Avenue, facing East by default (typical)."
+    },
+    {
+      "term": "Street",
+      "definition": "A horizontal row in Karel’s world; street numbers increase northward.",
+      "example": "// Move north one street:\nturnLeft();\nmove();\nturnRight();"
+    },
+    {
+      "term": "Avenue",
+      "definition": "A vertical column in Karel’s world; avenue numbers increase eastward.",
+      "example": "// Move east along a street:\nwhile (frontIsClear()) { move(); }"
+    },
+    {
+      "term": "Beeper",
+      "definition": "An object Karel can place on or pick up from a corner.",
+      "example": "if (!beepersPresent()) { putBeeper(); }"
+    },
+    {
+      "term": "Wall",
+      "definition": "An impassable barrier that blocks Karel’s forward movement.",
+      "example": "if (frontIsBlocked()) { turnLeft(); }"
+    },
+    {
+      "term": "move()",
+      "definition": "Moves Karel forward one corner in the direction it is facing; errors if blocked.",
+      "example": "if (frontIsClear()) { move(); }"
+    },
+    {
+      "term": "turnLeft()",
+      "definition": "Rotates Karel 90 degrees to the left.",
+      "example": "turnLeft(); // face north if starting east"
+    },
+    {
+      "term": "turnRight()",
+      "definition": "Rotates Karel 90 degrees to the right (available in SuperKarel or via helper).",
+      "example": "// In base Karel, implement:\nprivate void turnRight() { turnLeft(); turnLeft(); turnLeft(); }"
+    },
+    {
+      "term": "putBeeper()",
+      "definition": "Places one beeper from Karel’s bag onto the current corner.",
+      "example": "putBeeper(); // leave a marker"
+    },
+    {
+      "term": "pickBeeper()",
+      "definition": "Picks up one beeper from the current corner into Karel’s bag (if present).",
+      "example": "if (beepersPresent()) { pickBeeper(); }"
+    },
+    {
+      "term": "frontIsClear()",
+      "definition": "True if there is no wall directly in front of Karel.",
+      "example": "while (frontIsClear()) { move(); }"
+    },
+    {
+      "term": "beepersPresent()",
+      "definition": "True if one or more beepers are on Karel’s current corner.",
+      "example": "if (beepersPresent()) { pickBeeper(); }"
+    },
+    {
+      "term": "while loop",
+      "definition": "Repeatedly executes a block of code while a boolean condition remains true.",
+      "example": "while (frontIsClear()) { move(); }"
+    },
+    {
+      "term": "if/else",
+      "definition": "Chooses between two code paths based on a boolean condition.",
+      "example": "if (frontIsClear()) { move(); } else { turnLeft(); }"
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Which command moves Karel forward by exactly one corner in the direction it is facing?",
+      "options": [
+        "A) move()",
+        "B) turnLeft()",
+        "C) putBeeper()",
+        "D) pickBeeper()"
+      ],
+      "correctAnswer": "A",
+      "explanation": "move() advances Karel one corner; the others rotate or manipulate beepers.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What happens if Karel executes move() when there is a wall directly ahead?",
+      "options": [
+        "A) Karel climbs over the wall",
+        "B) Karel crashes/throws an error and stops",
+        "C) Karel waits until the wall disappears",
+        "D) Karel removes the wall and moves"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Moving into a wall causes a runtime error; guard moves with frontIsClear().",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which condition checks whether a beeper is on Karel’s current corner?",
+      "options": [
+        "A) frontIsClear()",
+        "B) beepersPresent()",
+        "C) beepersInBag()",
+        "D) facingEast()"
+      ],
+      "correctAnswer": "B",
+      "explanation": "beepersPresent() tests beepers at the current corner; beepersInBag() is about Karel’s inventory.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Choose the best description of while vs. if in Karel programs.",
+      "options": [
+        "A) if runs repeatedly; while runs once",
+        "B) Both run repeatedly as long as the condition is true",
+        "C) if runs at most once; while repeats while the condition is true",
+        "D) They are interchangeable"
+      ],
+      "correctAnswer": "C",
+      "explanation": "An if executes the body once at most; a while re-evaluates the condition and may run many times.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "In base Karel (not SuperKarel), which helper correctly defines turnRight()?",
+      "options": [
+        "A) turnRight() { turnLeft(); }",
+        "B) turnRight() { turnLeft(); turnLeft(); }",
+        "C) turnRight() { turnLeft(); turnLeft(); turnLeft(); }",
+        "D) turnRight() { move(); turnLeft(); }"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Three left turns equal one right turn.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Consider: while (frontIsClear()) { putBeeper(); move(); } starting on the first corner of a row. Which is true?",
+      "options": [
+        "A) The last corner will be left without a beeper (fencepost bug)",
+        "B) The first corner is skipped",
+        "C) Two beepers end up on the last corner",
+        "D) It places a beeper on every corner correctly"
+      ],
+      "correctAnswer": "A",
+      "explanation": "The loop stops before the last corner because frontIsClear() becomes false; the last corner never gets a beeper.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which loop moves Karel from its current corner straight to the wall ahead (without crashing)?",
+      "options": [
+        "A) while (frontIsClear()) { move(); }",
+        "B) while (frontIsBlocked()) { move(); }",
+        "C) if (frontIsClear()) { move(); move(); }",
+        "D) while (true) { move(); }"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Repeatedly moving while the path is clear reaches the wall safely.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which statement about SuperKarel is true?",
+      "options": [
+        "A) Base Karel already has turnRight()",
+        "B) SuperKarel adds helpers like turnRight() and turnAround()",
+        "C) putBeeper() exists only in SuperKarel",
+        "D) SuperKarel allows diagonal movement"
+      ],
+      "correctAnswer": "B",
+      "explanation": "SuperKarel extends Karel with convenience methods such as turnRight() and turnAround().",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "A good postcondition for a helper method moveToWall() is:",
+      "options": [
+        "A) Karel is at the origin",
+        "B) Karel has turned left",
+        "C) Karel is facing the same direction with a wall immediately ahead",
+        "D) Karel has placed a beeper"
+      ],
+      "correctAnswer": "C",
+      "explanation": "moveToWall() typically preserves direction and stops with frontIsBlocked().",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Given: if (frontIsClear()) { move(); } else { turnLeft(); } and a wall is ahead, what happens?",
+      "options": [
+        "A) Karel crashes",
+        "B) Karel moves through the wall",
+        "C) Karel turns left",
+        "D) Nothing happens"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The condition is false, so the else branch executes and Karel turns left.",
+      "difficulty": "beginner"
+    }
+  ],
+  "pseudocodeExamples": [
+    {
+      "title": "Fill First Street with Beepers (Fencepost-Safe)",
+      "description": "Demonstrates a correct fencepost pattern: place on entry, then move-and-place until the wall.",
+      "pseudocode": "1. Put a beeper on the starting corner.\n2. While the front is clear:\n   a. Move forward one corner.\n   b. Put a beeper.",
+      "javaCode": "import stanford.karel.*;\npublic class FillRowKarel extends Karel {\n    public void run() {\n        putBeeper();\n        while (frontIsClear()) {\n            move();\n            putBeeper();\n        }\n    }\n}"
+    },
+    {
+      "title": "Climb a Single Hurdle",
+      "description": "Shows decomposition and conditionals to get over one wall directly in front of Karel.",
+      "pseudocode": "1. If the front is blocked, climb the hurdle:\n   a. Turn left and move up one.\n   b. Turn right and move forward past the wall.\n   c. Turn right and move down one.\n   d. Turn left to restore original facing.",
+      "javaCode": "import stanford.karel.*;\npublic class HurdleKarel extends SuperKarel {\n    public void run() {\n        if (frontIsBlocked()) {\n            climbHurdle();\n        } else {\n            move();\n        }\n    }\n    private void climbHurdle() {\n        turnLeft();\n        move();\n        turnRight();\n        move();\n        turnRight();\n        move();\n        turnLeft();\n    }\n}"
+    },
+    {
+      "title": "Sweep First Street: Pick Up All Beepers",
+      "description": "Traverses a row, picking beepers on every corner, including the last (fencepost-aware).",
+      "pseudocode": "1. Pick a beeper if present on the starting corner.\n2. While the front is clear:\n   a. Move forward one corner.\n   b. Pick a beeper if present.",
+      "javaCode": "import stanford.karel.*;\npublic class SweepRowKarel extends Karel {\n    public void run() {\n        pickIfPresent();\n        while (frontIsClear()) {\n            move();\n            pickIfPresent();\n        }\n    }\n    private void pickIfPresent() {\n        if (beepersPresent()) {\n            pickBeeper();\n        }\n    }\n}"
+    }
+  ],
+  "cheatsheet": {
+    "syntaxReference": [
+      "Class and run: \nimport stanford.karel.*;\npublic class MyKarel extends Karel {\n    public void run() {\n        // commands here\n    }\n}",
+      "Movement and turns: \nmove();\nturnLeft();\n// In SuperKarel:\nturnRight(); turnAround();",
+      "Beepers: \nputBeeper();\npickBeeper();\nif (beepersPresent()) { pickBeeper(); }",
+      "Conditions: \nif (frontIsClear()) { move(); } else { turnLeft(); }\nwhile (frontIsClear()) { move(); }",
+      "Helper methods (decomposition): \nprivate void moveToWall() { while (frontIsClear()) { move(); } }",
+      "Implementing turnRight in base Karel: \nprivate void turnRight() { turnLeft(); turnLeft(); turnLeft(); }"
+    ],
+    "commonPatterns": [
+      "Fencepost (place-every-corner): \nputBeeper();\nwhile (frontIsClear()) { move(); putBeeper(); }",
+      "Move to wall safely: \nwhile (frontIsClear()) { move(); } // stop when frontIsBlocked()",
+      "Conditional action each step: \nwhile (frontIsClear()) { if (beepersPresent()) { pickBeeper(); } move(); }",
+      "Stair/hurdle climb (SuperKarel): \nturnLeft(); move(); turnRight(); move(); turnRight(); move(); turnLeft();",
+      "Check-last-corner cleanup: \n// For actions that must include the last corner, do the action after each move OR place before entering loop as needed.",
+      "Define and document helpers: \n// Pre: facing east anywhere on first street\n// Post: at wall, still facing east\nprivate void moveToWall() { while (frontIsClear()) { move(); } }"
+    ],
+    "quickTips": [
+      "Guard moves with frontIsClear() to avoid crashes.",
+      "Write small helpers for repeated sequences (e.g., turnRight, moveToWall).",
+      "State pre/postconditions for every helper and preserve them during refactors."
+    ]
+  }
+}
