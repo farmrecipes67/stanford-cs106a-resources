@@ -1,0 +1,126 @@
+{
+  "topic": "Strings",
+  "totalQuestions": 10,
+  "questions": [
+    {
+      "question": "Which expression correctly returns the number of characters in String s?",
+      "options": [
+        "A) s.length()",
+        "B) s.length",
+        "C) length(s)",
+        "D) s.size()"
+      ],
+      "correctAnswer": "A",
+      "explanation": "length() is the method on String; length (no parentheses) is for arrays, not strings.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "How do you correctly test if two strings s1 and s2 have the same contents?",
+      "options": [
+        "A) s1 == s2",
+        "B) s1.equals(s2)",
+        "C) equals(s1, s2)",
+        "D) s1.compareTo(s2) == 1"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Use equals to compare string content; == tests reference identity.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What is printed? String s = \"Stanford\"; System.out.println(s.substring(2, 6));",
+      "options": [
+        "A) anfo",
+        "B) anfor",
+        "C) t anf",
+        "D) anf"
+      ],
+      "correctAnswer": "A",
+      "explanation": "substring is half-open: indices 2..5 are 'a','n','f','o' → \"anfo\".",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What does indexOf return if the substring is not found?",
+      "options": [
+        "A) 0",
+        "B) null",
+        "C) -1",
+        "D) throws an exception"
+      ],
+      "correctAnswer": "C",
+      "explanation": "indexOf returns -1 when the query substring is absent.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What is printed? String s = \"Hi\"; s.toLowerCase(); System.out.println(s);",
+      "options": [
+        "A) hi",
+        "B) HI",
+        "C) Hi",
+        "D) Compilation error"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Strings are immutable. toLowerCase returns a new string; s is unchanged.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is printed? String s = \"cs\"; System.out.println(1 + 2 + s + 3 + 4);",
+      "options": [
+        "A) 12cs34",
+        "B) 3cs34",
+        "C) 3cs7",
+        "D) 1 2 cs 3 4"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Left-to-right: 1+2=3; then \"3cs\"; then \"3cs3\"; then \"3cs34\".",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "When building a very long string in a loop, which is most efficient?",
+      "options": [
+        "A) s = s + part;",
+        "B) s = s.concat(part);",
+        "C) Use StringBuilder and call append",
+        "D) Convert to char[] and back each time"
+      ],
+      "correctAnswer": "C",
+      "explanation": "StringBuilder is mutable and avoids creating many temporary strings.",
+      "difficulty": "advanced"
+    },
+    {
+      "question": "What is the sign of \"Apple\".compareTo(\"Banana\")?",
+      "options": [
+        "A) Negative",
+        "B) Zero",
+        "C) Positive",
+        "D) Throws an exception"
+      ],
+      "correctAnswer": "A",
+      "explanation": "\"Apple\" comes before \"Banana\" lexicographically, so the result is < 0.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is the result of \"banana\".lastIndexOf(\"an\")?",
+      "options": [
+        "A) 1",
+        "B) 3",
+        "C) 4",
+        "D) -1"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Occurrences at indices 1 and 3; lastIndexOf returns the latter: 3.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What is the value of String code = String.format(\"%s-%03d\", \"CS\", 6);",
+      "options": [
+        "A) CS-6",
+        "B) CS-006",
+        "C) CS-0006",
+        "D) CS-6.00"
+      ],
+      "correctAnswer": "B",
+      "explanation": "%03d pads the integer with zeros to width 3, yielding \"CS-006\".",
+      "difficulty": "intermediate"
+    }
+  ]
+}
