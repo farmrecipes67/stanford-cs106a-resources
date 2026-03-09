@@ -1,0 +1,126 @@
+{
+  "topic": "Karel the Robot",
+  "totalQuestions": 10,
+  "questions": [
+    {
+      "question": "Which command moves Karel forward by exactly one corner in the direction it is facing?",
+      "options": [
+        "A) move()",
+        "B) turnLeft()",
+        "C) putBeeper()",
+        "D) pickBeeper()"
+      ],
+      "correctAnswer": "A",
+      "explanation": "move() advances Karel one corner; the others rotate or manipulate beepers.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What happens if Karel executes move() when there is a wall directly ahead?",
+      "options": [
+        "A) Karel climbs over the wall",
+        "B) Karel crashes/throws an error and stops",
+        "C) Karel waits until the wall disappears",
+        "D) Karel removes the wall and moves"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Moving into a wall causes a runtime error; guard moves with frontIsClear().",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which condition checks whether a beeper is on Karel’s current corner?",
+      "options": [
+        "A) frontIsClear()",
+        "B) beepersPresent()",
+        "C) beepersInBag()",
+        "D) facingEast()"
+      ],
+      "correctAnswer": "B",
+      "explanation": "beepersPresent() tests beepers at the current corner; beepersInBag() is about Karel’s inventory.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Choose the best description of while vs. if in Karel programs.",
+      "options": [
+        "A) if runs repeatedly; while runs once",
+        "B) Both run repeatedly as long as the condition is true",
+        "C) if runs at most once; while repeats while the condition is true",
+        "D) They are interchangeable"
+      ],
+      "correctAnswer": "C",
+      "explanation": "An if executes the body once at most; a while re-evaluates the condition and may run many times.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "In base Karel (not SuperKarel), which helper correctly defines turnRight()?",
+      "options": [
+        "A) turnRight() { turnLeft(); }",
+        "B) turnRight() { turnLeft(); turnLeft(); }",
+        "C) turnRight() { turnLeft(); turnLeft(); turnLeft(); }",
+        "D) turnRight() { move(); turnLeft(); }"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Three left turns equal one right turn.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Consider: while (frontIsClear()) { putBeeper(); move(); } starting on the first corner of a row. Which is true?",
+      "options": [
+        "A) The last corner will be left without a beeper (fencepost bug)",
+        "B) The first corner is skipped",
+        "C) Two beepers end up on the last corner",
+        "D) It places a beeper on every corner correctly"
+      ],
+      "correctAnswer": "A",
+      "explanation": "The loop stops before the last corner because frontIsClear() becomes false; the last corner never gets a beeper.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which loop moves Karel from its current corner straight to the wall ahead (without crashing)?",
+      "options": [
+        "A) while (frontIsClear()) { move(); }",
+        "B) while (frontIsBlocked()) { move(); }",
+        "C) if (frontIsClear()) { move(); move(); }",
+        "D) while (true) { move(); }"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Repeatedly moving while the path is clear reaches the wall safely.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which statement about SuperKarel is true?",
+      "options": [
+        "A) Base Karel already has turnRight()",
+        "B) SuperKarel adds helpers like turnRight() and turnAround()",
+        "C) putBeeper() exists only in SuperKarel",
+        "D) SuperKarel allows diagonal movement"
+      ],
+      "correctAnswer": "B",
+      "explanation": "SuperKarel extends Karel with convenience methods such as turnRight() and turnAround().",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "A good postcondition for a helper method moveToWall() is:",
+      "options": [
+        "A) Karel is at the origin",
+        "B) Karel has turned left",
+        "C) Karel is facing the same direction with a wall immediately ahead",
+        "D) Karel has placed a beeper"
+      ],
+      "correctAnswer": "C",
+      "explanation": "moveToWall() typically preserves direction and stops with frontIsBlocked().",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Given: if (frontIsClear()) { move(); } else { turnLeft(); } and a wall is ahead, what happens?",
+      "options": [
+        "A) Karel crashes",
+        "B) Karel moves through the wall",
+        "C) Karel turns left",
+        "D) Nothing happens"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The condition is false, so the else branch executes and Karel turns left.",
+      "difficulty": "beginner"
+    }
+  ]
+}
