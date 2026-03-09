@@ -1,0 +1,271 @@
+{
+  "topic": "Control Flow",
+  "topicIndex": 2,
+  "overview": "Control flow is how a program decides what to do next—whether to run code in sequence, make a decision, or repeat an action. In CS106A, you move from writing straight-line code to programs that react to conditions and iterate over data. You will practice reading input, branching with if/else and switch, and looping with while, for, and do-while. These constructs let you express algorithms like input validation, searching, counting, and pattern generation.\n\nBeyond learning syntax, you will develop fluency with boolean logic (relational and logical operators), nesting, and common loop patterns (counter-controlled, sentinel-controlled, and fencepost problems). You will also learn to reason about loop execution counts, avoid off-by-one errors, and write clear, structured code that is easy to test and debug.",
+  "teachingMaterials": {
+    "keyConceptsSummary": "Control flow determines the order in which statements execute. The three pillars are sequence (default top-to-bottom execution), selection (if/else, else-if chains, switch) to choose among alternatives, and iteration (while, for, do-while) to repeat work. Conditions are boolean expressions built from relational operators (==, !=, <, >, <=, >=) and logical operators (&&, ||, !). Java uses short-circuit evaluation for && and ||, which can prevent unnecessary work and runtime errors (e.g., division by zero) when used carefully.\n\nLoops appear in several patterns. Counter-controlled loops (for) run a known number of times; sentinel-controlled loops (while) process input until a special value is encountered; input-validation loops (while) keep prompting until a condition is satisfied. Nested loops let you work in grids and generate patterns. Key pitfalls include off-by-one errors, incorrect loop conditions, and misusing == with Strings (use equals). Use braces consistently, leverage descriptive conditions, and test with boundary cases to ensure correctness.",
+    "learningObjectives": [
+      "Use if/else, else-if, and switch to implement multi-way decisions.",
+      "Write while, for, and do-while loops to implement counter-controlled and sentinel-controlled iteration.",
+      "Construct and evaluate boolean expressions with correct operator precedence and short-circuiting.",
+      "Design nested loops to generate 2D patterns and compute aggregate results.",
+      "Debug and prevent common control-flow errors such as off-by-one, infinite loops, and incorrect string comparisons."
+    ],
+    "commonMistakes": [
+      "Using == to compare Strings instead of calling equals, which causes unexpected false results.",
+      "Writing loop conditions that never become false (infinite loops) or are off by one (<= vs <).",
+      "Forgetting break statements in switch cases, unintentionally falling through to later cases."
+    ],
+    "tipsForSuccess": [
+      "Trace your code by hand with small inputs and boundary values to confirm conditions and loop counts.",
+      "Name boolean variables and methods clearly (e.g., isValid, hasNext) to make conditions readable.",
+      "Exploit short-circuiting to guard risky operations (first check non-null or non-zero, then compute)."
+    ]
+  },
+  "vocabulary": [
+    {
+      "term": "Control Flow",
+      "definition": "The order in which individual statements, instructions, or function calls are executed.",
+      "example": "Sequence, if/else, and loops determine control flow in a Java method."
+    },
+    {
+      "term": "Sequence",
+      "definition": "Default top-to-bottom execution of statements in the order they appear.",
+      "example": "int x = 3; x = x + 1; System.out.println(x);"
+    },
+    {
+      "term": "Selection",
+      "definition": "Choosing between alternatives using conditional statements.",
+      "example": "if (score >= 90) grade = 'A'; else grade = 'B';"
+    },
+    {
+      "term": "if statement",
+      "definition": "Executes a block only if its boolean condition is true.",
+      "example": "if (x > 0) { System.out.println(\"positive\"); }"
+    },
+    {
+      "term": "if-else",
+      "definition": "Executes one block when condition is true, otherwise the else block.",
+      "example": "if (n % 2 == 0) { System.out.println(\"even\"); } else { System.out.println(\"odd\"); }"
+    },
+    {
+      "term": "else-if chain",
+      "definition": "Multiple conditional checks in sequence, the first true branch runs.",
+      "example": "if (x > 0) {...} else if (x == 0) {...} else {...}"
+    },
+    {
+      "term": "switch",
+      "definition": "Multi-way branch based on a single expression; cases may require break to avoid fall-through.",
+      "example": "switch(day) { case 1: name = \"Mon\"; break; default: name = \"?\"; }"
+    },
+    {
+      "term": "Boolean expression",
+      "definition": "An expression that evaluates to true or false.",
+      "example": "(age >= 18) && hasID"
+    },
+    {
+      "term": "Relational operator",
+      "definition": "Operators that compare values: ==, !=, <, >, <=, >=",
+      "example": "if (a != b) { ... }"
+    },
+    {
+      "term": "Logical operator",
+      "definition": "Combines boolean expressions: && (and), || (or), ! (not).",
+      "example": "if (inRange && !isBlocked) { move(); }"
+    },
+    {
+      "term": "Short-circuit evaluation",
+      "definition": "Java evaluates left-to-right and stops when the result is known for && and ||.",
+      "example": "if (x != 0 && 10 / x > 1) { ... } // safe from divide-by-zero"
+    },
+    {
+      "term": "while loop",
+      "definition": "Repeats while its condition remains true; checks before each iteration.",
+      "example": "while (count < 10) { count++; }"
+    },
+    {
+      "term": "for loop",
+      "definition": "Counter-controlled loop with initialization, condition, and update.",
+      "example": "for (int i = 0; i < 5; i++) { System.out.println(i); }"
+    },
+    {
+      "term": "do-while loop",
+      "definition": "Executes the body at least once, then repeats while condition is true.",
+      "example": "do { read(); } while (!isValid());"
+    },
+    {
+      "term": "Sentinel loop",
+      "definition": "Processes input until a special terminator value appears.",
+      "example": "while ((n = sc.nextInt()) != -1) { sum += n; }"
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What is the value of boolean b after: boolean b = true || false && false;",
+      "options": [
+        "A) true",
+        "B) false",
+        "C) Compilation error",
+        "D) Depends on JVM"
+      ],
+      "correctAnswer": "A",
+      "explanation": "&& has higher precedence than ||, so expression is true || (false && false) => true || false => true.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Given: int x = 5; String s; if (x > 5) { s = \"A\"; } else if (x == 5) { s = \"B\"; } else { s = \"C\"; } What is s?",
+      "options": [
+        "A) A",
+        "B) B",
+        "C) C",
+        "D) null"
+      ],
+      "correctAnswer": "B",
+      "explanation": "x equals 5, so the else-if branch runs and assigns \"B\".",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "How many times does count increment? int count = 0; for (int i = 1; i <= 3; i++) { for (int j = 0; j < 2; j++) { count++; } }",
+      "options": [
+        "A) 3",
+        "B) 4",
+        "C) 5",
+        "D) 6"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Outer loop runs 3 times; inner runs 2 times each: 3*2 = 6 increments.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What is printed? int n = 2; String s = \"\"; switch (n) { case 1: s += \"a\"; case 2: s += \"b\"; break; case 3: s += \"c\"; } System.out.print(s);",
+      "options": [
+        "A) a",
+        "B) b",
+        "C) ab",
+        "D) bc"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Execution jumps to case 2 and appends \"b\" then breaks. No fall-through from case 1 occurs.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which loop guarantees the body executes at least once?",
+      "options": [
+        "A) for",
+        "B) while",
+        "C) do-while",
+        "D) All of them"
+      ],
+      "correctAnswer": "C",
+      "explanation": "do-while evaluates its condition after the first iteration.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What happens? int x = 0; if (x != 0 && 10 / x > 1) { System.out.println(\"yes\"); }",
+      "options": [
+        "A) Prints yes",
+        "B) No output; ArithmeticException thrown",
+        "C) No output; no exception due to short-circuit",
+        "D) Compilation error"
+      ],
+      "correctAnswer": "C",
+      "explanation": "x != 0 is false; with && the RHS is not evaluated, so no exception and nothing prints.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "How many numbers print? for (int i = 0; i <= 5; i++) { System.out.print(i + \" \"); }",
+      "options": [
+        "A) 5",
+        "B) 6",
+        "C) 7",
+        "D) Infinite"
+      ],
+      "correctAnswer": "B",
+      "explanation": "i takes values 0 through 5 inclusive, which is 6 numbers.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Using -1 as a sentinel, what sum is computed? int sum = 0; int val; // Input: 3 4 -1 5 while ((val = sc.nextInt()) != -1) { sum += val; } System.out.print(sum);",
+      "options": [
+        "A) 3",
+        "B) 4",
+        "C) 7",
+        "D) 12"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Only 3 and 4 are added before encountering -1. The 5 after -1 is not read.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which condition avoids NullPointerException if s may be null when checking for \"yes\"?",
+      "options": [
+        "A) s == \"yes\"",
+        "B) s.equals(\"yes\")",
+        "C) \"yes\".equals(s)",
+        "D) s.compareTo(\"yes\") == 0"
+      ],
+      "correctAnswer": "C",
+      "explanation": "\"yes\".equals(s) is safe when s is null; calling s.equals would throw a NullPointerException.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is printed? for (int i = 1; i <= 4; i++) { if (i % 2 == 0) continue; System.out.print(i); }",
+      "options": [
+        "A) 1234",
+        "B) 24",
+        "C) 13",
+        "D) 12"
+      ],
+      "correctAnswer": "C",
+      "explanation": "continue skips even i values, so prints 1 and 3.",
+      "difficulty": "beginner"
+    }
+  ],
+  "pseudocodeExamples": [
+    {
+      "title": "Input validation: read an integer between 1 and 10",
+      "description": "Demonstrates a while loop that repeats until a valid value is provided.",
+      "pseudocode": "set value to an invalid number\nwhile value is not between 1 and 10 (inclusive)\n    prompt user for an integer 1..10\n    read value\nprint value",
+      "javaCode": "import java.util.*;\npublic class ValidateRange {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int value = -1;\n        while (value < 1 || value > 10) {\n            System.out.print(\"Enter an integer 1..10: \");\n            if (sc.hasNextInt()) {\n                value = sc.nextInt();\n            } else {\n                sc.next(); // consume invalid token\n            }\n        }\n        System.out.println(\"You entered: \" + value);\n        sc.close();\n    }\n}\n"
+    },
+    {
+      "title": "Sentinel-controlled sum",
+      "description": "Uses a while loop with a sentinel (-1) to sum inputs until termination.",
+      "pseudocode": "initialize sum to 0\nread number\nwhile number is not -1\n    add number to sum\n    read next number\nprint sum",
+      "javaCode": "import java.util.*;\npublic class SentinelSum {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int sum = 0;\n        System.out.print(\"Enter numbers (-1 to end): \");\n        int n = sc.nextInt();\n        while (n != -1) {\n            sum += n;\n            n = sc.nextInt();\n        }\n        System.out.println(\"Total = \" + sum);\n        sc.close();\n    }\n}\n"
+    },
+    {
+      "title": "Nested loops: multiplication table",
+      "description": "Shows nested for loops to generate a 2D table and demonstrates fencepost-aware formatting.",
+      "pseudocode": "for row from 1 to R\n    for col from 1 to C\n        compute product = row * col\n        print product with spacing (no trailing space at end of row)\n    print newline",
+      "javaCode": "public class MultTable {\n    public static void main(String[] args) {\n        int R = 5, C = 5;\n        for (int r = 1; r <= R; r++) {\n            for (int c = 1; c <= C; c++) {\n                System.out.printf(\"%4d\", r * c);\n            }\n            System.out.println();\n        }\n    }\n}\n"
+    }
+  ],
+  "cheatsheet": {
+    "syntaxReference": [
+      "if: if (condition) { /* code */ }",
+      "if-else: if (cond) { ... } else { ... }",
+      "else-if chain: if (a) { ... } else if (b) { ... } else { ... }",
+      "switch: switch (expr) { case VAL: ... break; default: ... }",
+      "while: while (condition) { ... }",
+      "for: for (init; condition; update) { ... }",
+      "do-while: do { ... } while (condition);",
+      "Logical operators: a && b, a || b, !a",
+      "Relational operators: ==, !=, <, >, <=, >=",
+      "String equality: if (\"yes\".equals(s)) { ... } // safer than s == \"yes\""
+    ],
+    "commonPatterns": [
+      "Counter-controlled loop: for (int i = 0; i < n; i++) { /* use i */ }",
+      "Sentinel loop: while ((x = in.nextInt()) != -1) { sum += x; }",
+      "Input validation: while (!in.hasNextInt()) { in.next(); } value = in.nextInt();",
+      "Guard with short-circuit: if (s != null && s.length() > 0) { ... }",
+      "Nested loops for grids: for (int r=0; r<R; r++) { for (int c=0; c<C; c++) { ... } }",
+      "Fencepost printing: for (int i=0; i<n; i++) { if (i>0) System.out.print(\", \"); System.out.print(arr[i]); }"
+    ],
+    "quickTips": [
+      "Read conditions aloud; if they sound confusing, refactor into named booleans or helper methods.",
+      "Prefer for loops when the number of iterations is known; use while for open-ended processes.",
+      "Test with boundary and edge cases (0, 1, max/min, empty input) to catch off-by-one and infinite loops."
+    ]
+  }
+}
