@@ -1,0 +1,23 @@
+{
+  "topic": "Decomposition",
+  "examples": [
+    {
+      "title": "Top-Down Design: Word Count from Console",
+      "description": "Demonstrates decomposing a simple console app into input, processing, and output helpers.",
+      "pseudocode": "main:\n  text <- readLineFromUser()\n  count <- countWords(text)\n  printReport(text, count)\n\nreadLineFromUser:\n  prompt user\n  return line\n\ncountWords(text):\n  split text on whitespace\n  return number of tokens\n\nprintReport(text, count):\n  print summary",
+      "javaCode": "import java.util.*;\n\npublic class WordCountApp {\n    public static void main(String[] args) {\n        String text = readLineFromUser();\n        int count = countWords(text);\n        printReport(text, count);\n    }\n\n    private static String readLineFromUser() {\n        Scanner sc = new Scanner(System.in);\n        System.out.print(\"Enter a line: \");\n        String line = sc.nextLine();\n        // sc not closed to avoid closing System.in\n        return line;\n    }\n\n    private static int countWords(String text) {\n        if (text == null || text.trim().isEmpty()) return 0;\n        String[] tokens = text.trim().split(\"\\\\s+\");\n        return tokens.length;\n    }\n\n    private static void printReport(String text, int count) {\n        System.out.println(\"You entered: \" + text);\n        System.out.println(\"Word count: \" + count);\n    }\n}\n"
+    },
+    {
+      "title": "Reusable Helpers: Password Validation",
+      "description": "Shows decomposing validation into small, testable checks that combine into a final decision.",
+      "pseudocode": "isValidPassword(pw):\n  return isLongEnough(pw) AND hasUpper(pw) AND hasDigit(pw)\n\nisLongEnough(pw):\n  return length(pw) >= 8\n\nhasUpper(pw):\n  for each char c in pw:\n    if isUppercase(c): return true\n  return false\n\nhasDigit(pw):\n  for each char c in pw:\n    if isDigit(c): return true\n  return false",
+      "javaCode": "public class PasswordValidator {\n    public static void main(String[] args) {\n        System.out.println(isValidPassword(\"Abcdef12\")); // true\n        System.out.println(isValidPassword(\"abcdef12\")); // false (no uppercase)\n    }\n\n    public static boolean isValidPassword(String pw) {\n        return isLongEnough(pw) && hasUpper(pw) && hasDigit(pw);\n    }\n\n    private static boolean isLongEnough(String pw) {\n        return pw != null && pw.length() >= 8;\n    }\n\n    private static boolean hasUpper(String pw) {\n        if (pw == null) return false;\n        for (char c : pw.toCharArray()) {\n            if (Character.isUpperCase(c)) return true;\n        }\n        return false;\n    }\n\n    private static boolean hasDigit(String pw) {\n        if (pw == null) return false;\n        for (char c : pw.toCharArray()) {\n            if (Character.isDigit(c)) return true;\n        }\n        return false;\n    }\n}\n"
+    },
+    {
+      "title": "Refactoring Loop Logic: Prime Listing",
+      "description": "Illustrates extracting helpers from a loop-heavy task to increase readability and testability.",
+      "pseudocode": "main:\n  n <- readUpperBound()\n  for i from 2 to n:\n    if isPrime(i):\n      print i\n\nreadUpperBound:\n  read int from user\n  return it\n\nisPrime(k):\n  if k < 2: return false\n  for d from 2 to floor(sqrt(k)):\n    if k % d == 0: return false\n  return true",
+      "javaCode": "import java.util.*;\n\npublic class PrimeLister {\n    public static void main(String[] args) {\n        int n = readUpperBound();\n        for (int i = 2; i <= n; i++) {\n            if (isPrime(i)) {\n                System.out.println(i);\n            }\n        }\n    }\n\n    private static int readUpperBound() {\n        Scanner sc = new Scanner(System.in);\n        System.out.print(\"List primes up to: \");\n        while (!sc.hasNextInt()) {\n            System.out.print(\"Enter a valid integer: \");\n            sc.next();\n        }\n        int n = sc.nextInt();\n        return Math.max(n, 0);\n    }\n\n    public static boolean isPrime(int k) {\n        if (k < 2) return false;\n        int limit = (int)Math.sqrt(k);\n        for (int d = 2; d <= limit; d++) {\n            if (k % d == 0) return false;\n        }\n        return true;\n    }\n}\n"
+    }
+  ]
+}
