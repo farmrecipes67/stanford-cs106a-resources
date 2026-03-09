@@ -1,0 +1,23 @@
+{
+  "topic": "Karel the Robot",
+  "examples": [
+    {
+      "title": "Fill First Street with Beepers (Fencepost-Safe)",
+      "description": "Demonstrates a correct fencepost pattern: place on entry, then move-and-place until the wall.",
+      "pseudocode": "1. Put a beeper on the starting corner.\n2. While the front is clear:\n   a. Move forward one corner.\n   b. Put a beeper.",
+      "javaCode": "import stanford.karel.*;\npublic class FillRowKarel extends Karel {\n    public void run() {\n        putBeeper();\n        while (frontIsClear()) {\n            move();\n            putBeeper();\n        }\n    }\n}"
+    },
+    {
+      "title": "Climb a Single Hurdle",
+      "description": "Shows decomposition and conditionals to get over one wall directly in front of Karel.",
+      "pseudocode": "1. If the front is blocked, climb the hurdle:\n   a. Turn left and move up one.\n   b. Turn right and move forward past the wall.\n   c. Turn right and move down one.\n   d. Turn left to restore original facing.",
+      "javaCode": "import stanford.karel.*;\npublic class HurdleKarel extends SuperKarel {\n    public void run() {\n        if (frontIsBlocked()) {\n            climbHurdle();\n        } else {\n            move();\n        }\n    }\n    private void climbHurdle() {\n        turnLeft();\n        move();\n        turnRight();\n        move();\n        turnRight();\n        move();\n        turnLeft();\n    }\n}"
+    },
+    {
+      "title": "Sweep First Street: Pick Up All Beepers",
+      "description": "Traverses a row, picking beepers on every corner, including the last (fencepost-aware).",
+      "pseudocode": "1. Pick a beeper if present on the starting corner.\n2. While the front is clear:\n   a. Move forward one corner.\n   b. Pick a beeper if present.",
+      "javaCode": "import stanford.karel.*;\npublic class SweepRowKarel extends Karel {\n    public void run() {\n        pickIfPresent();\n        while (frontIsClear()) {\n            move();\n            pickIfPresent();\n        }\n    }\n    private void pickIfPresent() {\n        if (beepersPresent()) {\n            pickBeeper();\n        }\n    }\n}"
+    }
+  ]
+}
