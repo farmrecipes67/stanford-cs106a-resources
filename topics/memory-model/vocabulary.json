@@ -1,0 +1,81 @@
+{
+  "topic": "Memory Model",
+  "totalTerms": 15,
+  "terms": [
+    {
+      "term": "Stack",
+      "definition": "Region storing method call frames with parameters and local variables.",
+      "example": "void f() { int x = 10; /* x lives in f's stack frame */ }"
+    },
+    {
+      "term": "Heap",
+      "definition": "Region storing objects and arrays created with new.",
+      "example": "int[] a = new int[3]; // 'a' references an array on the heap"
+    },
+    {
+      "term": "Stack Frame",
+      "definition": "Activation record for a method call; holds locals, parameters, and return address.",
+      "example": "main calls sum(3,4) -> a new frame for sum is pushed on the stack"
+    },
+    {
+      "term": "Primitive Type",
+      "definition": "Built-in type that stores a value directly (not a reference).",
+      "example": "int n = 42; double d = 3.14; boolean ok = true;"
+    },
+    {
+      "term": "Reference",
+      "definition": "A value that points to a heap object or array.",
+      "example": "Point p = new Point(1, 2); // p stores a reference to a Point"
+    },
+    {
+      "term": "Object",
+      "definition": "A heap-allocated instance containing fields and methods defined by a class.",
+      "example": "String s = new String(\"hi\"); // s references a String object"
+    },
+    {
+      "term": "Aliasing",
+      "definition": "Two or more references pointing to the same heap object.",
+      "example": "int[] a = {1,2}; int[] b = a; b[0] = 9; // a[0] is now 9"
+    },
+    {
+      "term": "Pass-by-Value",
+      "definition": "Java copies argument values into parameters; object parameters get a copy of the reference.",
+      "example": "void setX(Point p){ p.x = 5; } // mutates same object seen by caller"
+    },
+    {
+      "term": "Null",
+      "definition": "A reference that points to no object; using it causes NullPointerException on dereference.",
+      "example": "String s = null; // s.length() would throw NullPointerException"
+    },
+    {
+      "term": "Garbage Collection",
+      "definition": "Automatic reclamation of heap objects no longer reachable by any reference.",
+      "example": "p = new Point(); p = null; // old Point becomes eligible for GC"
+    },
+    {
+      "term": "Immutability",
+      "definition": "Property where an object’s state cannot change after creation.",
+      "example": "String t = \"hi\"; t.concat(\"!\"); // t unchanged; result is a new String"
+    },
+    {
+      "term": "Mutability",
+      "definition": "Object state can change after creation.",
+      "example": "Point p = new Point(0,0); p.x = 10; // p mutated"
+    },
+    {
+      "term": "Identity vs Equality",
+      "definition": "Identity (==) compares references; equals compares content (if implemented).",
+      "example": "new String(\"a\") == new String(\"a\") // false; equals returns true"
+    },
+    {
+      "term": "Shallow Copy",
+      "definition": "Copy that duplicates references, not the nested objects themselves.",
+      "example": "int[][] b = a.clone(); // top-level array cloned; inner arrays shared"
+    },
+    {
+      "term": "Deep Copy",
+      "definition": "Copy that recursively duplicates all contained mutable data.",
+      "example": "for (int i=0;i<a.length;i++) b[i] = Arrays.copyOf(a[i], a[i].length);"
+    }
+  ]
+}
