@@ -1,0 +1,27 @@
+{
+  "topic": "Conditions",
+  "cheatsheet": {
+    "syntaxReference": [
+      "If: if (condition) { /* then */ }",
+      "If-else: if (cond) { ... } else { ... }",
+      "Else-if chain: if (a) { ... } else if (b) { ... } else { ... }",
+      "Nested ifs: if (a) { if (b) { ... } } // use braces to avoid dangling else",
+      "Logical operators: !a, a && b, a || b // precedence: ! > && > ||",
+      "String equality: if (s != null && s.equals(\"hi\")) { ... }",
+      "Ternary: String msg = ok ? \"yes\" : \"no\";",
+      "Switch: switch(x) { case 1: ...; break; case 2: ...; break; default: ...; }"
+    ],
+    "commonPatterns": [
+      "Range check: if (0 <= x && x <= 100) { ... }",
+      "Mutually exclusive buckets: if (score >= 90) {...} else if (score >= 80) {...} ... else {...}",
+      "Null guard: if (obj == null) return; // or: if (obj != null && obj.method())...",
+      "Safe String test: if (s != null && !s.isEmpty()) { ... }",
+      "De Morgan rewrite: if (!(a || b)) -> if (!a && !b)"
+    ],
+    "quickTips": [
+      "Prefer clear parentheses to relying on operator precedence.",
+      "Test boundary values around each comparison to catch off-by-one errors.",
+      "Minimize nesting with early returns (guard clauses) for invalid or special cases."
+    ]
+  }
+}
