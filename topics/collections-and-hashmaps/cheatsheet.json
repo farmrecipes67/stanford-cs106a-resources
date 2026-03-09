@@ -1,0 +1,27 @@
+{
+  "topic": "Collections and HashMaps",
+  "cheatsheet": {
+    "syntaxReference": [
+      "List<String> list = new ArrayList<>(); list.add(\"hi\"); String x = list.get(0);",
+      "Set<Integer> set = new HashSet<>(); set.add(5); boolean b = set.contains(5);",
+      "Map<String,Integer> m = new HashMap<>(); m.put(\"a\", 1); int v = m.getOrDefault(\"a\", 0);",
+      "for (String s : list) { System.out.println(s); }",
+      "for (Map.Entry<String,Integer> e : m.entrySet()) { System.out.println(e.getKey() + \": \" + e.getValue()); }",
+      "Iterator<String> it = list.iterator(); while (it.hasNext()) { String s = it.next(); if (s.isEmpty()) it.remove(); }",
+      "m.computeIfAbsent(\"key\", k -> new ArrayList<>()).add(42);",
+      "m.putIfAbsent(\"k\", 0); m.replace(\"k\", 1); m.remove(\"k\");"
+    ],
+    "commonPatterns": [
+      "Frequency count: Map<String,Integer> freq = new HashMap<>(); for (String w : words) { freq.put(w, freq.getOrDefault(w, 0) + 1); }",
+      "Deduplicate while preserving first-seen order: Set<String> seen = new HashSet<>(); List<String> out = new ArrayList<>(); for (String s : input) { if (seen.add(s)) out.add(s); }",
+      "Group by key: Map<K,List<V>> g = new HashMap<>(); for (V v : data) { K k = keyOf(v); g.computeIfAbsent(k, x -> new ArrayList<>()).add(v); }",
+      "Invert map to values->set of keys: Map<V,Set<K>> inv = new HashMap<>(); for (Map.Entry<K,V> e : m.entrySet()) { inv.computeIfAbsent(e.getValue(), x -> new HashSet<>()).add(e.getKey()); }",
+      "Top-K with counts: use HashMap for counts then place entries into a PriorityQueue<Map.Entry<K,Integer>> ordered by value desc."
+    ],
+    "quickTips": [
+      "Prefer entrySet when you need both keys and values to avoid extra lookups.",
+      "Always implement both equals and hashCode for custom key classes; use immutable fields for stability.",
+      "Initialize HashMap/HashSet with an estimated capacity to reduce resizing when processing large inputs."
+    ]
+  }
+}
