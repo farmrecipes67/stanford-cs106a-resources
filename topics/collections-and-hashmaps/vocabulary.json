@@ -1,0 +1,81 @@
+{
+  "topic": "Collections and HashMaps",
+  "totalTerms": 15,
+  "terms": [
+    {
+      "term": "Collection",
+      "definition": "The root Java interface for groups of objects; implemented by structures like List and Set.",
+      "example": "Collection<String> c = new ArrayList<>();"
+    },
+    {
+      "term": "List",
+      "definition": "An ordered Collection that allows duplicates and positional access.",
+      "example": "List<Integer> nums = new ArrayList<>(); nums.add(42);"
+    },
+    {
+      "term": "ArrayList",
+      "definition": "Resizable array implementation of List with fast random access and amortized O(1) append.",
+      "example": "ArrayList<String> names = new ArrayList<>(); names.add(\"Ada\");"
+    },
+    {
+      "term": "LinkedList",
+      "definition": "Doubly-linked list implementation of List with O(1) add/remove at ends, O(n) random access.",
+      "example": "LinkedList<Integer> q = new LinkedList<>(); q.addFirst(1);"
+    },
+    {
+      "term": "Set",
+      "definition": "A Collection that contains no duplicate elements; membership-based.",
+      "example": "Set<String> seen = new HashSet<>(); seen.add(\"CS106A\");"
+    },
+    {
+      "term": "HashSet",
+      "definition": "Hash-table-backed Set offering expected O(1) add/contains/remove and no ordering guarantees.",
+      "example": "HashSet<Integer> uniq = new HashSet<>(); uniq.add(5); uniq.contains(5);"
+    },
+    {
+      "term": "Map",
+      "definition": "Associates keys to values; not a subtype of Collection.",
+      "example": "Map<String, Integer> freq = new HashMap<>();"
+    },
+    {
+      "term": "HashMap",
+      "definition": "Hash-table-backed Map providing expected O(1) get/put for well-distributed hash codes.",
+      "example": "HashMap<String, Integer> m = new HashMap<>(); m.put(\"k\", 1);"
+    },
+    {
+      "term": "Key",
+      "definition": "Identifier used to retrieve a value from a Map; must obey equals/hashCode contract for hash maps.",
+      "example": "map.put(studentId, grade); // studentId is the key"
+    },
+    {
+      "term": "Value",
+      "definition": "The data associated with a key in a Map.",
+      "example": "Integer g = map.get(studentId); // g is the value"
+    },
+    {
+      "term": "Map.Entry",
+      "definition": "A key–value pair view used when iterating over a Map via entrySet.",
+      "example": "for (Map.Entry<String,Integer> e : m.entrySet()) { System.out.println(e.getKey()); }"
+    },
+    {
+      "term": "Bucket",
+      "definition": "Internal slot in a hash table where entries with the same hash index are stored.",
+      "example": "// Conceptual: index = hash(key) % capacity -> bucket"
+    },
+    {
+      "term": "Collision",
+      "definition": "When two distinct keys hash to the same bucket; resolved by chaining or tree bins.",
+      "example": "// Multiple keys stored in one bucket list/tree"
+    },
+    {
+      "term": "Load factor",
+      "definition": "Ratio of entries to buckets that triggers resizing to maintain performance.",
+      "example": "new HashMap<>(16, 0.75f) // capacity 16, load factor 0.75"
+    },
+    {
+      "term": "Iterator",
+      "definition": "An object for traversing a Collection with optional safe removal during iteration.",
+      "example": "Iterator<String> it = list.iterator(); while (it.hasNext()) { it.next(); }"
+    }
+  ]
+}
