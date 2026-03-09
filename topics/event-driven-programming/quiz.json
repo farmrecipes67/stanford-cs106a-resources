@@ -1,0 +1,126 @@
+{
+  "topic": "Event-Driven Programming",
+  "totalQuestions": 10,
+  "questions": [
+    {
+      "question": "Which call enables a GraphicsProgram to receive button click events from interactors you add?",
+      "options": [
+        "A) enableEvents()",
+        "B) addActionListeners()",
+        "C) registerButtons()",
+        "D) addListeners(ActionEvent.class)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "addActionListeners() registers the program as an ActionListener for interactors like JButton and JTextField.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "You want to move a ball smoothly at ~60 FPS while keeping the UI responsive. What approach should you take?",
+      "options": [
+        "A) A while(true) loop with pause(16)",
+        "B) A for loop that updates until the ball hits the wall",
+        "C) A javax.swing.Timer firing every ~16 ms",
+        "D) A recursive method that calls itself repeatedly"
+      ],
+      "correctAnswer": "C",
+      "explanation": "A Swing Timer generates periodic ActionEvents without blocking the event thread, enabling smooth animation and responsiveness.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is the typical way to pick up and drag a GOval on the canvas?",
+      "options": [
+        "A) Recreate the GOval at each mouse move",
+        "B) Store the selected GObject and drag offsets on mousePressed; move it on mouseDragged",
+        "C) Use key listeners to nudge the object",
+        "D) Call repaint() repeatedly in a loop"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Hit-test on press, compute dx/dy from the press point to object origin, then set the object's location during drag.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "How do you distinguish which of two JButtons fired an ActionEvent in actionPerformed?",
+      "options": [
+        "A) Check e.getTimestamp()",
+        "B) Compare e.getActionCommand() strings or e.getSource() to the button variables",
+        "C) Look at the mouse position",
+        "D) Use System.identityHashCode(e)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Either compare the action command string or the event source against the known button references.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which method is best for detecting which object is under the mouse cursor on a GCanvas?",
+      "options": [
+        "A) getObjectAt(x, y)",
+        "B) getElementAt(x, y)",
+        "C) findAt(x, y)",
+        "D) pick(x, y)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "getElementAt(x, y) is the ACM API for hit-testing on the canvas.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "After calling addMouseListeners(), which method is invoked continuously as the user moves the mouse with a button held down?",
+      "options": [
+        "A) mouseMoved",
+        "B) mousePressed",
+        "C) mouseDragged",
+        "D) mouseClicked"
+      ],
+      "correctAnswer": "C",
+      "explanation": "mouseDragged is called when the mouse moves while pressed.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "A JTextField is added and the user presses Enter while it has focus. Which handler receives this event?",
+      "options": [
+        "A) keyTyped(KeyEvent e)",
+        "B) actionPerformed(ActionEvent e)",
+        "C) mouseClicked(MouseEvent e)",
+        "D) inputReceived(InputEvent e)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Pressing Enter in a text field generates an ActionEvent handled by actionPerformed.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Your timer and Start button both send ActionEvents to the same actionPerformed method. What is a robust way to handle them?",
+      "options": [
+        "A) Ignore timer events",
+        "B) Use e.getID() to branch",
+        "C) Check if e.getSource() == timer to handle ticks; otherwise handle button commands",
+        "D) Use multiple event loops"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Compare the event source to the Timer instance; otherwise process button commands by source or action command.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which statement about event handlers is most accurate for responsive UIs?",
+      "options": [
+        "A) Handlers should perform heavy computation to avoid later work",
+        "B) Handlers should return quickly and avoid long-blocking operations",
+        "C) Handlers must always call pause()",
+        "D) Handlers should disable all buttons while running"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Keeping handlers short prevents blocking the event thread so future events can be processed promptly.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "In a drag operation, the object jumps so its top-left corner snaps to the cursor. What is the most likely bug?",
+      "options": [
+        "A) Not calling addMouseListeners()",
+        "B) Not computing and using drag offsets (dx, dy) from the press point",
+        "C) Using getElementAt in mouseReleased",
+        "D) Comparing strings with =="
+      ],
+      "correctAnswer": "B",
+      "explanation": "Without storing dx/dy at press time, setting location to the raw mouse point causes a visible snap.",
+      "difficulty": "beginner"
+    }
+  ]
+}
