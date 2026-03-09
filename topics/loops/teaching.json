@@ -1,0 +1,24 @@
+{
+  "topic": "Loops",
+  "materials": {
+    "keyConceptsSummary": "A loop repeatedly executes a block while a condition holds (while), for a fixed progression (for), or at least once before checking (do-while). Use for when you know the iteration count or have a simple counter pattern; use while for open-ended repetition controlled by a condition or sentinel; use do-while for at-least-once input validation or menus. The enhanced for loop (for-each) iterates through arrays/collections without explicit indexing.\n\nCore mechanics: a loop has initialization (set up counters/state), a condition (tested before or after each iteration), a body (work per iteration), and an update (change state to move toward termination). Typical variables include a counter (tracks iterations), an accumulator (aggregates results), and sometimes a sentinel (special value to end input). Avoid off-by-one errors by being precise about inclusive/exclusive bounds and indices (0..n-1 for arrays). Prevent infinite loops by ensuring the condition eventually becomes false. Nested loops multiply work across two dimensions (rows/columns) and require careful control of inner vs. outer indices. Use break to exit early, continue to skip to the next iteration, and be mindful of scope: loop variables declared in headers are not visible outside.\n\nReasoning tools: state diagrams and loop invariants help you prove correctness—identify what must remain true before and after each iteration. Prefer clear loop conditions over cleverness, and test edge cases (empty input, single element, n=0) to catch boundary bugs.",
+    "learningObjectives": [
+      "Choose the appropriate loop construct (for, while, do-while, enhanced for) for a given problem.",
+      "Write counter-controlled and sentinel-controlled loops that terminate correctly.",
+      "Use accumulators, counters, and flags to maintain loop state and compute aggregates.",
+      "Trace and debug loops, identifying off-by-one and infinite loop errors.",
+      "Design and analyze nested loops to generate patterns or traverse 2D data."
+    ],
+    "commonMistakes": [
+      "Using <= instead of < (or vice versa) and indexing past array bounds.",
+      "Forgetting to update the loop variable or state, causing infinite loops.",
+      "Modifying a collection while using enhanced for, leading to ConcurrentModificationException (when using Java collections)."
+    ],
+    "tipsForSuccess": [
+      "Write the loop header last: first write the goal as comments, define what changes each iteration, then encode init/condition/update.",
+      "Test with edge cases (n=0, n=1, smallest/ largest inputs) and print intermediate values while debugging.",
+      "Keep loop bodies small; extract helper methods for clarity and easier reasoning about invariants."
+    ]
+  },
+  "overview": "In CS106A, loops are the backbone of repetition: they let your program perform the same action many times without duplicating code. You will learn when to choose a for, while, or do-while loop; how to control iterations with counters and conditions; and how to process collections using the enhanced for loop. Loops power tasks like summing values, validating input, drawing graphics repeatedly (in ACM libraries), and traversing arrays or strings.\n\nWe distinguish between definite loops (a known number of iterations) and indefinite loops (repeat until a condition or sentinel appears). You will practice structuring loop state with counters, accumulators, and flags; avoiding off-by-one and infinite loops; and reasoning about nested loops for 2D patterns. Mastery includes understanding loop invariants, variable scope within loop headers and bodies, and the proper use of break and continue."
+}
