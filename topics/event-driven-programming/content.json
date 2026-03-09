@@ -1,0 +1,265 @@
+{
+  "topic": "Event-Driven Programming",
+  "topicIndex": 11,
+  "overview": "Event-driven programming is a style where your program reacts to events—user actions like clicks and key presses, or time-based triggers—rather than running a single top-to-bottom script. In CS106A’s Java context, you’ll use the ACM libraries (GraphicsProgram and interactors) to register listeners that respond to specific events. The framework runs an event loop behind the scenes, places incoming events on a queue, and calls your handler methods (callbacks) when those events occur.\n\nInstead of polling for input, you write small, focused methods such as actionPerformed, mousePressed, mouseDragged, and keyPressed that update state and the display. This encourages a clean separation of concerns: events capture user intent, handlers update the model (program state), and the canvas (GCanvas) visually reflects those changes via GObjects. Timers add time-based events for animation, enabling smooth motion without blocking the user interface.",
+  "teachingMaterials": {
+    "keyConceptsSummary": "At the core of event-driven programming are events, listeners, and callbacks. Events represent occurrences (button clicks, mouse moves, key presses, or timer ticks). Listeners are objects (often your GraphicsProgram) that subscribe to receive notifications about those events. Callbacks are the methods invoked by the framework when an event happens. In CS106A with the ACM libraries, you register for events using helper methods such as addActionListeners(), addMouseListeners(), and addKeyListeners(). Interactors (like JButton and JTextField) and graphical objects (GObject, GOval, GRect) connect user input to program behavior.\n\nHandlers should be short and state-based. They read from the event object (e.g., coordinates from MouseEvent, command strings from ActionEvent), update program state, and request or cause a redraw (moving GObjects, changing labels). Timers (javax.swing.Timer) generate periodic ActionEvents for animation and repeated tasks, keeping the UI responsive. Best practices include separating model from view, storing minimal persistent state (like selected objects and drag offsets), and discriminating among multiple event sources via e.getSource() or e.getActionCommand().",
+    "learningObjectives": [
+      "Register and handle UI events (action, mouse, keyboard) in a GraphicsProgram",
+      "Use ActionEvent, MouseEvent, and KeyEvent objects to read user input details",
+      "Implement drag-and-drop behavior and hit-testing with getElementAt(x, y)",
+      "Animate graphics using javax.swing.Timer without blocking the UI",
+      "Maintain clean state to coordinate event handlers and rendering"
+    ],
+    "commonMistakes": [
+      "Forgetting to call addActionListeners(), addMouseListeners(), or addKeyListeners(), resulting in handlers that never run",
+      "Comparing strings with == instead of .equals(), causing action command checks to fail",
+      "Doing long-running work inside handlers, freezing the UI and missing subsequent events"
+    ],
+    "tipsForSuccess": [
+      "Keep handlers short: update state, adjust visuals, and return quickly",
+      "Track the minimum state needed (e.g., selected GObject and drag offsets) to make handlers simple",
+      "Use a Timer for smooth, consistent animation instead of while loops with pause"
+    ]
+  },
+  "vocabulary": [
+    {
+      "term": "Event",
+      "definition": "A notification that something happened (e.g., button click, mouse move, timer tick).",
+      "example": "// ActionEvent fired when a JButton is clicked"
+    },
+    {
+      "term": "Listener",
+      "definition": "An object that registers interest in certain events and provides callback methods.",
+      "example": "addActionListeners(); // GraphicsProgram listens for ActionEvents"
+    },
+    {
+      "term": "Callback",
+      "definition": "A method invoked by the framework when a corresponding event occurs.",
+      "example": "public void actionPerformed(ActionEvent e) { /* handle click */ }"
+    },
+    {
+      "term": "ActionEvent",
+      "definition": "An event representing an action on an interactor (e.g., button press, Enter in text field) or a timer tick.",
+      "example": "String cmd = e.getActionCommand();"
+    },
+    {
+      "term": "MouseEvent",
+      "definition": "An event carrying mouse details such as coordinates and button state.",
+      "example": "public void mousePressed(MouseEvent e) { int x = e.getX(); }"
+    },
+    {
+      "term": "KeyEvent",
+      "definition": "An event representing keyboard input (press, release, type).",
+      "example": "public void keyPressed(KeyEvent e) { int code = e.getKeyCode(); }"
+    },
+    {
+      "term": "Interactor",
+      "definition": "A UI control (e.g., JButton, JTextField) that can generate ActionEvents.",
+      "example": "add(new JButton(\"Go\"), SOUTH);"
+    },
+    {
+      "term": "Action Command",
+      "definition": "A string associated with an ActionEvent, often the button text or a custom command.",
+      "example": "if (e.getActionCommand().equals(\"Go\")) { /* ... */ }"
+    },
+    {
+      "term": "Registration",
+      "definition": "The act of subscribing to events so callbacks will be invoked.",
+      "example": "addMouseListeners(); addKeyListeners();"
+    },
+    {
+      "term": "Event Loop",
+      "definition": "Framework-managed loop that dequeues events and dispatches them to listeners.",
+      "example": "// Managed by ACM/Swing; you provide handlers only"
+    },
+    {
+      "term": "Timer",
+      "definition": "Generates periodic ActionEvents at a fixed delay, useful for animation.",
+      "example": "Timer t = new Timer(20, this); t.start();"
+    },
+    {
+      "term": "GObject",
+      "definition": "Base class for graphical objects on the GCanvas.",
+      "example": "GObject obj = getElementAt(x, y);"
+    },
+    {
+      "term": "Hit-Testing",
+      "definition": "Determining which GObject is under a given point.",
+      "example": "GObject obj = getElementAt(e.getX(), e.getY());"
+    },
+    {
+      "term": "Drag Offset",
+      "definition": "Stored dx, dy between mouse press point and object origin to enable smooth dragging.",
+      "example": "dx = e.getX() - obj.getX(); dy = e.getY() - obj.getY();"
+    },
+    {
+      "term": "Event Source",
+      "definition": "The object that fired the event (e.g., a specific JButton or Timer).",
+      "example": "if (e.getSource() == startButton) { /* ... */ }"
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Which call enables a GraphicsProgram to receive button click events from interactors you add?",
+      "options": [
+        "A) enableEvents()",
+        "B) addActionListeners()",
+        "C) registerButtons()",
+        "D) addListeners(ActionEvent.class)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "addActionListeners() registers the program as an ActionListener for interactors like JButton and JTextField.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "You want to move a ball smoothly at ~60 FPS while keeping the UI responsive. What approach should you take?",
+      "options": [
+        "A) A while(true) loop with pause(16)",
+        "B) A for loop that updates until the ball hits the wall",
+        "C) A javax.swing.Timer firing every ~16 ms",
+        "D) A recursive method that calls itself repeatedly"
+      ],
+      "correctAnswer": "C",
+      "explanation": "A Swing Timer generates periodic ActionEvents without blocking the event thread, enabling smooth animation and responsiveness.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is the typical way to pick up and drag a GOval on the canvas?",
+      "options": [
+        "A) Recreate the GOval at each mouse move",
+        "B) Store the selected GObject and drag offsets on mousePressed; move it on mouseDragged",
+        "C) Use key listeners to nudge the object",
+        "D) Call repaint() repeatedly in a loop"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Hit-test on press, compute dx/dy from the press point to object origin, then set the object's location during drag.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "How do you distinguish which of two JButtons fired an ActionEvent in actionPerformed?",
+      "options": [
+        "A) Check e.getTimestamp()",
+        "B) Compare e.getActionCommand() strings or e.getSource() to the button variables",
+        "C) Look at the mouse position",
+        "D) Use System.identityHashCode(e)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Either compare the action command string or the event source against the known button references.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which method is best for detecting which object is under the mouse cursor on a GCanvas?",
+      "options": [
+        "A) getObjectAt(x, y)",
+        "B) getElementAt(x, y)",
+        "C) findAt(x, y)",
+        "D) pick(x, y)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "getElementAt(x, y) is the ACM API for hit-testing on the canvas.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "After calling addMouseListeners(), which method is invoked continuously as the user moves the mouse with a button held down?",
+      "options": [
+        "A) mouseMoved",
+        "B) mousePressed",
+        "C) mouseDragged",
+        "D) mouseClicked"
+      ],
+      "correctAnswer": "C",
+      "explanation": "mouseDragged is called when the mouse moves while pressed.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "A JTextField is added and the user presses Enter while it has focus. Which handler receives this event?",
+      "options": [
+        "A) keyTyped(KeyEvent e)",
+        "B) actionPerformed(ActionEvent e)",
+        "C) mouseClicked(MouseEvent e)",
+        "D) inputReceived(InputEvent e)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Pressing Enter in a text field generates an ActionEvent handled by actionPerformed.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Your timer and Start button both send ActionEvents to the same actionPerformed method. What is a robust way to handle them?",
+      "options": [
+        "A) Ignore timer events",
+        "B) Use e.getID() to branch",
+        "C) Check if e.getSource() == timer to handle ticks; otherwise handle button commands",
+        "D) Use multiple event loops"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Compare the event source to the Timer instance; otherwise process button commands by source or action command.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which statement about event handlers is most accurate for responsive UIs?",
+      "options": [
+        "A) Handlers should perform heavy computation to avoid later work",
+        "B) Handlers should return quickly and avoid long-blocking operations",
+        "C) Handlers must always call pause()",
+        "D) Handlers should disable all buttons while running"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Keeping handlers short prevents blocking the event thread so future events can be processed promptly.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "In a drag operation, the object jumps so its top-left corner snaps to the cursor. What is the most likely bug?",
+      "options": [
+        "A) Not calling addMouseListeners()",
+        "B) Not computing and using drag offsets (dx, dy) from the press point",
+        "C) Using getElementAt in mouseReleased",
+        "D) Comparing strings with =="
+      ],
+      "correctAnswer": "B",
+      "explanation": "Without storing dx/dy at press time, setting location to the raw mouse point causes a visible snap.",
+      "difficulty": "beginner"
+    }
+  ],
+  "pseudocodeExamples": [
+    {
+      "title": "Button-Triggered Counter",
+      "description": "Registers an ActionListener and updates a label when a button is clicked.",
+      "pseudocode": "initialize counter = 0\ncreate JButton(\"Count\") and GLabel(\"0\")\nadd button to SOUTH, label to canvas\ncall addActionListeners()\nwhen actionPerformed fires and command == \"Count\":\n  counter++\n  update label text",
+      "javaCode": "import acm.program.*;\nimport acm.graphics.*;\nimport java.awt.event.*;\nimport javax.swing.*;\n\npublic class ButtonCounter extends GraphicsProgram {\n    private int counter = 0;\n    private GLabel display;\n\n    public void init() {\n        add(new JButton(\"Count\"), SOUTH);\n        addActionListeners();\n        display = new GLabel(\"0\", 20, 40);\n        add(display);\n    }\n\n    public void actionPerformed(ActionEvent e) {\n        if (e.getActionCommand().equals(\"Count\")) {\n            counter++;\n            display.setLabel(Integer.toString(counter));\n        }\n    }\n}\n"
+    },
+    {
+      "title": "Drag-and-Drop a GObject",
+      "description": "Implements hit-testing and drag offsets to move a shape smoothly with the mouse.",
+      "pseudocode": "create a GOval and add to canvas\ncall addMouseListeners()\non mousePressed:\n  selected = getElementAt(mouse.x, mouse.y)\n  if selected != null:\n    dx = mouse.x - selected.x\n    dy = mouse.y - selected.y\non mouseDragged and selected != null:\n  selected.setLocation(mouse.x - dx, mouse.y - dy)\non mouseReleased:\n  selected = null",
+      "javaCode": "import acm.program.*;\nimport acm.graphics.*;\nimport java.awt.event.*;\n\npublic class DragDemo extends GraphicsProgram {\n    private GObject selected;\n    private double dx, dy;\n\n    public void run() {\n        GOval ball = new GOval(50, 50, 60, 60);\n        ball.setFilled(true);\n        add(ball);\n        addMouseListeners();\n    }\n\n    public void mousePressed(MouseEvent e) {\n        selected = getElementAt(e.getX(), e.getY());\n        if (selected != null) {\n            dx = e.getX() - selected.getX();\n            dy = e.getY() - selected.getY();\n        }\n    }\n\n    public void mouseDragged(MouseEvent e) {\n        if (selected != null) {\n            selected.setLocation(e.getX() - dx, e.getY() - dy);\n        }\n    }\n\n    public void mouseReleased(MouseEvent e) {\n        selected = null;\n    }\n}\n"
+    },
+    {
+      "title": "Start/Stop Timer Animation",
+      "description": "Uses a javax.swing.Timer to animate a rectangle and buttons to control it.",
+      "pseudocode": "create GOval or GRect and place on canvas\ncreate Start and Stop buttons, add to SOUTH\ncreate Timer(20, this) but start only on Start\nin actionPerformed:\n  if source is Start button -> timer.start()\n  else if source is Stop button -> timer.stop()\n  else if source is timer -> update object position and bounce at edges",
+      "javaCode": "import acm.program.*;\nimport acm.graphics.*;\nimport java.awt.event.*;\nimport javax.swing.*;\n\npublic class TimerBounce extends GraphicsProgram {\n    private GRect box;\n    private JButton startBtn, stopBtn;\n    private Timer timer;\n    private double vx = 3, vy = 2;\n\n    public void init() {\n        box = new GRect(20, 20, 40, 40);\n        box.setFilled(true);\n        add(box);\n        startBtn = new JButton(\"Start\");\n        stopBtn = new JButton(\"Stop\");\n        add(startBtn, SOUTH);\n        add(stopBtn, SOUTH);\n        addActionListeners();\n        timer = new Timer(20, this);\n    }\n\n    public void actionPerformed(ActionEvent e) {\n        Object src = e.getSource();\n        if (src == startBtn) {\n            timer.start();\n        } else if (src == stopBtn) {\n            timer.stop();\n        } else if (src == timer) {\n            step();\n        }\n    }\n\n    private void step() {\n        box.move(vx, vy);\n        if (box.getX() < 0 || box.getX() + box.getWidth() > getWidth()) {\n            vx = -vx;\n        }\n        if (box.getY() < 0 || box.getY() + box.getHeight() > getHeight()) {\n            vy = -vy;\n        }\n    }\n}\n"
+    }
+  ],
+  "cheatsheet": {
+    "syntaxReference": [
+      "Register for button events: add(new JButton(\"Go\"), SOUTH); addActionListeners();",
+      "Handle button click: public void actionPerformed(ActionEvent e) { if (e.getActionCommand().equals(\"Go\")) { /* ... */ } }",
+      "Register for mouse events: addMouseListeners(); // Implement mousePressed/Dragged/Released",
+      "Hit-test object under cursor: GObject obj = getElementAt(e.getX(), e.getY());",
+      "Drag offset pattern: dx = e.getX() - obj.getX(); dy = e.getY() - obj.getY(); obj.setLocation(e.getX() - dx, e.getY() - dy);",
+      "Create a timer: Timer t = new Timer(20, this); t.start(); // Fires ActionEvents every 20 ms",
+      "Keyboard events: addKeyListeners(); public void keyPressed(KeyEvent e) { /* ... */ }"
+    ],
+    "commonPatterns": [
+      "Toggle Start/Stop: if (e.getSource() == startBtn) timer.start(); else if (e.getSource() == stopBtn) timer.stop();",
+      "Dispatch by command string: switch(e.getActionCommand()) { case \"Add\": /* ... */ break; case \"Clear\": /* ... */ break; }",
+      "Guarded dragging: if (selected != null) { selected.setLocation(e.getX() - dx, e.getY() - dy); }"
+    ],
+    "quickTips": [
+      "Use .equals for comparing action commands; == compares object references.",
+      "Keep event handlers short; move heavy work outside the event thread.",
+      "Prefer a Timer for animation over manual loops to keep the UI responsive."
+    ]
+  }
+}
