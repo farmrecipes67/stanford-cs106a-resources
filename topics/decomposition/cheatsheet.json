@@ -1,0 +1,27 @@
+{
+  "topic": "Decomposition",
+  "cheatsheet": {
+    "syntaxReference": [
+      "Method declaration: public static int max(int a, int b) { return (a > b) ? a : b; }",
+      "Void method (no return): private static void printTitle(String title) { System.out.println(title); }",
+      "Calling a helper: int m = max(x, y);",
+      "Pre/Post in comments: // requires: n >= 0\\n// ensures: returns sum 0..n",
+      "Using constants: private static final int MAX_TRIES = 5;",
+      "Overloading example: int abs(int x) { ... } double abs(double x) { ... }",
+      "Early return to simplify logic: if (!valid) return; // do rest",
+      "Composing helpers: String cleaned = normalize(input); List<String> words = tokenize(cleaned);"
+    ],
+    "commonPatterns": [
+      "Top-down outline: main -> readInput(); process(); report();",
+      "Loop with helper condition: while (!done(state)) { state = step(state); }",
+      "Validation pipeline: isValid = checkA(x) && checkB(x) && checkC(x);",
+      "Accumulator with helper: total += valueOf(item);",
+      "Sentinel input: int n = readIntWithSentinel(sc, -1); while (n != -1) { ...; n = readIntWithSentinel(sc, -1); }"
+    ],
+    "quickTips": [
+      "Name methods by intent (what) not implementation (how).",
+      "Prefer passing data as parameters over reading globals inside helpers.",
+      "Refactor duplication into a helper the second time you see it."
+    ]
+  }
+}
