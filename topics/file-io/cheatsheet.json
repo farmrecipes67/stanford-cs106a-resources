@@ -1,0 +1,28 @@
+{
+  "topic": "File I/O",
+  "cheatsheet": {
+    "syntaxReference": [
+      "Create Path: Path p = Paths.get(\"data\", \"input.txt\");",
+      "Open Scanner for file (UTF-8): try (Scanner sc = new Scanner(new File(\"in.txt\"), java.nio.charset.StandardCharsets.UTF_8)) { }",
+      "Read tokens with Scanner: while (sc.hasNextInt()) { int n = sc.nextInt(); }",
+      "Read lines with BufferedReader: try (BufferedReader br = new BufferedReader(new FileReader(\"in.txt\"))) { String line = br.readLine(); }",
+      "New BufferedReader via Files: try (BufferedReader br = Files.newBufferedReader(Paths.get(\"in.txt\"))) { }",
+      "Write with PrintWriter: try (PrintWriter pw = new PrintWriter(\"out.txt\")) { pw.println(\"hello\"); }",
+      "Write via Files.newBufferedWriter: try (Writer w = Files.newBufferedWriter(Paths.get(\"out.txt\"))) { w.write(\"hi\\n\"); }",
+      "Append mode FileWriter: try (Writer w = new FileWriter(\"out.txt\", true)) { w.write(\"more\\n\"); }"
+    ],
+    "commonPatterns": [
+      "Line-by-line processing: try (BufferedReader br = Files.newBufferedReader(p)) { for (String line; (line = br.readLine()) != null; ) { /* process */ } }",
+      "Token-based parsing: try (Scanner sc = new Scanner(p.toFile())) { sc.useDelimiter(\"\\\\s+|\n\"); while (sc.hasNext()) { String tok = sc.next(); } }",
+      "Read small file at once: List<String> lines = Files.readAllLines(p); for (String line : lines) { }",
+      "Safe resource handling: try (Scanner sc = new Scanner(new File(\"in.txt\")); PrintWriter pw = new PrintWriter(\"out.txt\")) { /* read/write */ }",
+      "CSV writing: try (PrintWriter pw = new PrintWriter(\"data.csv\")) { pw.println(\"name,score\"); pw.println(\"Ada,99\"); }",
+      "Copy text file: try (BufferedReader br = Files.newBufferedReader(src); PrintWriter pw = new PrintWriter(Files.newBufferedWriter(dst))) { for (String line; (line = br.readLine()) != null; ) pw.println(line); }"
+    ],
+    "quickTips": [
+      "Decide early: line-based (BufferedReader) vs token-based (Scanner) parsing.",
+      "Always close writers to flush data; prefer try-with-resources to avoid leaks.",
+      "Be explicit about encodings (StandardCharsets.UTF_8) for consistent cross-platform behavior."
+    ]
+  }
+}
