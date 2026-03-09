@@ -1,0 +1,126 @@
+{
+  "topic": "Interactors and GUIs",
+  "totalQuestions": 10,
+  "questions": [
+    {
+      "question": "Where should you typically create and add interactors for a CS106A GraphicsProgram?",
+      "options": [
+        "A) init()",
+        "B) run()",
+        "C) main()",
+        "D) paintComponent()"
+      ],
+      "correctAnswer": "A",
+      "explanation": "init() is for building the UI and registering listeners so controls are ready when run() starts.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which method is called when a JButton is clicked?",
+      "options": [
+        "A) mouseClicked(MouseEvent e)",
+        "B) actionPerformed(ActionEvent e)",
+        "C) buttonClicked(ActionEvent e)",
+        "D) onClick()"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Buttons fire ActionEvents, which are handled by actionPerformed.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "To have a JTextField trigger an event when pressing Enter, you must:",
+      "options": [
+        "A) Do nothing; it always fires automatically",
+        "B) Call addActionListeners() with no further setup",
+        "C) Register a listener on the field with textField.addActionListener(this)",
+        "D) Put the field in the CENTER region"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Text fields require an explicit ActionListener registration on the field (or equivalent).",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which region creates a horizontal control strip at the bottom of the window?",
+      "options": [
+        "A) NORTH",
+        "B) SOUTH",
+        "C) EAST",
+        "D) WEST"
+      ],
+      "correctAnswer": "B",
+      "explanation": "SOUTH adds components in a strip across the bottom.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What does e.getActionCommand() typically return for a JButton if not explicitly set?",
+      "options": [
+        "A) The memory address of the button",
+        "B) The text label of the button",
+        "C) The region where the button was added",
+        "D) The class name of the button"
+      ],
+      "correctAnswer": "B",
+      "explanation": "By default, the action command is the button’s label unless changed via setActionCommand.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "You need mutually exclusive color choices (Red/Blue/Green). Which setup is correct?",
+      "options": [
+        "A) Three JCheckBoxes with no group",
+        "B) Three JRadioButtons with a ButtonGroup",
+        "C) One JComboBox and one JCheckBox",
+        "D) One JTextField listing colors"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Radio buttons become mutually exclusive when placed in a ButtonGroup.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which statement about event-driven programming is TRUE?",
+      "options": [
+        "A) You must call actionPerformed manually when a user clicks",
+        "B) The framework calls your listener methods when events occur",
+        "C) Events can only come from the mouse, not from interactors",
+        "D) Listeners are optional; interactors update themselves"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Listeners are callbacks invoked by the framework upon user actions.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Given: JButton add = new JButton(\"Add\"); add(add, SOUTH); addActionListeners(); In actionPerformed, which is NOT a good way to identify this button?",
+      "options": [
+        "A) if (e.getActionCommand().equals(\"Add\"))",
+        "B) if (e.getSource() == add)",
+        "C) switch (e.getActionCommand()) { case \"Add\": ... }",
+        "D) if (e.getActionCommand() == \"Add\")"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Use .equals() to compare strings in Java; == compares references.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is the main reason to place long-running loops and animations in run() rather than init()?",
+      "options": [
+        "A) init() cannot access interactors",
+        "B) init() is called repeatedly, run() only once",
+        "C) The window displays after init(), so run() won’t block showing of the GUI",
+        "D) init() cannot create components"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The GUI becomes visible after init(); running long tasks in init() can delay UI readiness.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which statement best describes how to place a label in the control strip and a shape on the canvas?",
+      "options": [
+        "A) add(new JLabel(\"Hi\"), CENTER); add(new GRect(10,10), SOUTH);",
+        "B) add(new JLabel(\"Hi\"), SOUTH); add(new GRect(10,10));",
+        "C) add(new GRect(10,10), SOUTH); add(new JLabel(\"Hi\"));",
+        "D) add(new JLabel(\"Hi\")); add(new GRect(10,10), NORTH);"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Swing components go to regions (e.g., SOUTH). Graphics objects are added to the canvas with add(GObject).",
+      "difficulty": "beginner"
+    }
+  ]
+}
