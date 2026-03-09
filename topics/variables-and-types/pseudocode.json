@@ -1,0 +1,23 @@
+{
+  "topic": "Variables and Types",
+  "examples": [
+    {
+      "title": "Compute Average with Correct Casting",
+      "description": "Demonstrates integer vs. floating-point division and using a cast to get a precise average.",
+      "pseudocode": "set sum to 0\nadd three integer scores to sum\ncompute average as (double) sum divided by 3\nprint average",
+      "javaCode": "int s1 = 86;\nint s2 = 91;\nint s3 = 88;\nint sum = s1 + s2 + s3;\ndouble avg = (double) sum / 3; // cast before division\nSystem.out.println(\"Average = \" + avg);"
+    },
+    {
+      "title": "Swap Two Integers Using a Temp Variable",
+      "description": "Shows variable assignment and the use of a temporary variable to swap values.",
+      "pseudocode": "store a in temp\nassign b to a\nassign temp to b\nprint a and b",
+      "javaCode": "int a = 5;\nint b = 9;\nint temp = a;\na = b;\nb = temp;\nSystem.out.println(\"a=\" + a + \", b=\" + b);"
+    },
+    {
+      "title": "Convert Total Seconds to h:m:s",
+      "description": "Illustrates integer division and modulo to break a total into parts using int variables.",
+      "pseudocode": "read totalSeconds\nhours = totalSeconds / 3600\nremainder = totalSeconds % 3600\nminutes = remainder / 60\nseconds = remainder % 60\nprint hours, minutes, seconds",
+      "javaCode": "int totalSeconds = 3672;\nint hours = totalSeconds / 3600;\nint remainder = totalSeconds % 3600;\nint minutes = remainder / 60;\nint seconds = remainder % 60;\nSystem.out.println(hours + \":\" + minutes + \":\" + seconds);"
+    }
+  ]
+}
