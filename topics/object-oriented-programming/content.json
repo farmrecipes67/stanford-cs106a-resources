@@ -1,0 +1,270 @@
+{
+  "topic": "Object-Oriented Programming",
+  "topicIndex": 9,
+  "overview": "In CS106A, Object-Oriented Programming (OOP) is the organizing principle that helps you structure Java programs around objects that contain both data (state) and behavior (methods). Instead of writing one long script, you design classes that model concepts from your problem domain—like BankAccount, Student, or Shape—and then create instances (objects) that collaborate to solve the task. This approach scales from small assignments to large software systems because it promotes modularity, readability, and reuse.\n\nYou will practice key OOP ideas such as encapsulation (hiding internal details behind a clear public interface), constructors (initializing object state), and method design. You’ll also get an introduction to inheritance, interfaces, and polymorphism to write general code that works across different types. By the end, you’ll be able to design clean, testable classes, use standard patterns, and reason about object interactions—skills that carry across languages and projects.",
+  "teachingMaterials": {
+    "keyConceptsSummary": "OOP in Java centers on classes (blueprints) and objects (instances). A class defines fields (instance variables) to hold state and methods to provide behavior. Constructors initialize new objects and can enforce invariants. Encapsulation keeps fields private and exposes behavior through a small, well-documented public interface, which helps prevent bugs and makes changes safer.\n\nAccess modifiers (public, private, protected) control visibility. The keyword this refers to the current object, useful for disambiguating fields from parameters. Static members belong to the class itself rather than any instance (e.g., utility functions or shared constants). Inheritance lets a subclass reuse and extend a superclass; polymorphism enables code that uses a superclass or interface reference to operate on any subclass/implementer. Method overriding customizes behavior, and super can invoke superclass constructors or methods. Interfaces define contracts of behavior without implementation, enabling flexible design and decoupling. Together, these features help you build modular, reusable, and maintainable programs.",
+    "learningObjectives": [
+      "Design and implement Java classes with fields, constructors, and methods that enforce class invariants.",
+      "Apply encapsulation using appropriate access modifiers, getters/setters, and clear public interfaces.",
+      "Differentiate between instance and static members and use them appropriately.",
+      "Use inheritance, interfaces, and polymorphism to write general, extensible code.",
+      "Override toString, equals, and other methods to integrate with Java conventions and collections."
+    ],
+    "commonMistakes": [
+      "Exposing fields as public instead of keeping them private and validating via methods.",
+      "Using == to compare Strings or objects rather than equals, leading to incorrect comparisons.",
+      "Forgetting to call super(...) in subclass constructors or misunderstanding constructor chaining."
+    ],
+    "tipsForSuccess": [
+      "Write small, focused classes with a single responsibility; test behavior via public methods.",
+      "Document class invariants and method contracts; enforce them in constructors and setters.",
+      "Prefer composition over inheritance when the relationship is \"has-a\" rather than \"is-a\"."
+    ]
+  },
+  "vocabulary": [
+    {
+      "term": "Class",
+      "definition": "A blueprint that defines the structure and behavior of objects.",
+      "example": "class Point { int x, y; }"
+    },
+    {
+      "term": "Object",
+      "definition": "An instance of a class with its own state and behavior.",
+      "example": "Point p = new Point();"
+    },
+    {
+      "term": "Field (Instance Variable)",
+      "definition": "Data stored within an object; each instance has its own copy.",
+      "example": "private double balance;"
+    },
+    {
+      "term": "Method",
+      "definition": "A function defined in a class that operates on the object or class.",
+      "example": "public void deposit(double amt) { balance += amt; }"
+    },
+    {
+      "term": "Constructor",
+      "definition": "Special method that initializes a new object.",
+      "example": "public Point(int x, int y) { this.x = x; this.y = y; }"
+    },
+    {
+      "term": "Encapsulation",
+      "definition": "Hiding internal state and requiring all access through methods.",
+      "example": "private int age; public int getAge() { return age; }"
+    },
+    {
+      "term": "Access Modifier",
+      "definition": "Keywords controlling visibility: public, private, protected, and package-private.",
+      "example": "private String name;"
+    },
+    {
+      "term": "this",
+      "definition": "Reference to the current object; used to access fields/methods or chain constructors.",
+      "example": "this.x = x;"
+    },
+    {
+      "term": "Static",
+      "definition": "Belongs to the class, not instances; shared across all objects.",
+      "example": "public static final double PI = 3.14159;"
+    },
+    {
+      "term": "Inheritance",
+      "definition": "Mechanism where a class (subclass) acquires members of another (superclass).",
+      "example": "class Circle extends Shape { }"
+    },
+    {
+      "term": "Superclass",
+      "definition": "The parent class from which a subclass inherits.",
+      "example": "class Shape { double area() { return 0; } }"
+    },
+    {
+      "term": "Subclass",
+      "definition": "A class that extends another class, adding or overriding behavior.",
+      "example": "class Rectangle extends Shape { }"
+    },
+    {
+      "term": "Polymorphism",
+      "definition": "Different classes can be treated uniformly through a common type; method calls dispatch to the actual type.",
+      "example": "Shape s = new Circle(2.0); System.out.println(s.area());"
+    },
+    {
+      "term": "Interface",
+      "definition": "A contract specifying methods a class must implement, without implementations.",
+      "example": "interface Drawable { void draw(); }"
+    },
+    {
+      "term": "Abstract Class",
+      "definition": "A class that cannot be instantiated and may contain abstract methods.",
+      "example": "abstract class Shape { abstract double area(); }"
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Which statement best describes encapsulation?",
+      "options": [
+        "A) Storing multiple objects in an array.",
+        "B) Hiding internal state and exposing behavior through a public interface.",
+        "C) Allowing a class to inherit from multiple superclasses.",
+        "D) Compiling code into bytecode for the JVM."
+      ],
+      "correctAnswer": "B",
+      "explanation": "Encapsulation hides fields and exposes behavior via methods, protecting invariants and reducing coupling.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What is the primary difference between a class and an object?",
+      "options": [
+        "A) A class runs code, while an object defines code.",
+        "B) A class is a blueprint; an object is an instance created from that blueprint.",
+        "C) A class stores data; an object stores methods.",
+        "D) There is no difference; they are synonyms."
+      ],
+      "correctAnswer": "B",
+      "explanation": "A class defines structure/behavior; an object is a concrete instance with its own state.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Given String a = new String(\"hi\"); String b = \"hi\"; which compares content correctly?",
+      "options": [
+        "A) a == b",
+        "B) a.equals(b)",
+        "C) a.compareTo(b) == 1",
+        "D) a = b"
+      ],
+      "correctAnswer": "B",
+      "explanation": "equals compares String content; == compares references.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which keyword is used in a subclass to invoke its superclass constructor?",
+      "options": [
+        "A) this",
+        "B) super",
+        "C) base",
+        "D) parent"
+      ],
+      "correctAnswer": "B",
+      "explanation": "super(...) must be the first statement to call a superclass constructor.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What happens when a subclass overrides a method of its superclass?",
+      "options": [
+        "A) The superclass method is permanently deleted.",
+        "B) At runtime, the method of the actual object type is called (dynamic dispatch).",
+        "C) The subclass cannot access any superclass fields.",
+        "D) The subclass must be abstract."
+      ],
+      "correctAnswer": "B",
+      "explanation": "Polymorphism ensures the most specific override is dispatched at runtime based on the object’s concrete type.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which is true about static members?",
+      "options": [
+        "A) Static fields are copied into every object.",
+        "B) Static methods can directly access instance fields.",
+        "C) Static members belong to the class, not any instance.",
+        "D) Static members are only available in interfaces."
+      ],
+      "correctAnswer": "C",
+      "explanation": "Static members are class-level; there is a single copy per class and they are accessed via ClassName.member.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which declaration correctly defines an interface in Java?",
+      "options": [
+        "A) abstract interface Runnable { void run() {} }",
+        "B) interface Runnable { void run(); }",
+        "C) class Runnable implements Interface { void run(); }",
+        "D) interface Runnable() { public void run(); }"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Interfaces declare method signatures without bodies (unless default/static).",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Consider: class A { void f() {} } class B extends A { void f() {} } A x = new B(); Which f is called by x.f()?",
+      "options": [
+        "A) A.f because x is declared as A",
+        "B) B.f because the object is a B",
+        "C) Neither; this is a compile error",
+        "D) Depends on JDK version"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Dynamic dispatch calls the method of the object’s actual type (B), not the reference type.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which design choice best indicates composition over inheritance?",
+      "options": [
+        "A) class Car extends Engine",
+        "B) class Engine extends Car",
+        "C) class Car { private Engine engine; }",
+        "D) interface Engine extends Car"
+      ],
+      "correctAnswer": "C",
+      "explanation": "A car has-an engine, so composition (a field) is preferred over is-a (inheritance).",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which equals implementation is most correct?",
+      "options": [
+        "A) public boolean equals(Object o) { return this == o; }",
+        "B) public boolean equals(Point p) { return x == p.x && y == p.y; }",
+        "C) public boolean equals(Object o) { if (!(o instanceof Point)) return false; Point p = (Point)o; return x == p.x && y == p.y; }",
+        "D) public boolean equals() { return true; }"
+      ],
+      "correctAnswer": "C",
+      "explanation": "equals must override the Object signature and handle non-Point inputs safely.",
+      "difficulty": "advanced"
+    }
+  ],
+  "pseudocodeExamples": [
+    {
+      "title": "Encapsulated BankAccount",
+      "description": "Demonstrates encapsulation, constructor validation, instance methods, and toString.",
+      "pseudocode": "Define class BankAccount with private balance\nConstructor takes initial amount; if negative, set to 0\nProvide deposit(amount) that ignores non-positive inputs\nProvide withdraw(amount) that returns success/failure if funds are sufficient\nOverride toString to show balance\nIn main, create account, deposit, withdraw, and print",
+      "javaCode": "class BankAccount {\n  private double balance;\n\n  public BankAccount(double initial) {\n    if (initial < 0) {\n      this.balance = 0.0;\n    } else {\n      this.balance = initial;\n    }\n  }\n\n  public void deposit(double amount) {\n    if (amount > 0) {\n      balance += amount;\n    }\n  }\n\n  public boolean withdraw(double amount) {\n    if (amount > 0 && amount <= balance) {\n      balance -= amount;\n      return true;\n    }\n    return false;\n  }\n\n  public double getBalance() { return balance; }\n\n  @Override\n  public String toString() { return String.format(\"$%.2f\", balance); }\n}\n\nclass Demo {\n  public static void main(String[] args) {\n    BankAccount acc = new BankAccount(100);\n    acc.deposit(50);\n    boolean ok = acc.withdraw(120);\n    System.out.println(\"Withdraw success: \" + ok);\n    System.out.println(\"Balance: \" + acc);\n  }\n}"
+    },
+    {
+      "title": "Shape Hierarchy with Polymorphic Area",
+      "description": "Shows abstract classes, method overriding, and polymorphic processing over a list.",
+      "pseudocode": "Create abstract Shape with abstract area()\nImplement Circle and Rectangle overriding area()\nCreate a list of Shape references holding different concrete shapes\nIterate and sum areas without knowing concrete types",
+      "javaCode": "import java.util.*;\n\nabstract class Shape {\n  abstract double area();\n}\n\nclass Circle extends Shape {\n  private final double r;\n  public Circle(double r) { this.r = r; }\n  @Override double area() { return Math.PI * r * r; }\n}\n\nclass Rectangle extends Shape {\n  private final double w, h;\n  public Rectangle(double w, double h) { this.w = w; this.h = h; }\n  @Override double area() { return w * h; }\n}\n\nclass ShapeDemo {\n  static double totalArea(List<Shape> shapes) {\n    double sum = 0;\n    for (Shape s : shapes) sum += s.area();\n    return sum;\n  }\n  public static void main(String[] args) {\n    List<Shape> shapes = new ArrayList<>();\n    shapes.add(new Circle(2));\n    shapes.add(new Rectangle(3, 4));\n    System.out.println(\"Total area = \" + totalArea(shapes));\n  }\n}"
+    },
+    {
+      "title": "Interface Playable and Composition in MediaPlayer",
+      "description": "Illustrates an interface contract, multiple implementations, and a class that composes and uses them.",
+      "pseudocode": "Define interface Playable with play()\nImplement Song and Podcast as Playable\nMediaPlayer keeps a list of Playable and a playAll() method\nClient adds different Playable types and invokes playAll polymorphically",
+      "javaCode": "import java.util.*;\n\ninterface Playable { void play(); }\n\nclass Song implements Playable {\n  private final String title;\n  public Song(String title) { this.title = title; }\n  public void play() { System.out.println(\"Playing song: \" + title); }\n}\n\nclass Podcast implements Playable {\n  private final String episode;\n  public Podcast(String episode) { this.episode = episode; }\n  public void play() { System.out.println(\"Streaming podcast: \" + episode); }\n}\n\nclass MediaPlayer {\n  private final List<Playable> queue = new ArrayList<>();\n  public void add(Playable p) { queue.add(p); }\n  public void playAll() { for (Playable p : queue) p.play(); }\n}\n\nclass PlayerDemo {\n  public static void main(String[] args) {\n    MediaPlayer mp = new MediaPlayer();\n    mp.add(new Song(\"CS106A Theme\"));\n    mp.add(new Podcast(\"OOP Basics\"));\n    mp.playAll();\n  }\n}"
+    }
+  ],
+  "cheatsheet": {
+    "syntaxReference": [
+      "Class and fields:\nclass Counter {\n  private int value; // field\n}",
+      "Constructor and this:\nclass Point {\n  private int x, y;\n  public Point(int x, int y) { this.x = x; this.y = y; }\n}",
+      "Instance method and return:\npublic int add(int a, int b) { return a + b; }",
+      "Static field/method:\nclass MathUtils { public static final double TAU = 6.28318; public static int sq(int n){ return n*n; } }",
+      "Inheritance and super:\nclass Animal { Animal(String name) {} }\nclass Dog extends Animal { Dog() { super(\"dog\"); } }",
+      "Interface and implementation:\ninterface Drawable { void draw(); }\nclass Button implements Drawable { public void draw() { /* ... */ } }",
+      "Abstract class and method:\nabstract class Shape { abstract double area(); }",
+      "Override annotation:\nclass A { void f(){} }\nclass B extends A { @Override void f() { /* new behavior */ } }",
+      "toString and equals skeleton:\n@Override public String toString(){ return \"Point(\"+x+\",\"+y+\")\"; }\n@Override public boolean equals(Object o){ if(!(o instanceof Point)) return false; Point p=(Point)o; return x==p.x && y==p.y; }",
+      "Package and import:\npackage edu.stanford.cs106a;\nimport java.util.ArrayList;"
+    ],
+    "commonPatterns": [
+      "Encapsulation with validation:\nclass BankAccount {\n  private double bal;\n  public BankAccount(double init){ bal = Math.max(0, init); }\n  public void deposit(double a){ if(a>0) bal+=a; }\n  public boolean withdraw(double a){ if(a>0 && a<=bal){ bal-=a; return true; } return false; }\n}",
+      "Immutable value object:\nfinal class Point2D {\n  private final int x, y;\n  public Point2D(int x, int y){ this.x=x; this.y=y; }\n  public int getX(){ return x; } public int getY(){ return y; }\n}",
+      "Polymorphic processing:\nList<Shape> shapes = List.of(new Circle(2), new Rectangle(3,4));\ndouble sum=0; for(Shape s:shapes) sum+=s.area();",
+      "Delegation via composition:\nclass StopWatch { long start; void tic(){ start=System.nanoTime(); } long toc(){ return System.nanoTime()-start; } }\nclass Sorter { private final StopWatch sw = new StopWatch(); void sort(int[] a){ sw.tic(); /* ... */ long t=sw.toc(); } }",
+      "Factory method:\nclass FileOpener {\n  public static InputStream open(String path) throws IOException {\n    return new FileInputStream(path);\n  }\n}"
+    ],
+    "quickTips": [
+      "Keep fields private; expose behavior with small, cohesive public methods.",
+      "Use @Override to catch signature mistakes when overriding methods.",
+      "Compare objects with equals (not ==); for Strings, use s.equals(\"text\")."
+    ]
+  }
+}
