@@ -1,0 +1,24 @@
+{
+  "topic": "Variables and Types",
+  "materials": {
+    "keyConceptsSummary": "A variable is a named container with a declared type that determines what values it can hold and what operations are allowed. Java is statically typed, meaning the type of each variable is checked at compile time and does not change. Primitive types (int, double, boolean, char) store raw values; reference types (e.g., String) store references to objects. Declarations introduce a variable and its type; initialization assigns the first value; assignment later updates it. Literals represent fixed values in code, like 42, 3.14, 'A', true, or \"hello\".\n\nArithmetic on ints uses integer division (3 / 2 == 1), while doubles produce floating-point results (3.0 / 2 == 1.5). Casting converts between compatible types: a narrowing cast like (int) 3.9 truncates toward zero, while widening (int to double) happens automatically. Characters are 16-bit Unicode values; you can do arithmetic with chars because they are numeric under the hood. Strings are immutable reference types; operations like concatenation produce new String objects. Use final to create constants (final double TAX_RATE = 0.095;) that cannot be reassigned. Clear naming, correct types, and careful use of casting help prevent subtle bugs.",
+    "learningObjectives": [
+      "Declare, initialize, and assign variables of primitive and reference types in Java",
+      "Predict the results and types of expressions involving int and double, including integer division and modulo",
+      "Use explicit casting to control type conversion and avoid unintended truncation or precision loss",
+      "Explain the difference between primitive and reference types, including String immutability",
+      "Define and use final constants to improve clarity and maintainability"
+    ],
+    "commonMistakes": [
+      "Expecting 3 / 2 to be 1.5 instead of 1 due to integer division",
+      "Forgetting that Strings are immutable and assuming s.toUpperCase() changes s in place",
+      "Casting in the wrong place, e.g., (double)(sum / count) instead of ((double) sum) / count"
+    ],
+    "tipsForSuccess": [
+      "Choose types deliberately; when you need fractional results, use double or cast before dividing",
+      "Use final constants for magic numbers to self-document your code and prevent accidental changes",
+      "Read compiler error messages about incompatible types carefully—they often tell you exactly what to fix"
+    ]
+  },
+  "overview": "In CS106A, variables are the named storage locations you use to keep track of information while your program runs. Each variable has a type that determines what kind of data it can store and which operations are valid on that data. Java distinguishes between primitive types (like int, double, boolean, and char) that store simple values directly, and reference types (like String and arrays) that store references to objects in memory. You will learn how to declare variables, assign and reassign values, use literals, and apply operators to compute results.\n\nA core part of programming fluency is understanding how type affects behavior—especially differences between integer and floating-point arithmetic, how characters and strings work, and when explicit casts are needed to convert between types. You will also practice using final constants to capture fixed values clearly, choosing meaningful variable names, and reading compiler error messages about incompatible types. Mastering these fundamentals sets you up to write clear, correct programs throughout the course."
+}
