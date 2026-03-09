@@ -1,0 +1,24 @@
+{
+  "topic": "Memory Model",
+  "materials": {
+    "keyConceptsSummary": "Java organizes runtime memory into the stack and the heap. Each method call pushes a stack frame containing its parameters and local variables; returning from a method pops that frame. Objects and arrays live on the heap and are accessed via references stored in variables. Primitives store raw values; reference variables store addresses that point to heap objects.\n\nJava uses pass-by-value for all parameters. When passing a primitive, the numeric/boolean/char value is copied; reassigning the parameter does not affect the caller. When passing an object, the reference is copied; both the parameter and caller’s variable point to the same heap object, so mutating fields through the parameter is visible to the caller. However, reassigning the parameter to a different object only changes the local copy of the reference. Aliasing occurs when multiple references point to the same heap object; changes through one alias are seen through the others. Strings are immutable, so operations like concat create new objects rather than changing existing ones. Equality with == compares references (identity) for objects, while equals typically compares content. Copying structures requires care: shallow copies duplicate references, while deep copies recursively duplicate data. Unreferenced heap objects are reclaimed by garbage collection.",
+    "learningObjectives": [
+      "Differentiate stack vs heap roles during program execution.",
+      "Explain Java pass-by-value semantics for primitives and references.",
+      "Predict effects of aliasing on arrays and objects after assignments and method calls.",
+      "Choose between == and equals when comparing objects, especially Strings.",
+      "Create shallow or deep copies appropriately to avoid unintended sharing."
+    ],
+    "commonMistakes": [
+      "Using == to compare String contents instead of equals, leading to incorrect comparisons.",
+      "Assuming Java is pass-by-reference for objects and expecting a method to reassign the caller’s variable.",
+      "Accidentally aliasing arrays/objects (e.g., b = a) and then being surprised when changes to one affect the other."
+    ],
+    "tipsForSuccess": [
+      "Draw memory diagrams (stack frames and heap objects) to trace code behavior.",
+      "Adopt defensive copying when sharing mutable arrays or objects across methods.",
+      "Use final for references you do not intend to rebind and prefer immutable data when possible."
+    ]
+  },
+  "overview": "In CS106A, the memory model explains where and how your Java programs store data while they run. The two main regions are the stack and the heap. The stack holds method call frames, which include local variables and parameters. The heap stores objects and arrays created with new. Understanding the relationship between these regions clarifies why some changes inside methods affect the caller and others do not.\n\nA crucial part of the model is the difference between primitives and references. Primitives (int, double, boolean, char, etc.) store actual values directly in stack frames. Variables that name objects or arrays store references—pointers to heap locations. Passing arguments in Java is always pass-by-value: for primitives, the value is copied; for objects, the reference is copied, so methods can mutate the same object but cannot rebind the caller’s variable. Concepts like aliasing, null, immutability (e.g., Strings), equality (== vs equals), and shallow vs deep copying all fit into this picture and help you write correct, bug-free code."
+}
