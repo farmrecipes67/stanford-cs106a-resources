@@ -1,0 +1,268 @@
+{
+  "topic": "Interactors and GUIs",
+  "topicIndex": 15,
+  "overview": "In CS106A, Interactors are the GUI widgets (buttons, text fields, check boxes, etc.) that let users control your program. Using the ACM Java libraries on top of Swing, you place interactors around the graphics canvas using a simple border layout (NORTH, SOUTH, EAST, WEST) and write event handlers that respond when the user clicks, types, or changes a setting. Rather than polling for input, your program follows an event-driven model: the system calls your handler methods (like actionPerformed) whenever something happens.\n\nYou typically add interactors during the init() phase so they appear when the window opens, and you keep your main program logic in run(). Interactors communicate with your code through events, and you often dispatch behavior based on the event source or command. Mastering interactors means understanding listeners, layout regions, parsing user input from fields, and keeping your model (program state) in sync with what’s displayed.",
+  "teachingMaterials": {
+    "keyConceptsSummary": "Event-driven programming: The program registers listeners and waits for user actions (clicks, typing, selections). When an event occurs, the system calls your callback (e.g., actionPerformed). You do not call the listener; it is invoked by the framework.\n\nInteractors (Swing components via ACM): JButton, JTextField, JCheckBox, JRadioButton, JComboBox, JLabel, etc. You add them to the Program window using add(component, region), where region is typically NORTH or SOUTH. The graphics canvas stays in the CENTER and is distinct from the control strip.\n\nLifecycle: Use init() to build the UI (create components, add them, register listeners). Use run() for the main logic and animation; it executes after the window is shown. Call addActionListeners() to listen to button actions. For JTextField Enter presses, explicitly register a listener on the field (textField.addActionListener(this)).\n\nEvent handling: Implement actionPerformed(ActionEvent e) to respond to actions. Identify the source using e.getSource() or the command string via e.getActionCommand(). Group mutually exclusive JRadioButtons with a ButtonGroup. Use ItemListeners for state changes like check boxes if you need item-level detail.\n\nLayout and state: BorderLayout regions (NORTH/SOUTH/EAST/WEST) determine where interactors appear. Keep a clean model-view separation: update the model (variables, data) in response to events, then update the view (labels, graphics). Validate and parse text input carefully (handle NumberFormatException). Enable/disable interactors based on current state when appropriate.",
+    "learningObjectives": [
+      "Add and position interactors using add(component, region) and understand the border layout regions",
+      "Register and implement listeners for buttons, text fields, and other interactors",
+      "Dispatch events correctly using e.getSource() and/or e.getActionCommand()",
+      "Parse and validate user input from text fields and update the graphics canvas accordingly",
+      "Design simple MVC-style GUI programs that keep UI and data model in sync"
+    ],
+    "commonMistakes": [
+      "Forgetting to call addActionListeners() (buttons won’t trigger actionPerformed) or neglecting textField.addActionListener(this) for Enter in text fields",
+      "Adding interactors in run() and then blocking the thread with long loops so controls feel unresponsive",
+      "Comparing action commands or strings with == instead of .equals(), or misidentifying the event source"
+    ],
+    "tipsForSuccess": [
+      "Build all interactors and register all listeners in init(); keep run() focused on program logic or animation",
+      "Use constants for action commands to avoid typos; consider setActionCommand on buttons for clarity",
+      "Validate inputs early; guard parsing with try/catch and provide user feedback via a JLabel"
+    ]
+  },
+  "vocabulary": [
+    {
+      "term": "Interactor",
+      "definition": "A GUI widget (e.g., button, text field) that the user manipulates to control the program.",
+      "example": "JButton go = new JButton(\"Go\"); add(go, SOUTH);"
+    },
+    {
+      "term": "GraphicsProgram",
+      "definition": "ACM base class that provides a canvas for graphics and supports adding interactors around it.",
+      "example": "public class MyApp extends GraphicsProgram { public void run() { /* draw */ } }"
+    },
+    {
+      "term": "init()",
+      "definition": "Called before run(); used to build the UI (create components, add to window, register listeners).",
+      "example": "public void init() { add(new JButton(\"Start\"), SOUTH); addActionListeners(); }"
+    },
+    {
+      "term": "run()",
+      "definition": "Main program logic that executes after the window is displayed and init() completes.",
+      "example": "public void run() { /* animation or core logic */ }"
+    },
+    {
+      "term": "add(Component, region)",
+      "definition": "Adds an interactor to a layout region (NORTH, SOUTH, EAST, WEST) of the program window.",
+      "example": "add(new JTextField(12), NORTH);"
+    },
+    {
+      "term": "BorderLayout (NORTH/SOUTH)",
+      "definition": "Layout model that positions interactors around the central canvas. NORTH/SOUTH create horizontal strips.",
+      "example": "add(new JLabel(\"Controls\"), NORTH); add(new JButton(\"Go\"), SOUTH);"
+    },
+    {
+      "term": "ActionListener",
+      "definition": "Interface for receiving action events (e.g., button clicks, Enter in text fields).",
+      "example": "addActionListeners(); // Program listens for button actions"
+    },
+    {
+      "term": "actionPerformed(ActionEvent)",
+      "definition": "Callback invoked when an action occurs; write your response logic here.",
+      "example": "public void actionPerformed(ActionEvent e) { println(e.getActionCommand()); }"
+    },
+    {
+      "term": "ActionEvent",
+      "definition": "Event object describing an action (source component, command string, etc.).",
+      "example": "if (e.getSource() == nameField) handleName();"
+    },
+    {
+      "term": "JButton",
+      "definition": "Clickable button interactor that fires an ActionEvent on click.",
+      "example": "JButton clear = new JButton(\"Clear\"); add(clear, SOUTH);"
+    },
+    {
+      "term": "JTextField",
+      "definition": "Single-line text input. Pressing Enter can fire an ActionEvent if a listener is registered.",
+      "example": "JTextField tf = new JTextField(10); add(tf, SOUTH); tf.addActionListener(this);"
+    },
+    {
+      "term": "JCheckBox",
+      "definition": "Toggle interactor with checked/unchecked state; can use ItemListener or ActionListener.",
+      "example": "JCheckBox grid = new JCheckBox(\"Grid\"); add(grid, SOUTH);"
+    },
+    {
+      "term": "JRadioButton",
+      "definition": "Mutually exclusive option when grouped via ButtonGroup; fires actions on selection.",
+      "example": "JRadioButton red = new JRadioButton(\"Red\"); add(red, SOUTH);"
+    },
+    {
+      "term": "ButtonGroup",
+      "definition": "Groups radio buttons so only one is selected at a time.",
+      "example": "ButtonGroup g = new ButtonGroup(); g.add(red); g.add(blue);"
+    },
+    {
+      "term": "JComboBox",
+      "definition": "Drop-down list allowing one selection; can fire action events on selection change.",
+      "example": "JComboBox<String> shapes = new JComboBox<>(); shapes.addItem(\"Circle\"); add(shapes, SOUTH);"
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Where should you typically create and add interactors for a CS106A GraphicsProgram?",
+      "options": [
+        "A) init()",
+        "B) run()",
+        "C) main()",
+        "D) paintComponent()"
+      ],
+      "correctAnswer": "A",
+      "explanation": "init() is for building the UI and registering listeners so controls are ready when run() starts.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which method is called when a JButton is clicked?",
+      "options": [
+        "A) mouseClicked(MouseEvent e)",
+        "B) actionPerformed(ActionEvent e)",
+        "C) buttonClicked(ActionEvent e)",
+        "D) onClick()"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Buttons fire ActionEvents, which are handled by actionPerformed.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "To have a JTextField trigger an event when pressing Enter, you must:",
+      "options": [
+        "A) Do nothing; it always fires automatically",
+        "B) Call addActionListeners() with no further setup",
+        "C) Register a listener on the field with textField.addActionListener(this)",
+        "D) Put the field in the CENTER region"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Text fields require an explicit ActionListener registration on the field (or equivalent).",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which region creates a horizontal control strip at the bottom of the window?",
+      "options": [
+        "A) NORTH",
+        "B) SOUTH",
+        "C) EAST",
+        "D) WEST"
+      ],
+      "correctAnswer": "B",
+      "explanation": "SOUTH adds components in a strip across the bottom.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What does e.getActionCommand() typically return for a JButton if not explicitly set?",
+      "options": [
+        "A) The memory address of the button",
+        "B) The text label of the button",
+        "C) The region where the button was added",
+        "D) The class name of the button"
+      ],
+      "correctAnswer": "B",
+      "explanation": "By default, the action command is the button’s label unless changed via setActionCommand.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "You need mutually exclusive color choices (Red/Blue/Green). Which setup is correct?",
+      "options": [
+        "A) Three JCheckBoxes with no group",
+        "B) Three JRadioButtons with a ButtonGroup",
+        "C) One JComboBox and one JCheckBox",
+        "D) One JTextField listing colors"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Radio buttons become mutually exclusive when placed in a ButtonGroup.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which statement about event-driven programming is TRUE?",
+      "options": [
+        "A) You must call actionPerformed manually when a user clicks",
+        "B) The framework calls your listener methods when events occur",
+        "C) Events can only come from the mouse, not from interactors",
+        "D) Listeners are optional; interactors update themselves"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Listeners are callbacks invoked by the framework upon user actions.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Given: JButton add = new JButton(\"Add\"); add(add, SOUTH); addActionListeners(); In actionPerformed, which is NOT a good way to identify this button?",
+      "options": [
+        "A) if (e.getActionCommand().equals(\"Add\"))",
+        "B) if (e.getSource() == add)",
+        "C) switch (e.getActionCommand()) { case \"Add\": ... }",
+        "D) if (e.getActionCommand() == \"Add\")"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Use .equals() to compare strings in Java; == compares references.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is the main reason to place long-running loops and animations in run() rather than init()?",
+      "options": [
+        "A) init() cannot access interactors",
+        "B) init() is called repeatedly, run() only once",
+        "C) The window displays after init(), so run() won’t block showing of the GUI",
+        "D) init() cannot create components"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The GUI becomes visible after init(); running long tasks in init() can delay UI readiness.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which statement best describes how to place a label in the control strip and a shape on the canvas?",
+      "options": [
+        "A) add(new JLabel(\"Hi\"), CENTER); add(new GRect(10,10), SOUTH);",
+        "B) add(new JLabel(\"Hi\"), SOUTH); add(new GRect(10,10));",
+        "C) add(new GRect(10,10), SOUTH); add(new JLabel(\"Hi\"));",
+        "D) add(new JLabel(\"Hi\")); add(new GRect(10,10), NORTH);"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Swing components go to regions (e.g., SOUTH). Graphics objects are added to the canvas with add(GObject).",
+      "difficulty": "beginner"
+    }
+  ],
+  "pseudocodeExamples": [
+    {
+      "title": "Click Counter Button",
+      "description": "Demonstrates adding a button and label to SOUTH, registering action listeners, and updating text on click.",
+      "pseudocode": "initialize count to 0\nin init:\n  create label \"Count: 0\"; add to SOUTH\n  create button \"Count\"; add to SOUTH\n  call addActionListeners()\non actionPerformed(event):\n  if event's command is \"Count\":\n    increment count\n    update label text",
+      "javaCode": "import acm.program.*;\nimport acm.graphics.*;\nimport javax.swing.*;\nimport java.awt.event.*;\n\npublic class ClickCounter extends GraphicsProgram {\n    private int count = 0;\n    private JLabel label;\n\n    public void init() {\n        label = new JLabel(\"Count: 0\");\n        add(label, SOUTH);\n        add(new JButton(\"Count\"), SOUTH);\n        addActionListeners();\n    }\n\n    public void actionPerformed(ActionEvent e) {\n        if (e.getActionCommand().equals(\"Count\")) {\n            count++;\n            label.setText(\"Count: \" + count);\n        }\n    }\n}\n"
+    },
+    {
+      "title": "Text Field with Enter and Button",
+      "description": "Shows using a JTextField and a JButton to add text to the canvas. Enter in the field triggers the same behavior as clicking the button.",
+      "pseudocode": "in init:\n  create textField (width 12), label prompt, and button \"Add\"\n  add prompt, textField, and button to SOUTH in order\n  register: addActionListeners() and textField.addActionListener(this)\non actionPerformed(event):\n  if source is button or source is textField:\n    read text from textField\n    if non-empty: add new GLabel at a fixed position on canvas\n    clear textField",
+      "javaCode": "import acm.program.*;\nimport acm.graphics.*;\nimport javax.swing.*;\nimport java.awt.event.*;\n\npublic class TextAdder extends GraphicsProgram {\n    private JTextField input;\n\n    public void init() {\n        add(new JLabel(\"Text:\"), SOUTH);\n        input = new JTextField(12);\n        add(input, SOUTH);\n        add(new JButton(\"Add\"), SOUTH);\n        addActionListeners();\n        input.addActionListener(this);\n    }\n\n    public void actionPerformed(ActionEvent e) {\n        if (e.getActionCommand().equals(\"Add\") || e.getSource() == input) {\n            String s = input.getText().trim();\n            if (!s.isEmpty()) {\n                GLabel label = new GLabel(s, 20, 50);\n                add(label);\n                input.setText(\"\");\n            }\n        }\n    }\n}\n"
+    },
+    {
+      "title": "Radio Buttons to Change Shape Color",
+      "description": "Uses three JRadioButtons in a ButtonGroup to select a color for a GOval on the canvas.",
+      "pseudocode": "in init:\n  create radio buttons Red, Green, Blue\n  add to SOUTH and to a ButtonGroup\n  add a GOval to the canvas\n  call addActionListeners()\non actionPerformed(event):\n  if Red selected: set oval color to red\n  else if Green selected: set oval color to green\n  else if Blue selected: set oval color to blue",
+      "javaCode": "import acm.program.*;\nimport acm.graphics.*;\nimport javax.swing.*;\nimport java.awt.*;\nimport java.awt.event.*;\n\npublic class ColorChooser extends GraphicsProgram {\n    private GRect swatch;\n    private JRadioButton red, green, blue;\n\n    public void init() {\n        red = new JRadioButton(\"Red\");\n        green = new JRadioButton(\"Green\");\n        blue = new JRadioButton(\"Blue\");\n        ButtonGroup group = new ButtonGroup();\n        group.add(red);\n        group.add(green);\n        group.add(blue);\n        add(red, SOUTH);\n        add(green, SOUTH);\n        add(blue, SOUTH);\n        addActionListeners();\n\n        swatch = new GRect(50, 50, 100, 60);\n        swatch.setFilled(true);\n        swatch.setFillColor(Color.RED);\n        add(swatch);\n        red.setSelected(true);\n    }\n\n    public void actionPerformed(ActionEvent e) {\n        if (red.isSelected()) swatch.setFillColor(Color.RED);\n        else if (green.isSelected()) swatch.setFillColor(Color.GREEN);\n        else if (blue.isSelected()) swatch.setFillColor(Color.BLUE);\n    }\n}\n"
+    }
+  ],
+  "cheatsheet": {
+    "syntaxReference": [
+      "Add a button to the control strip:\nadd(new JButton(\"Go\"), SOUTH);",
+      "Register program-wide action listeners for buttons:\naddActionListeners();",
+      "Register Enter listener on a text field:\nJTextField tf = new JTextField(10);\nadd(tf, SOUTH);\ntf.addActionListener(this);",
+      "Identify event source vs command:\npublic void actionPerformed(ActionEvent e) {\n  Object src = e.getSource();\n  String cmd = e.getActionCommand();\n}",
+      "Group radio buttons:\nButtonGroup g = new ButtonGroup();\ng.add(red); g.add(green); g.add(blue);",
+      "Set a custom action command:\nJButton save = new JButton(\"💾 Save\");\nsave.setActionCommand(\"SAVE\");",
+      "Add a label and combo box to NORTH:\nadd(new JLabel(\"Shape:\"), NORTH);\nJComboBox<String> box = new JComboBox<>();\nbox.addItem(\"Circle\"); add(box, NORTH);",
+      "Enable/disable a control:\nrunBtn.setEnabled(false);\nrunBtn.setEnabled(true);",
+      "Parse integer from a text field safely:\ntry { int n = Integer.parseInt(tf.getText()); } catch (NumberFormatException ex) { /* handle */ }",
+      "Add a graphic to the canvas:\nGRect r = new GRect(20, 20, 80, 40);\nr.setFilled(true);\nadd(r);"
+    ],
+    "commonPatterns": [
+      "Control strip with dispatch by command:\npublic void init() {\n  add(new JButton(\"Start\"), SOUTH);\n  add(new JButton(\"Stop\"), SOUTH);\n  addActionListeners();\n}\npublic void actionPerformed(ActionEvent e) {\n  switch (e.getActionCommand()) {\n    case \"Start\": start(); break;\n    case \"Stop\": stop(); break;\n  }\n}",
+      "Text field and Enter mirrors button action:\npublic void init() {\n  nameField = new JTextField(12);\n  add(nameField, SOUTH);\n  add(new JButton(\"Greet\"), SOUTH);\n  addActionListeners();\n  nameField.addActionListener(this);\n}\npublic void actionPerformed(ActionEvent e) {\n  if (e.getActionCommand().equals(\"Greet\") || e.getSource() == nameField) greet();\n}",
+      "Radio buttons control appearance:\nButtonGroup g = new ButtonGroup();\ng.add(lineRB); g.add(fillRB);\nadd(lineRB, SOUTH); add(fillRB, SOUTH);\npublic void actionPerformed(ActionEvent e) {\n  shape.setFilled(fillRB.isSelected());\n}"
+    ],
+    "quickTips": [
+      "Name your interactors clearly (e.g., drawButton, sizeField) and keep them as instance variables if accessed in handlers.",
+      "Prefer comparing sources (e.getSource() == buttonVar) when multiple buttons share the same label.",
+      "Keep the UI responsive: avoid long blocking loops in actionPerformed; use run() with pauses or break work into smaller steps."
+    ]
+  }
+}
