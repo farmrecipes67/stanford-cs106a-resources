@@ -1,0 +1,23 @@
+{
+  "topic": "File I/O",
+  "examples": [
+    {
+      "title": "Count lines containing a keyword",
+      "description": "Reads a text file line-by-line and counts how many lines contain a given substring.",
+      "pseudocode": "input: path to file, keyword\nset count to 0\nopen the file for reading (line-by-line)\nfor each line in the file:\n  if line contains keyword:\n    increment count\nclose the file\nprint count",
+      "javaCode": "import java.io.*;\nimport java.nio.file.*;\nimport java.nio.charset.StandardCharsets;\n\npublic class CountKeywordLines {\n  public static void main(String[] args) throws IOException {\n    Path path = Paths.get(\"input.txt\");\n    String keyword = \"error\";\n    int count = 0;\n    try (BufferedReader br = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {\n      for (String line; (line = br.readLine()) != null; ) {\n        if (line.contains(keyword)) count++;\n      }\n    }\n    System.out.println(\"Lines containing '\" + keyword + \"': \" + count);\n  }\n}\n"
+    },
+    {
+      "title": "Copy file with line numbers",
+      "description": "Reads an input file and writes an output file where each line is prefixed with its line number.",
+      "pseudocode": "input: inPath, outPath\nopen reader for inPath\nopen writer for outPath\nlineNo = 1\nfor each line in reader:\n  write lineNo + \": \" + line to writer\n  increment lineNo\nclose both files",
+      "javaCode": "import java.io.*;\nimport java.nio.file.*;\nimport java.nio.charset.StandardCharsets;\n\npublic class NumberedCopy {\n  public static void main(String[] args) throws IOException {\n    Path inPath = Paths.get(\"in.txt\");\n    Path outPath = Paths.get(\"out.txt\");\n    try (BufferedReader br = Files.newBufferedReader(inPath, StandardCharsets.UTF_8);\n         PrintWriter pw = new PrintWriter(Files.newBufferedWriter(outPath, StandardCharsets.UTF_8))) {\n      int lineNo = 1;\n      for (String line; (line = br.readLine()) != null; ) {\n        pw.println(lineNo + \": \" + line);\n        lineNo++;\n      }\n    }\n  }\n}\n"
+    },
+    {
+      "title": "Sum a column from TSV (tab-separated values)",
+      "description": "Parses a TSV file and sums numeric values from a specified zero-based column index.",
+      "pseudocode": "input: path to TSV file, columnIndex\nsum = 0\nopen file for reading\nfor each line:\n  split line by tab into fields\n  if fields length > columnIndex:\n    parse fields[columnIndex] as double\n    add to sum\nclose file\nprint sum",
+      "javaCode": "import java.io.*;\nimport java.nio.file.*;\nimport java.nio.charset.StandardCharsets;\n\npublic class SumTSVColumn {\n  public static void main(String[] args) throws IOException {\n    Path path = Paths.get(\"data.tsv\");\n    int columnIndex = 2;\n    double sum = 0.0;\n    try (BufferedReader br = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {\n      String line;\n      while ((line = br.readLine()) != null) {\n        String[] fields = line.split(\"\\t\", -1);\n        if (fields.length > columnIndex && !fields[columnIndex].isEmpty()) {\n          sum += Double.parseDouble(fields[columnIndex]);\n        }\n      }\n    }\n    System.out.println(\"Sum: \" + sum);\n  }\n}\n"
+    }
+  ]
+}
