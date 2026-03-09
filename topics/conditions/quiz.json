@@ -1,0 +1,126 @@
+{
+  "topic": "Conditions",
+  "totalQuestions": 10,
+  "questions": [
+    {
+      "question": "What is the result of: true || false && false?",
+      "options": [
+        "A) true",
+        "B) false",
+        "C) It depends on short-circuiting",
+        "D) Compiler error"
+      ],
+      "correctAnswer": "A",
+      "explanation": "&& has higher precedence than ||, so false && false is false, then true || false is true.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Given: int x = 10, y = 3; if (x > 5) if (y > 5) System.out.println(\"A\"); else System.out.println(\"B\"); What prints?",
+      "options": [
+        "A) A",
+        "B) B",
+        "C) Nothing",
+        "D) Compiler error"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The else pairs with the nearest unmatched if (y > 5). Since y > 5 is false, the else branch prints B.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "How do you correctly test two Strings s and t for content equality?",
+      "options": [
+        "A) if (s == t)",
+        "B) if (s.equals(t))",
+        "C) if (s.compareTo(t) == 1)",
+        "D) if (s.same(t))"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Use equals to compare the contents of String objects. == compares references.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What does this print? int n = 0; if (n > 0) System.out.print(\"pos\"); else if (n == 0) System.out.print(\"zero\"); else System.out.print(\"neg\");",
+      "options": [
+        "A) pos",
+        "B) zero",
+        "C) neg",
+        "D) Nothing"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Since n == 0, the else-if branch executes.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "String s = null; boolean b = (s != null && s.length() > 0); What happens?",
+      "options": [
+        "A) b is false; no exception is thrown",
+        "B) b is true",
+        "C) A NullPointerException is thrown",
+        "D) Compiler error"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Short-circuiting prevents s.length() from running when s != null is false, so b becomes false safely.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which is logically equivalent to !(x > 10 || y == 0)?",
+      "options": [
+        "A) x > 10 && y == 0",
+        "B) x <= 10 && y != 0",
+        "C) x >= 10 || y != 0",
+        "D) !(x > 10) || !(y == 0)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Apply De Morgan's law: !(A || B) == (!A && !B). ! (x > 10) is x <= 10; ! (y == 0) is y != 0.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "String label = (7 % 2 == 0) ? \"even\" : \"odd\"; What is label?",
+      "options": [
+        "A) even",
+        "B) odd",
+        "C) null",
+        "D) 7"
+      ],
+      "correctAnswer": "B",
+      "explanation": "7 is not divisible by 2, so the false branch \"odd\" is chosen.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "char g = 'B'; switch (g) { case 'A': case 'B': System.out.print(\"pass\"); break; default: System.out.print(\"other\"); } What prints?",
+      "options": [
+        "A) pass",
+        "B) other",
+        "C) passother",
+        "D) Nothing"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Cases 'A' and 'B' share the same print before break; for 'B' it prints pass.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which is the best way to check if doubles a and b are approximately equal?",
+      "options": [
+        "A) if (a == b)",
+        "B) if (Math.abs(a - b) < 1e-9)",
+        "C) if (a.equals(b))",
+        "D) if (a - b == 0.0)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Floating-point rounding makes exact equality unreliable; use an epsilon tolerance.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is wrong with: if (x = 5) { ... }",
+      "options": [
+        "A) Use == for comparison; = is assignment",
+        "B) Use equals for comparison",
+        "C) Use := for assignment",
+        "D) Nothing; it assigns 5 and tests it"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Java requires a boolean in an if condition; x = 5 assigns an int and causes a compile-time type error. Use x == 5.",
+      "difficulty": "beginner"
+    }
+  ]
+}
