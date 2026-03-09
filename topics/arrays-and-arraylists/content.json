@@ -1,0 +1,277 @@
+{
+  "topic": "Arrays and ArrayLists",
+  "topicIndex": 8,
+  "overview": "In CS106A, Arrays and ArrayLists are your primary tools for managing collections of values. Arrays provide fast, indexed access with a fixed size, making them efficient and predictable for tasks like processing sensor readings, image pixels, or characters in a string. You’ll learn to declare, initialize, index, iterate, and perform common operations such as searching, aggregating, and copying. You’ll also encounter multidimensional arrays (e.g., 2D arrays) to represent grids, boards, and matrices.\n\nArrayList is a resizable, object-based collection from Java’s standard library. It trades a bit of overhead for flexibility: you can add, remove, and insert elements dynamically without managing capacity manually. In CS106A you’ll practice when to choose arrays vs. ArrayList, how generics and autoboxing work (e.g., ArrayList<Integer>), how to iterate safely (for-each, indices, iterators), and how to avoid common pitfalls like off-by-one errors, aliasing instead of copying, and modifying lists during iteration.",
+  "teachingMaterials": {
+    "keyConceptsSummary": "Arrays are fixed-size, contiguous collections that store primitives or object references; they support O(1) indexed access via zero-based indices and expose their size through the length field. They can be single- or multi-dimensional (e.g., int[][] for grids), and elements default to type-appropriate values (0 for numeric primitives, false for boolean, null for object references). Common operations include traversal (for and enhanced for), searching, aggregation (sum, min/max), copying (Arrays.copyOf, clone, System.arraycopy), and sorting (Arrays.sort).\n\nArrayList<E> is a dynamic, resizable array-backed list for objects. You specify the element type via generics (e.g., ArrayList<String>), and interact through methods like add, get, set, remove, size, contains, and indexOf. It cannot store primitives directly; use wrapper types (Integer, Double) with autoboxing/unboxing. Iteration can use indices, enhanced for, listIterator/iterator, or higher-level operations like removeIf. Watch out for ConcurrentModificationException when removing during enhanced for, and understand the difference between logical size (size()) and capacity. Choose arrays for fixed-size, performance-critical tasks and ArrayList for flexible, dynamic collections.",
+    "learningObjectives": [
+      "Declare, initialize, and index into 1D and 2D arrays; use length and nested loops effectively.",
+      "Use ArrayList with generics to add, access, modify, and remove elements; differentiate size() from capacity.",
+      "Select appropriate iteration strategies (indexed for, enhanced for, iterator) and know when each is safe to modify.",
+      "Avoid common pitfalls: off-by-one errors, ArrayIndexOutOfBoundsException, aliasing vs copying, and modification during iteration.",
+      "Convert between arrays and ArrayLists; apply utility methods (Arrays.sort, Arrays.equals, Collections.sort, removeIf)."
+    ],
+    "commonMistakes": [
+      "Using arr[arr.length] or negative indices, causing ArrayIndexOutOfBoundsException.",
+      "Confusing array length with ArrayList size() or expecting ArrayList to hold primitives directly.",
+      "Aliasing arrays (int[] b = a) when a true copy is intended, leading to unintended side effects."
+    ],
+    "tipsForSuccess": [
+      "Draw memory diagrams for arrays and ArrayLists to reason about references, aliasing, and null values.",
+      "Write small helper methods (e.g., max, copy, toList) and unit-test them to localize bugs like off-by-one errors.",
+      "Prefer enhanced for for read-only traversal; use indices or iterators when you need to modify during traversal."
+    ]
+  },
+  "vocabulary": [
+    {
+      "term": "Array",
+      "definition": "A fixed-size, indexed collection storing elements of a single type (primitives or object references).",
+      "example": "int[] a = new int[10];"
+    },
+    {
+      "term": "Element",
+      "definition": "An individual value stored at a position in an array or ArrayList.",
+      "example": "a[2] = 42; // sets the third element"
+    },
+    {
+      "term": "Index",
+      "definition": "Zero-based position used to access elements in arrays and lists.",
+      "example": "int first = a[0];"
+    },
+    {
+      "term": "length (array)",
+      "definition": "A public field on arrays that gives the number of elements.",
+      "example": "for (int i = 0; i < a.length; i++) { ... }"
+    },
+    {
+      "term": "ArrayIndexOutOfBoundsException",
+      "definition": "Runtime exception thrown when accessing an invalid array index.",
+      "example": "int x = a[a.length]; // throws at runtime"
+    },
+    {
+      "term": "Enhanced for loop",
+      "definition": "Simplified loop for iterating over arrays or Iterable collections without indices.",
+      "example": "for (int x : a) { sum += x; }"
+    },
+    {
+      "term": "ArrayList",
+      "definition": "A resizable, ordered collection backed by an array; stores object references.",
+      "example": "ArrayList<String> names = new ArrayList<>();"
+    },
+    {
+      "term": "Generics (type parameter)",
+      "definition": "Specifies the element type of a collection, providing type safety at compile time.",
+      "example": "ArrayList<Integer> nums = new ArrayList<>();"
+    },
+    {
+      "term": "Autoboxing",
+      "definition": "Automatic conversion from primitive to corresponding wrapper type.",
+      "example": "nums.add(5); // int 5 becomes Integer.valueOf(5)"
+    },
+    {
+      "term": "Unboxing",
+      "definition": "Automatic conversion from wrapper type to primitive.",
+      "example": "int x = nums.get(0); // Integer -> int"
+    },
+    {
+      "term": "Wrapper class",
+      "definition": "Object type that wraps a primitive (e.g., Integer for int).",
+      "example": "Integer n = Integer.valueOf(7);"
+    },
+    {
+      "term": "Shallow copy",
+      "definition": "A new array/list structure that reuses the same object references as the original.",
+      "example": "String[] b = a.clone(); // shallow copy of references"
+    },
+    {
+      "term": "Deep copy",
+      "definition": "A copy that duplicates nested objects as well, producing fully independent structures.",
+      "example": "// Requires manual cloning of each element"
+    },
+    {
+      "term": "Arrays utility class",
+      "definition": "Provides static methods for arrays: sort, copyOf, equals, fill, toString.",
+      "example": "Arrays.sort(a);"
+    },
+    {
+      "term": "Collections utility class",
+      "definition": "Provides algorithms for collections: sort, shuffle, reverse, frequency.",
+      "example": "Collections.sort(names);"
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Which declaration creates an int array of size 5?",
+      "options": [
+        "A) int[5] nums;",
+        "B) int[] nums = new int[5];",
+        "C) int nums = new int[5];",
+        "D) int[] nums = {5};"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Arrays are declared with type[], and new int[5] allocates space for 5 ints. The other options are invalid or create a size-1 array with a single element 5.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Given int[] a = {1, 2, 3}; how do you access the last element?",
+      "options": [
+        "A) a[a.length]",
+        "B) a[last]",
+        "C) a[a.length - 1]",
+        "D) a[-1]"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Valid indices are 0..a.length-1; the last element is at index a.length - 1.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which statement about size is correct?",
+      "options": [
+        "A) Arrays use size()",
+        "B) ArrayList uses length",
+        "C) Arrays use length; ArrayList uses size()",
+        "D) ArrayList has capacity() for element count"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Arrays expose a length field; ArrayList exposes a size() method. There is no length on ArrayList.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What happens with: for (Integer x : list) { if (x % 2 == 0) list.remove(x); }",
+      "options": [
+        "A) It safely removes all even numbers.",
+        "B) It throws ConcurrentModificationException.",
+        "C) It does not compile.",
+        "D) It silently skips some elements but succeeds."
+      ],
+      "correctAnswer": "B",
+      "explanation": "Modifying an ArrayList during an enhanced for triggers ConcurrentModificationException. Use an Iterator with remove() or list.removeIf(...).",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "With ArrayList<Integer> list, what does list.add(5) do?",
+      "options": [
+        "A) Compile error: must write new Integer(5).",
+        "B) Stores primitive int directly in the list.",
+        "C) Autoboxes to Integer(5) and adds it.",
+        "D) Converts list to int[] and appends 5."
+      ],
+      "correctAnswer": "C",
+      "explanation": "Autoboxing converts the primitive 5 to an Integer object automatically.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Given int[] a = {1,2,3}; which statement aliases the same underlying array rather than copying it?",
+      "options": [
+        "A) int[] b = a;",
+        "B) int[] b = Arrays.copyOf(a, a.length);",
+        "C) int[] b = a.clone();",
+        "D) System.arraycopy(a, 0, b, 0, a.length);"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Assigning b = a makes b refer to the same array. The others create or perform copies (clone/copyOf/System.arraycopy).",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What are default initial values for new int[3] and new String[3]?",
+      "options": [
+        "A) Uninitialized; compile error on access.",
+        "B) int[] -> 0s; String[] -> nulls.",
+        "C) int[] -> nulls; String[] -> \"\".",
+        "D) Garbage values in both."
+      ],
+      "correctAnswer": "B",
+      "explanation": "Numeric primitives default to 0; object references default to null.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which code correctly removes all even numbers from ArrayList<Integer> list?",
+      "options": [
+        "A) for (int i = 0; i < list.size(); i++) if (list.get(i) % 2 == 0) list.remove(i);",
+        "B) for (Integer x : list) if (x % 2 == 0) list.remove(x);",
+        "C) list.removeIf(x -> x % 2 == 0);",
+        "D) Collections.remove(list, x -> x % 2 == 0);"
+      ],
+      "correctAnswer": "C",
+      "explanation": "removeIf safely removes elements matching a predicate. A) skips some elements; B) throws ConcurrentModificationException; D) is not a valid API.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Given int[][] m = new int[3][4]; which expression is the number of rows?",
+      "options": [
+        "A) m.length",
+        "B) m.size()",
+        "C) m[0].length",
+        "D) m.columns"
+      ],
+      "correctAnswer": "A",
+      "explanation": "For 2D arrays, outer length is the number of rows; inner length (m[0].length) is columns.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "How do you sort an ArrayList<String> names in ascending order?",
+      "options": [
+        "A) Arrays.sort(names);",
+        "B) Collections.sort(names);",
+        "C) names.sort();",
+        "D) names = names.sorted();"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Collections.sort(list) sorts a List in natural order. Arrays.sort is for arrays, and names.sort() requires an argument or Java 8 method reference but is not used as shown.",
+      "difficulty": "beginner"
+    }
+  ],
+  "pseudocodeExamples": [
+    {
+      "title": "Find maximum in an int array",
+      "description": "Iterate through an array to compute the maximum element; demonstrates indexed traversal and handling empty arrays.",
+      "pseudocode": "if array length is 0 then\n  return error or sentinel\nset max to array[0]\nfor i from 1 to array.length - 1 do\n  if array[i] > max then\n    max <- array[i]\nreturn max",
+      "javaCode": "public static int max(int[] a) {\n    if (a == null || a.length == 0) {\n        throw new IllegalArgumentException(\"empty array\");\n    }\n    int max = a[0];\n    for (int i = 1; i < a.length; i++) {\n        if (a[i] > max) {\n            max = a[i];\n        }\n    }\n    return max;\n}"
+    },
+    {
+      "title": "Filter positives from an array into an ArrayList",
+      "description": "Convert a primitive array to an ArrayList by selecting only positive numbers; demonstrates iteration, autoboxing, and dynamic growth.",
+      "pseudocode": "create empty list L\nfor each value v in input array A do\n  if v > 0 then\n    append v to L\nreturn L",
+      "javaCode": "public static ArrayList<Integer> positives(int[] a) {\n    ArrayList<Integer> list = new ArrayList<>();\n    for (int v : a) {\n        if (v > 0) {\n            list.add(v); // autoboxing\n        }\n    }\n    return list;\n}"
+    },
+    {
+      "title": "Transpose a square matrix (2D array)",
+      "description": "Swap elements across the diagonal in-place; demonstrates nested loops and 2D indexing.",
+      "pseudocode": "let n be number of rows (and columns)\nfor i from 0 to n - 1 do\n  for j from i + 1 to n - 1 do\n    swap matrix[i][j] and matrix[j][i]",
+      "javaCode": "public static void transposeInPlace(int[][] m) {\n    int n = m.length;\n    for (int i = 0; i < n; i++) {\n        for (int j = i + 1; j < n; j++) {\n            int tmp = m[i][j];\n            m[i][j] = m[j][i];\n            m[j][i] = tmp;\n        }\n    }\n}"
+    }
+  ],
+  "cheatsheet": {
+    "syntaxReference": [
+      "Declare and allocate: int[] a = new int[5];",
+      "Declare and initialize: String[] words = {\"hi\", \"there\"};",
+      "Access/assign: a[2] = 42; int x = a[0];",
+      "Array length: int n = a.length; // no parentheses",
+      "2D array: int[][] grid = new int[rows][cols]; int cols = grid[0].length;",
+      "ArrayList declaration: ArrayList<String> list = new ArrayList<>();",
+      "Add/get/set/remove: list.add(\"hi\"); String s = list.get(0); list.set(0, \"bye\"); list.remove(0);",
+      "Size of list: int n = list.size();",
+      "Enhanced for: for (int v : a) { ... } for (String s : list) { ... }",
+      "Copy arrays: int[] b = Arrays.copyOf(a, a.length); // or a.clone()",
+      "System.arraycopy: System.arraycopy(src, 0, dst, 0, src.length);",
+      "Sort: Arrays.sort(a); Collections.sort(list);",
+      "Convert array->list (objects): ArrayList<String> L = new ArrayList<>(Arrays.asList(words));",
+      "Remove with predicate: list.removeIf(x -> x % 2 == 0);",
+      "Iterator removal: for (Iterator<Integer> it = list.iterator(); it.hasNext();) { if (it.next() % 2 == 0) it.remove(); }"
+    ],
+    "commonPatterns": [
+      "Sum array elements: int sum = 0; for (int x : a) { sum += x; }",
+      "Find index of target in array: int idx = -1; for (int i = 0; i < a.length; i++) { if (a[i] == target) { idx = i; break; } }",
+      "Resize array via copy: int[] bigger = Arrays.copyOf(a, a.length * 2);",
+      "Build list from array (primitives): ArrayList<Integer> L = new ArrayList<>(); for (int v : a) { L.add(v); }",
+      "Remove while iterating safely: list.removeIf(s -> s.isEmpty()); // or use Iterator.remove()",
+      "2D traversal: for (int r = 0; r < grid.length; r++) { for (int c = 0; c < grid[r].length; c++) { /* use grid[r][c] */ } }",
+      "Sort with custom order: list.sort(Comparator.reverseOrder());"
+    ],
+    "quickTips": [
+      "Use arrays for fixed-size data and tight inner loops; use ArrayList when you need dynamic resizing or frequent insertions/removals at the end.",
+      "Remember: arrays have length (field), ArrayList has size() (method). This catches many bugs.",
+      "When you intend to copy an array, do not write b = a; use Arrays.copyOf, clone, or System.arraycopy."
+    ]
+  }
+}
