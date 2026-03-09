@@ -1,0 +1,81 @@
+{
+  "topic": "File I/O",
+  "totalTerms": 15,
+  "terms": [
+    {
+      "term": "Path",
+      "definition": "An object representing a file system path (location) to a file or directory.",
+      "example": "Path p = Paths.get(\"data\", \"input.txt\");"
+    },
+    {
+      "term": "File",
+      "definition": "Legacy class representing file and directory pathnames; often used with Scanner or to check existence.",
+      "example": "File f = new File(\"output.txt\"); boolean exists = f.exists();"
+    },
+    {
+      "term": "Scanner",
+      "definition": "A text parser that reads tokens or lines from an input source such as a File or InputStream.",
+      "example": "Scanner sc = new Scanner(new File(\"nums.txt\")); int n = sc.nextInt();"
+    },
+    {
+      "term": "FileReader",
+      "definition": "A character stream for reading text from files; often wrapped by BufferedReader.",
+      "example": "Reader r = new FileReader(\"input.txt\");"
+    },
+    {
+      "term": "BufferedReader",
+      "definition": "Adds buffering and convenient readLine() to another Reader for efficient text input.",
+      "example": "BufferedReader br = new BufferedReader(new FileReader(\"in.txt\")); String line = br.readLine();"
+    },
+    {
+      "term": "FileWriter",
+      "definition": "A character stream for writing text to files; often wrapped by BufferedWriter or PrintWriter.",
+      "example": "Writer w = new FileWriter(\"out.txt\"); w.write(\"Hello\\n\");"
+    },
+    {
+      "term": "PrintWriter",
+      "definition": "A writer with convenient print/println/printf methods for formatted text output.",
+      "example": "try (PrintWriter pw = new PrintWriter(\"out.txt\")) { pw.println(\"Hi\"); }"
+    },
+    {
+      "term": "Files",
+      "definition": "Utility class (java.nio.file) with static methods for common file operations.",
+      "example": "List<String> lines = Files.readAllLines(Paths.get(\"in.txt\"));"
+    },
+    {
+      "term": "Paths",
+      "definition": "Factory class for creating Path instances from strings or URI.",
+      "example": "Path p = Paths.get(\"logs/app.log\");"
+    },
+    {
+      "term": "try-with-resources",
+      "definition": "Language construct that automatically closes resources (e.g., Readers, Writers) when the block exits.",
+      "example": "try (Scanner sc = new Scanner(new File(\"in.txt\"))) { /* use sc */ }"
+    },
+    {
+      "term": "IOException",
+      "definition": "A checked exception signaling a general I/O error (read/write/close failures).",
+      "example": "try { Files.readAllBytes(Paths.get(\"x\")); } catch (IOException e) { /* handle */ }"
+    },
+    {
+      "term": "FileNotFoundException",
+      "definition": "A checked exception thrown when a file cannot be found when opening for read/write.",
+      "example": "new Scanner(new File(\"missing.txt\")); // may throw FileNotFoundException"
+    },
+    {
+      "term": "Delimiter",
+      "definition": "A character or pattern that separates tokens when parsing text.",
+      "example": "sc.useDelimiter(\"\\\\t\"); // tab-separated values"
+    },
+    {
+      "term": "UTF-8",
+      "definition": "A common Unicode text encoding; recommended default for cross-platform text files.",
+      "example": "new Scanner(new File(\"in.txt\"), java.nio.charset.StandardCharsets.UTF_8);"
+    },
+    {
+      "term": "Line separator",
+      "definition": "The newline sequence used to end a line (e.g., \\n on Unix).",
+      "example": "pw.println(\"First line\"); // writes a line separator"
+    }
+  ]
+}
