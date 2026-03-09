@@ -1,0 +1,268 @@
+{
+  "topic": "Collections and HashMaps",
+  "topicIndex": 14,
+  "overview": "In CS106A, Collections give you flexible, resizable containers beyond primitive arrays. They help you store, search, and organize data using standard interfaces like List, Set, and Map. Lists preserve order and allow duplicates, Sets enforce uniqueness, and Maps associate keys with values. You will use concrete implementations such as ArrayList, HashSet, and HashMap to build real programs like word counters, contact books, and recommendation helpers.\n\nHashMap is a workhorse structure that lets you look up values by key in expected constant time. Understanding how hashing works (keys map to buckets using hashCode) and how equality is determined (equals) allows you to store custom objects correctly and efficiently. With a few patterns—like counting frequencies with getOrDefault, using a Set to deduplicate, and iterating entrySet for performance—you can express powerful algorithms with concise, readable code.",
+  "teachingMaterials": {
+    "keyConceptsSummary": "Collections are interfaces and classes that manage groups of objects. The core interfaces are Collection (root), List (ordered, allows duplicates), Set (no duplicates), and Map (key–value associations, not a Collection). Implementations differ in performance characteristics: ArrayList offers fast random access and amortized O(1) append; LinkedList offers O(1) insert/remove at ends but O(n) access; HashSet/HashMap provide expected O(1) add/contains/get/put but do not preserve order. TreeSet/TreeMap maintain sorted order with O(log n) operations.\n\nHashMap stores entries in buckets indexed by the key’s hashCode. When multiple keys map to the same bucket, collisions are handled via chaining (linked lists or trees in modern JDKs). Correctness and performance rely on the equals/hashCode contract: equal objects must have equal hash codes. Key operations include put (insert/replace), get (lookup), containsKey, remove, keySet, values, and entrySet. Common idioms include counting occurrences (getOrDefault), inverting a map, grouping values in a Map<K, List<V>>, and using a Set to track seen items.\n\nIteration is typically done with enhanced for loops: for (E e : collection) and for (Map.Entry<K,V> entry : map.entrySet()). When you need to mutate while iterating over a Collection (not a Map view), use an Iterator and its remove method to avoid ConcurrentModificationException. Be mindful of generic types for type safety and readability.",
+    "learningObjectives": [
+      "Choose the appropriate Collection type (List, Set, Map) for a given problem.",
+      "Use HashMap and HashSet to achieve expected O(1) lookups, inserts, and membership tests.",
+      "Implement frequency counting, grouping, and deduplication patterns with Maps and Sets.",
+      "Correctly override equals and hashCode for custom key types used in hash-based collections.",
+      "Iterate over Collections and Maps safely and efficiently using enhanced for loops and Iterators."
+    ],
+    "commonMistakes": [
+      "Overriding equals without overriding hashCode for keys used in HashMap/HashSet, causing lookups to fail.",
+      "Modifying a Collection inside an enhanced for loop (e.g., calling remove) and triggering ConcurrentModificationException.",
+      "Using the wrong iteration view of a Map (e.g., iterating keySet then calling get repeatedly instead of iterating entrySet)."
+    ],
+    "tipsForSuccess": [
+      "Pick the simplest structure that meets your performance needs; default to ArrayList, HashSet, and HashMap unless order or sorting is required.",
+      "Leverage helper methods like getOrDefault, putIfAbsent, and computeIfAbsent to simplify map updates.",
+      "Write small tests to confirm map/set behavior with edge cases (missing keys, duplicates, nulls) before integrating into larger programs."
+    ]
+  },
+  "vocabulary": [
+    {
+      "term": "Collection",
+      "definition": "The root Java interface for groups of objects; implemented by structures like List and Set.",
+      "example": "Collection<String> c = new ArrayList<>();"
+    },
+    {
+      "term": "List",
+      "definition": "An ordered Collection that allows duplicates and positional access.",
+      "example": "List<Integer> nums = new ArrayList<>(); nums.add(42);"
+    },
+    {
+      "term": "ArrayList",
+      "definition": "Resizable array implementation of List with fast random access and amortized O(1) append.",
+      "example": "ArrayList<String> names = new ArrayList<>(); names.add(\"Ada\");"
+    },
+    {
+      "term": "LinkedList",
+      "definition": "Doubly-linked list implementation of List with O(1) add/remove at ends, O(n) random access.",
+      "example": "LinkedList<Integer> q = new LinkedList<>(); q.addFirst(1);"
+    },
+    {
+      "term": "Set",
+      "definition": "A Collection that contains no duplicate elements; membership-based.",
+      "example": "Set<String> seen = new HashSet<>(); seen.add(\"CS106A\");"
+    },
+    {
+      "term": "HashSet",
+      "definition": "Hash-table-backed Set offering expected O(1) add/contains/remove and no ordering guarantees.",
+      "example": "HashSet<Integer> uniq = new HashSet<>(); uniq.add(5); uniq.contains(5);"
+    },
+    {
+      "term": "Map",
+      "definition": "Associates keys to values; not a subtype of Collection.",
+      "example": "Map<String, Integer> freq = new HashMap<>();"
+    },
+    {
+      "term": "HashMap",
+      "definition": "Hash-table-backed Map providing expected O(1) get/put for well-distributed hash codes.",
+      "example": "HashMap<String, Integer> m = new HashMap<>(); m.put(\"k\", 1);"
+    },
+    {
+      "term": "Key",
+      "definition": "Identifier used to retrieve a value from a Map; must obey equals/hashCode contract for hash maps.",
+      "example": "map.put(studentId, grade); // studentId is the key"
+    },
+    {
+      "term": "Value",
+      "definition": "The data associated with a key in a Map.",
+      "example": "Integer g = map.get(studentId); // g is the value"
+    },
+    {
+      "term": "Map.Entry",
+      "definition": "A key–value pair view used when iterating over a Map via entrySet.",
+      "example": "for (Map.Entry<String,Integer> e : m.entrySet()) { System.out.println(e.getKey()); }"
+    },
+    {
+      "term": "Bucket",
+      "definition": "Internal slot in a hash table where entries with the same hash index are stored.",
+      "example": "// Conceptual: index = hash(key) % capacity -> bucket"
+    },
+    {
+      "term": "Collision",
+      "definition": "When two distinct keys hash to the same bucket; resolved by chaining or tree bins.",
+      "example": "// Multiple keys stored in one bucket list/tree"
+    },
+    {
+      "term": "Load factor",
+      "definition": "Ratio of entries to buckets that triggers resizing to maintain performance.",
+      "example": "new HashMap<>(16, 0.75f) // capacity 16, load factor 0.75"
+    },
+    {
+      "term": "Iterator",
+      "definition": "An object for traversing a Collection with optional safe removal during iteration.",
+      "example": "Iterator<String> it = list.iterator(); while (it.hasNext()) { it.next(); }"
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Which Collection is best for fast membership tests and preventing duplicates?",
+      "options": [
+        "A) ArrayList",
+        "B) LinkedList",
+        "C) HashSet",
+        "D) TreeMap"
+      ],
+      "correctAnswer": "C",
+      "explanation": "HashSet provides expected O(1) add/contains and enforces uniqueness.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What does map.getOrDefault(key, d) return when key is not in the map?",
+      "options": [
+        "A) null",
+        "B) d",
+        "C) throws NoSuchElementException",
+        "D) an empty Optional"
+      ],
+      "correctAnswer": "B",
+      "explanation": "getOrDefault returns the provided default value when the key is absent.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What happens when you call put on a HashMap with a key that already exists?",
+      "options": [
+        "A) The call is ignored",
+        "B) The value is appended to a list automatically",
+        "C) The value is replaced and the old value is returned",
+        "D) A runtime error occurs"
+      ],
+      "correctAnswer": "C",
+      "explanation": "put replaces the old value for the key and returns the previous value (or null if none).",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which is the most efficient way to iterate keys and values of a HashMap?",
+      "options": [
+        "A) for (K k : map.keySet()) { V v = map.get(k); }",
+        "B) for (int i = 0; i < map.size(); i++) { ... }",
+        "C) for (Map.Entry<K,V> e : map.entrySet()) { K k = e.getKey(); V v = e.getValue(); }",
+        "D) Use map.values().toString()"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Iterating entrySet avoids repeated lookups and is the standard pattern.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "ArrayList get(i) is usually what time complexity?",
+      "options": [
+        "A) O(1)",
+        "B) O(log n)",
+        "C) O(n)",
+        "D) O(n log n)"
+      ],
+      "correctAnswer": "A",
+      "explanation": "ArrayList provides O(1) random access because it uses a backing array.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "If you override equals in a key class used in a HashMap, what must you also override?",
+      "options": [
+        "A) toString",
+        "B) compareTo",
+        "C) hashCode",
+        "D) clone"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The equals/hashCode contract requires that equal objects have equal hash codes.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is the expected (average) time complexity of HashMap get when hash codes are well-distributed?",
+      "options": [
+        "A) O(1)",
+        "B) O(log n)",
+        "C) O(n)",
+        "D) O(n log n)"
+      ],
+      "correctAnswer": "A",
+      "explanation": "HashMap is designed for constant-time average get/put with good hash distribution.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which statement about HashSet is true?",
+      "options": [
+        "A) It preserves insertion order",
+        "B) It allows duplicate elements",
+        "C) It is backed by a hash table",
+        "D) It sorts elements by natural order"
+      ],
+      "correctAnswer": "C",
+      "explanation": "HashSet is hash-table-backed and does not guarantee order or allow duplicates.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "You need to group students by their major (Map<String, List<String>>). Which update is most concise in Java 8+?",
+      "options": [
+        "A) map.put(major, new ArrayList<>()); map.get(major).add(name);",
+        "B) map.computeIfAbsent(major, k -> new ArrayList<>()).add(name);",
+        "C) map.getOrDefault(major, new ArrayList<>()).add(name);",
+        "D) map.putIfAbsent(major, List.of(name));"
+      ],
+      "correctAnswer": "B",
+      "explanation": "computeIfAbsent creates and inserts the list once, then returns it for the add.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is a safe way to remove items from a List while iterating?",
+      "options": [
+        "A) Use enhanced for and call list.remove(e) inside the loop",
+        "B) Iterate with an Iterator and call iterator.remove()",
+        "C) Convert to array and remove from the original list during iteration",
+        "D) Call list.clear() at the end"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Iterator.remove is the supported mechanism to avoid ConcurrentModificationException.",
+      "difficulty": "advanced"
+    }
+  ],
+  "pseudocodeExamples": [
+    {
+      "title": "Count word frequencies with HashMap",
+      "description": "Demonstrates using getOrDefault to count occurrences of strings.",
+      "pseudocode": "create empty map counts from String to Integer\nfor each word in words:\n  old = counts.getOrDefault(word, 0)\n  counts.put(word, old + 1)\nprint counts",
+      "javaCode": "import java.util.*;\n\npublic class WordCountDemo {\n  public static Map<String,Integer> countWords(List<String> words) {\n    Map<String,Integer> counts = new HashMap<>();\n    for (String w : words) {\n      counts.put(w, counts.getOrDefault(w, 0) + 1);\n    }\n    return counts;\n  }\n\n  public static void main(String[] args) {\n    List<String> words = Arrays.asList(\"to\", \"be\", \"or\", \"not\", \"to\", \"be\");\n    System.out.println(countWords(words));\n  }\n}"
+    },
+    {
+      "title": "Invert a Map (value to set of keys)",
+      "description": "Builds a reverse index from Map<K,V> to Map<V, Set<K>>.",
+      "pseudocode": "create empty map inverse from V to Set<K>\nfor each (k, v) in original map:\n  if v not in inverse:\n    inverse[v] = empty set\n  add k to inverse[v]\nreturn inverse",
+      "javaCode": "import java.util.*;\n\npublic class InvertMapDemo {\n  public static <K,V> Map<V, Set<K>> invert(Map<K,V> original) {\n    Map<V, Set<K>> inverse = new HashMap<>();\n    for (Map.Entry<K,V> e : original.entrySet()) {\n      V v = e.getValue();\n      K k = e.getKey();\n      inverse.computeIfAbsent(v, key -> new HashSet<>()).add(k);\n    }\n    return inverse;\n  }\n\n  public static void main(String[] args) {\n    Map<String,String> advisor = new HashMap<>();\n    advisor.put(\"Alice\", \"ProfX\");\n    advisor.put(\"Bob\", \"ProfY\");\n    advisor.put(\"Cara\", \"ProfX\");\n    System.out.println(invert(advisor));\n  }\n}"
+    },
+    {
+      "title": "Group anagrams using canonical keys",
+      "description": "Uses a sorted-character key to group words that are anagrams.",
+      "pseudocode": "create empty map groups from String to List<String>\nfor each word:\n  key = sort letters of word\n  list = groups.get(key)\n  if list is null:\n    list = new empty list; put key->list in map\n  add word to list\nreturn groups.values()",
+      "javaCode": "import java.util.*;\n\npublic class AnagramGroupsDemo {\n  private static String sortedKey(String s) {\n    char[] a = s.toCharArray();\n    Arrays.sort(a);\n    return new String(a);\n  }\n\n  public static Collection<List<String>> groupAnagrams(List<String> words) {\n    Map<String, List<String>> groups = new HashMap<>();\n    for (String w : words) {\n      String key = sortedKey(w);\n      groups.computeIfAbsent(key, k -> new ArrayList<>()).add(w);\n    }\n    return groups.values();\n  }\n\n  public static void main(String[] args) {\n    List<String> words = Arrays.asList(\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\");\n    System.out.println(groupAnagrams(words));\n  }\n}"
+    }
+  ],
+  "cheatsheet": {
+    "syntaxReference": [
+      "List<String> list = new ArrayList<>(); list.add(\"hi\"); String x = list.get(0);",
+      "Set<Integer> set = new HashSet<>(); set.add(5); boolean b = set.contains(5);",
+      "Map<String,Integer> m = new HashMap<>(); m.put(\"a\", 1); int v = m.getOrDefault(\"a\", 0);",
+      "for (String s : list) { System.out.println(s); }",
+      "for (Map.Entry<String,Integer> e : m.entrySet()) { System.out.println(e.getKey() + \": \" + e.getValue()); }",
+      "Iterator<String> it = list.iterator(); while (it.hasNext()) { String s = it.next(); if (s.isEmpty()) it.remove(); }",
+      "m.computeIfAbsent(\"key\", k -> new ArrayList<>()).add(42);",
+      "m.putIfAbsent(\"k\", 0); m.replace(\"k\", 1); m.remove(\"k\");"
+    ],
+    "commonPatterns": [
+      "Frequency count: Map<String,Integer> freq = new HashMap<>(); for (String w : words) { freq.put(w, freq.getOrDefault(w, 0) + 1); }",
+      "Deduplicate while preserving first-seen order: Set<String> seen = new HashSet<>(); List<String> out = new ArrayList<>(); for (String s : input) { if (seen.add(s)) out.add(s); }",
+      "Group by key: Map<K,List<V>> g = new HashMap<>(); for (V v : data) { K k = keyOf(v); g.computeIfAbsent(k, x -> new ArrayList<>()).add(v); }",
+      "Invert map to values->set of keys: Map<V,Set<K>> inv = new HashMap<>(); for (Map.Entry<K,V> e : m.entrySet()) { inv.computeIfAbsent(e.getValue(), x -> new HashSet<>()).add(e.getKey()); }",
+      "Top-K with counts: use HashMap for counts then place entries into a PriorityQueue<Map.Entry<K,Integer>> ordered by value desc."
+    ],
+    "quickTips": [
+      "Prefer entrySet when you need both keys and values to avoid extra lookups.",
+      "Always implement both equals and hashCode for custom key classes; use immutable fields for stability.",
+      "Initialize HashMap/HashSet with an estimated capacity to reduce resizing when processing large inputs."
+    ]
+  }
+}
