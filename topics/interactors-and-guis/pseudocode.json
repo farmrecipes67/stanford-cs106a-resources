@@ -1,0 +1,23 @@
+{
+  "topic": "Interactors and GUIs",
+  "examples": [
+    {
+      "title": "Click Counter Button",
+      "description": "Demonstrates adding a button and label to SOUTH, registering action listeners, and updating text on click.",
+      "pseudocode": "initialize count to 0\nin init:\n  create label \"Count: 0\"; add to SOUTH\n  create button \"Count\"; add to SOUTH\n  call addActionListeners()\non actionPerformed(event):\n  if event's command is \"Count\":\n    increment count\n    update label text",
+      "javaCode": "import acm.program.*;\nimport acm.graphics.*;\nimport javax.swing.*;\nimport java.awt.event.*;\n\npublic class ClickCounter extends GraphicsProgram {\n    private int count = 0;\n    private JLabel label;\n\n    public void init() {\n        label = new JLabel(\"Count: 0\");\n        add(label, SOUTH);\n        add(new JButton(\"Count\"), SOUTH);\n        addActionListeners();\n    }\n\n    public void actionPerformed(ActionEvent e) {\n        if (e.getActionCommand().equals(\"Count\")) {\n            count++;\n            label.setText(\"Count: \" + count);\n        }\n    }\n}\n"
+    },
+    {
+      "title": "Text Field with Enter and Button",
+      "description": "Shows using a JTextField and a JButton to add text to the canvas. Enter in the field triggers the same behavior as clicking the button.",
+      "pseudocode": "in init:\n  create textField (width 12), label prompt, and button \"Add\"\n  add prompt, textField, and button to SOUTH in order\n  register: addActionListeners() and textField.addActionListener(this)\non actionPerformed(event):\n  if source is button or source is textField:\n    read text from textField\n    if non-empty: add new GLabel at a fixed position on canvas\n    clear textField",
+      "javaCode": "import acm.program.*;\nimport acm.graphics.*;\nimport javax.swing.*;\nimport java.awt.event.*;\n\npublic class TextAdder extends GraphicsProgram {\n    private JTextField input;\n\n    public void init() {\n        add(new JLabel(\"Text:\"), SOUTH);\n        input = new JTextField(12);\n        add(input, SOUTH);\n        add(new JButton(\"Add\"), SOUTH);\n        addActionListeners();\n        input.addActionListener(this);\n    }\n\n    public void actionPerformed(ActionEvent e) {\n        if (e.getActionCommand().equals(\"Add\") || e.getSource() == input) {\n            String s = input.getText().trim();\n            if (!s.isEmpty()) {\n                GLabel label = new GLabel(s, 20, 50);\n                add(label);\n                input.setText(\"\");\n            }\n        }\n    }\n}\n"
+    },
+    {
+      "title": "Radio Buttons to Change Shape Color",
+      "description": "Uses three JRadioButtons in a ButtonGroup to select a color for a GOval on the canvas.",
+      "pseudocode": "in init:\n  create radio buttons Red, Green, Blue\n  add to SOUTH and to a ButtonGroup\n  add a GOval to the canvas\n  call addActionListeners()\non actionPerformed(event):\n  if Red selected: set oval color to red\n  else if Green selected: set oval color to green\n  else if Blue selected: set oval color to blue",
+      "javaCode": "import acm.program.*;\nimport acm.graphics.*;\nimport javax.swing.*;\nimport java.awt.*;\nimport java.awt.event.*;\n\npublic class ColorChooser extends GraphicsProgram {\n    private GRect swatch;\n    private JRadioButton red, green, blue;\n\n    public void init() {\n        red = new JRadioButton(\"Red\");\n        green = new JRadioButton(\"Green\");\n        blue = new JRadioButton(\"Blue\");\n        ButtonGroup group = new ButtonGroup();\n        group.add(red);\n        group.add(green);\n        group.add(blue);\n        add(red, SOUTH);\n        add(green, SOUTH);\n        add(blue, SOUTH);\n        addActionListeners();\n\n        swatch = new GRect(50, 50, 100, 60);\n        swatch.setFilled(true);\n        swatch.setFillColor(Color.RED);\n        add(swatch);\n        red.setSelected(true);\n    }\n\n    public void actionPerformed(ActionEvent e) {\n        if (red.isSelected()) swatch.setFillColor(Color.RED);\n        else if (green.isSelected()) swatch.setFillColor(Color.GREEN);\n        else if (blue.isSelected()) swatch.setFillColor(Color.BLUE);\n    }\n}\n"
+    }
+  ]
+}
