@@ -1,0 +1,269 @@
+{
+  "topic": "File I/O",
+  "topicIndex": 13,
+  "overview": "In CS106A, File I/O (input/output) lets your programs work with persistent data instead of just the console. You read information from files (like data sets, configuration, or logs) and write results back to new files for later use or sharing. This is essential for tasks such as analyzing datasets, transforming text, or saving the state of a program.\n\nYou will use Java classes such as Scanner, BufferedReader, PrintWriter, and Files to read and write text files efficiently. Along the way you will manage file paths, handle exceptions (e.g., FileNotFoundException, IOException), use try-with-resources to close files automatically, and parse structured text (lines, tokens, CSV/TSV). By the end, you should be comfortable building programs that load data from disk, process it, and save results safely and predictably.",
+  "teachingMaterials": {
+    "keyConceptsSummary": "File I/O centers on streams that move data between your program and storage. For text files, you typically use readers/writers (character streams) such as BufferedReader and PrintWriter or convenience classes like Scanner that tokenize input. Buffering improves performance by reducing the number of operating system calls, so a common pattern is new BufferedReader(new FileReader(...)). The java.nio.file.Files and Paths utilities provide concise, modern APIs for common tasks such as reading all lines, walking directories, and creating writers/readers.\n\nPaths can be absolute or relative; relative paths are resolved against the program’s working directory. Since I/O can fail (missing files, permission errors, encoding issues), Java requires you to handle checked exceptions like IOException. The try-with-resources construct ensures files are closed even if errors occur, preventing resource leaks and ensuring data is flushed to disk. Parsing strategies include reading line-by-line and splitting, or using Scanner with custom delimiters for token-based processing. Choosing the right approach depends on data structure, memory constraints, and performance needs.",
+    "learningObjectives": [
+      "Open, read, and write text files using Scanner, BufferedReader, PrintWriter, and Files",
+      "Use try-with-resources to manage file handles and guarantee closure",
+      "Choose appropriate parsing strategies (line-based vs token-based) for structured text",
+      "Handle file-related exceptions and report errors gracefully to users",
+      "Work with paths (relative/absolute) and understand the program’s working directory"
+    ],
+    "commonMistakes": [
+      "Forgetting to close writers/readers, leading to unflushed output or file handle leaks",
+      "Using the wrong method for parsing (e.g., mixing next() and nextLine() incorrectly) causing skipped input",
+      "Assuming relative paths point to the project folder when the working directory differs"
+    ],
+    "tipsForSuccess": [
+      "Start with small test files and print intermediate results to verify parsing logic",
+      "Encapsulate file operations in helper methods that clearly document the format they expect",
+      "Prefer try-with-resources and specify character encodings (e.g., UTF-8) to avoid subtle bugs"
+    ]
+  },
+  "vocabulary": [
+    {
+      "term": "Path",
+      "definition": "An object representing a file system path (location) to a file or directory.",
+      "example": "Path p = Paths.get(\"data\", \"input.txt\");"
+    },
+    {
+      "term": "File",
+      "definition": "Legacy class representing file and directory pathnames; often used with Scanner or to check existence.",
+      "example": "File f = new File(\"output.txt\"); boolean exists = f.exists();"
+    },
+    {
+      "term": "Scanner",
+      "definition": "A text parser that reads tokens or lines from an input source such as a File or InputStream.",
+      "example": "Scanner sc = new Scanner(new File(\"nums.txt\")); int n = sc.nextInt();"
+    },
+    {
+      "term": "FileReader",
+      "definition": "A character stream for reading text from files; often wrapped by BufferedReader.",
+      "example": "Reader r = new FileReader(\"input.txt\");"
+    },
+    {
+      "term": "BufferedReader",
+      "definition": "Adds buffering and convenient readLine() to another Reader for efficient text input.",
+      "example": "BufferedReader br = new BufferedReader(new FileReader(\"in.txt\")); String line = br.readLine();"
+    },
+    {
+      "term": "FileWriter",
+      "definition": "A character stream for writing text to files; often wrapped by BufferedWriter or PrintWriter.",
+      "example": "Writer w = new FileWriter(\"out.txt\"); w.write(\"Hello\\n\");"
+    },
+    {
+      "term": "PrintWriter",
+      "definition": "A writer with convenient print/println/printf methods for formatted text output.",
+      "example": "try (PrintWriter pw = new PrintWriter(\"out.txt\")) { pw.println(\"Hi\"); }"
+    },
+    {
+      "term": "Files",
+      "definition": "Utility class (java.nio.file) with static methods for common file operations.",
+      "example": "List<String> lines = Files.readAllLines(Paths.get(\"in.txt\"));"
+    },
+    {
+      "term": "Paths",
+      "definition": "Factory class for creating Path instances from strings or URI.",
+      "example": "Path p = Paths.get(\"logs/app.log\");"
+    },
+    {
+      "term": "try-with-resources",
+      "definition": "Language construct that automatically closes resources (e.g., Readers, Writers) when the block exits.",
+      "example": "try (Scanner sc = new Scanner(new File(\"in.txt\"))) { /* use sc */ }"
+    },
+    {
+      "term": "IOException",
+      "definition": "A checked exception signaling a general I/O error (read/write/close failures).",
+      "example": "try { Files.readAllBytes(Paths.get(\"x\")); } catch (IOException e) { /* handle */ }"
+    },
+    {
+      "term": "FileNotFoundException",
+      "definition": "A checked exception thrown when a file cannot be found when opening for read/write.",
+      "example": "new Scanner(new File(\"missing.txt\")); // may throw FileNotFoundException"
+    },
+    {
+      "term": "Delimiter",
+      "definition": "A character or pattern that separates tokens when parsing text.",
+      "example": "sc.useDelimiter(\"\\\\t\"); // tab-separated values"
+    },
+    {
+      "term": "UTF-8",
+      "definition": "A common Unicode text encoding; recommended default for cross-platform text files.",
+      "example": "new Scanner(new File(\"in.txt\"), java.nio.charset.StandardCharsets.UTF_8);"
+    },
+    {
+      "term": "Line separator",
+      "definition": "The newline sequence used to end a line (e.g., \\n on Unix).",
+      "example": "pw.println(\"First line\"); // writes a line separator"
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Which class is most convenient for reading space-separated integers from a text file?",
+      "options": [
+        "A) Scanner",
+        "B) PrintWriter",
+        "C) FileWriter",
+        "D) StringBuilder"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Scanner tokenizes input and provides nextInt(), making it ideal for space-separated numbers.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What does try-with-resources ensure when used with a BufferedReader?",
+      "options": [
+        "A) The file is closed automatically even if an exception occurs",
+        "B) The file path is automatically created if missing",
+        "C) The file is read entirely into memory",
+        "D) Encoding is automatically detected"
+      ],
+      "correctAnswer": "A",
+      "explanation": "try-with-resources closes all AutoCloseable resources at scope exit, success or failure.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which method reads all lines of a small text file into a List<String>?",
+      "options": [
+        "A) Files.readAllLines(path)",
+        "B) Scanner.readAllLines(path)",
+        "C) FileReader.readLines(path)",
+        "D) Paths.getLines(path)"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Files.readAllLines(Path) returns a List<String> with the file’s lines.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What happens if you forget to close a PrintWriter?",
+      "options": [
+        "A) Nothing; Java closes it instantly",
+        "B) Data may remain unflushed and be missing from the file",
+        "C) The file is deleted automatically",
+        "D) The program will not compile"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Buffered output might not be flushed, so some data may not reach the file.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which snippet correctly writes two lines to output.txt?",
+      "options": [
+        "A) PrintWriter pw = new PrintWriter(\"output.txt\"); pw.println(\"A\"); pw.println(\"B\"); pw.close();",
+        "B) FileWriter fw = new FileWriter(\"output.txt\"); fw.println(\"A\\nB\"); fw.close();",
+        "C) new Scanner(\"output.txt\").println(\"A\");",
+        "D) new File(\"output.txt\").write(\"A\\nB\");"
+      ],
+      "correctAnswer": "A",
+      "explanation": "PrintWriter supports println; FileWriter has write but not println; other options are invalid.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "If a method opens a file with new FileReader(\"in.txt\"), what must it do regarding exceptions?",
+      "options": [
+        "A) Nothing; FileReader cannot throw",
+        "B) Catch or declare IOException",
+        "C) Catch only RuntimeException",
+        "D) Declare Error"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Constructing FileReader can throw FileNotFoundException, a subclass of IOException, which is checked.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "When using Scanner, nextLine() differs from next() because:",
+      "options": [
+        "A) nextLine() reads until a space; next() reads a full line",
+        "B) nextLine() reads an entire line; next() reads the next token",
+        "C) Both read tokens; there is no difference",
+        "D) nextLine() trims whitespace tokens; next() does not"
+      ],
+      "correctAnswer": "B",
+      "explanation": "nextLine() returns the remainder of the current line; next() returns the next delimited token.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Relative path \"data/input.txt\" is resolved relative to:",
+      "options": [
+        "A) The user’s home directory",
+        "B) The project’s src folder",
+        "C) The program’s current working directory",
+        "D) The Java installation directory"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Relative paths use the JVM’s working directory, which may differ from the project folder.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "For large files where memory is a concern, which approach is best?",
+      "options": [
+        "A) Files.readAllLines then process",
+        "B) Read line-by-line with BufferedReader in a loop",
+        "C) Read the entire file into a String with Files.readString",
+        "D) Copy to a new file using PrintWriter without reading"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Streaming line-by-line minimizes memory usage compared to loading the entire file.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which construction adds buffering to improve performance when reading text?",
+      "options": [
+        "A) new Scanner(new File(\"in.txt\"))",
+        "B) new BufferedReader(new FileReader(\"in.txt\"))",
+        "C) new File(\"in.txt\")",
+        "D) new PrintWriter(\"in.txt\")"
+      ],
+      "correctAnswer": "B",
+      "explanation": "BufferedReader wraps a Reader to buffer input and provide readLine().",
+      "difficulty": "beginner"
+    }
+  ],
+  "pseudocodeExamples": [
+    {
+      "title": "Count lines containing a keyword",
+      "description": "Reads a text file line-by-line and counts how many lines contain a given substring.",
+      "pseudocode": "input: path to file, keyword\nset count to 0\nopen the file for reading (line-by-line)\nfor each line in the file:\n  if line contains keyword:\n    increment count\nclose the file\nprint count",
+      "javaCode": "import java.io.*;\nimport java.nio.file.*;\nimport java.nio.charset.StandardCharsets;\n\npublic class CountKeywordLines {\n  public static void main(String[] args) throws IOException {\n    Path path = Paths.get(\"input.txt\");\n    String keyword = \"error\";\n    int count = 0;\n    try (BufferedReader br = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {\n      for (String line; (line = br.readLine()) != null; ) {\n        if (line.contains(keyword)) count++;\n      }\n    }\n    System.out.println(\"Lines containing '\" + keyword + \"': \" + count);\n  }\n}\n"
+    },
+    {
+      "title": "Copy file with line numbers",
+      "description": "Reads an input file and writes an output file where each line is prefixed with its line number.",
+      "pseudocode": "input: inPath, outPath\nopen reader for inPath\nopen writer for outPath\nlineNo = 1\nfor each line in reader:\n  write lineNo + \": \" + line to writer\n  increment lineNo\nclose both files",
+      "javaCode": "import java.io.*;\nimport java.nio.file.*;\nimport java.nio.charset.StandardCharsets;\n\npublic class NumberedCopy {\n  public static void main(String[] args) throws IOException {\n    Path inPath = Paths.get(\"in.txt\");\n    Path outPath = Paths.get(\"out.txt\");\n    try (BufferedReader br = Files.newBufferedReader(inPath, StandardCharsets.UTF_8);\n         PrintWriter pw = new PrintWriter(Files.newBufferedWriter(outPath, StandardCharsets.UTF_8))) {\n      int lineNo = 1;\n      for (String line; (line = br.readLine()) != null; ) {\n        pw.println(lineNo + \": \" + line);\n        lineNo++;\n      }\n    }\n  }\n}\n"
+    },
+    {
+      "title": "Sum a column from TSV (tab-separated values)",
+      "description": "Parses a TSV file and sums numeric values from a specified zero-based column index.",
+      "pseudocode": "input: path to TSV file, columnIndex\nsum = 0\nopen file for reading\nfor each line:\n  split line by tab into fields\n  if fields length > columnIndex:\n    parse fields[columnIndex] as double\n    add to sum\nclose file\nprint sum",
+      "javaCode": "import java.io.*;\nimport java.nio.file.*;\nimport java.nio.charset.StandardCharsets;\n\npublic class SumTSVColumn {\n  public static void main(String[] args) throws IOException {\n    Path path = Paths.get(\"data.tsv\");\n    int columnIndex = 2;\n    double sum = 0.0;\n    try (BufferedReader br = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {\n      String line;\n      while ((line = br.readLine()) != null) {\n        String[] fields = line.split(\"\\t\", -1);\n        if (fields.length > columnIndex && !fields[columnIndex].isEmpty()) {\n          sum += Double.parseDouble(fields[columnIndex]);\n        }\n      }\n    }\n    System.out.println(\"Sum: \" + sum);\n  }\n}\n"
+    }
+  ],
+  "cheatsheet": {
+    "syntaxReference": [
+      "Create Path: Path p = Paths.get(\"data\", \"input.txt\");",
+      "Open Scanner for file (UTF-8): try (Scanner sc = new Scanner(new File(\"in.txt\"), java.nio.charset.StandardCharsets.UTF_8)) { }",
+      "Read tokens with Scanner: while (sc.hasNextInt()) { int n = sc.nextInt(); }",
+      "Read lines with BufferedReader: try (BufferedReader br = new BufferedReader(new FileReader(\"in.txt\"))) { String line = br.readLine(); }",
+      "New BufferedReader via Files: try (BufferedReader br = Files.newBufferedReader(Paths.get(\"in.txt\"))) { }",
+      "Write with PrintWriter: try (PrintWriter pw = new PrintWriter(\"out.txt\")) { pw.println(\"hello\"); }",
+      "Write via Files.newBufferedWriter: try (Writer w = Files.newBufferedWriter(Paths.get(\"out.txt\"))) { w.write(\"hi\\n\"); }",
+      "Append mode FileWriter: try (Writer w = new FileWriter(\"out.txt\", true)) { w.write(\"more\\n\"); }"
+    ],
+    "commonPatterns": [
+      "Line-by-line processing: try (BufferedReader br = Files.newBufferedReader(p)) { for (String line; (line = br.readLine()) != null; ) { /* process */ } }",
+      "Token-based parsing: try (Scanner sc = new Scanner(p.toFile())) { sc.useDelimiter(\"\\\\s+|\n\"); while (sc.hasNext()) { String tok = sc.next(); } }",
+      "Read small file at once: List<String> lines = Files.readAllLines(p); for (String line : lines) { }",
+      "Safe resource handling: try (Scanner sc = new Scanner(new File(\"in.txt\")); PrintWriter pw = new PrintWriter(\"out.txt\")) { /* read/write */ }",
+      "CSV writing: try (PrintWriter pw = new PrintWriter(\"data.csv\")) { pw.println(\"name,score\"); pw.println(\"Ada,99\"); }",
+      "Copy text file: try (BufferedReader br = Files.newBufferedReader(src); PrintWriter pw = new PrintWriter(Files.newBufferedWriter(dst))) { for (String line; (line = br.readLine()) != null; ) pw.println(line); }"
+    ],
+    "quickTips": [
+      "Decide early: line-based (BufferedReader) vs token-based (Scanner) parsing.",
+      "Always close writers to flush data; prefer try-with-resources to avoid leaks.",
+      "Be explicit about encodings (StandardCharsets.UTF_8) for consistent cross-platform behavior."
+    ]
+  }
+}
