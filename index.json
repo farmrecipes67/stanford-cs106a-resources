@@ -1,0 +1,190 @@
+{
+  "course": "Stanford CS106A - Programming Methodology",
+  "language": "Java",
+  "totalTopics": 15,
+  "generatedAt": "2026-03-09T19:10:42.364Z",
+  "overviewImage": "https://drive.google.com/uc?export=view&id=1Li_cW3vDSDh28f1ma-TBV026OmWWT5LS",
+  "license": "MIT",
+  "topics": [
+    {
+      "name": "Karel the Robot",
+      "index": 1,
+      "files": {
+        "fullContent": "topics/karel-the-robot/content.json",
+        "quiz": "topics/karel-the-robot/quiz.json",
+        "vocabulary": "topics/karel-the-robot/vocabulary.json",
+        "cheatsheet": "topics/karel-the-robot/cheatsheet.json",
+        "pseudocode": "topics/karel-the-robot/pseudocode.json",
+        "teaching": "topics/karel-the-robot/teaching.json"
+      }
+    },
+    {
+      "name": "Control Flow",
+      "index": 2,
+      "files": {
+        "fullContent": "topics/control-flow/content.json",
+        "quiz": "topics/control-flow/quiz.json",
+        "vocabulary": "topics/control-flow/vocabulary.json",
+        "cheatsheet": "topics/control-flow/cheatsheet.json",
+        "pseudocode": "topics/control-flow/pseudocode.json",
+        "teaching": "topics/control-flow/teaching.json"
+      }
+    },
+    {
+      "name": "Decomposition",
+      "index": 3,
+      "files": {
+        "fullContent": "topics/decomposition/content.json",
+        "quiz": "topics/decomposition/quiz.json",
+        "vocabulary": "topics/decomposition/vocabulary.json",
+        "cheatsheet": "topics/decomposition/cheatsheet.json",
+        "pseudocode": "topics/decomposition/pseudocode.json",
+        "teaching": "topics/decomposition/teaching.json"
+      }
+    },
+    {
+      "name": "Variables and Types",
+      "index": 4,
+      "files": {
+        "fullContent": "topics/variables-and-types/content.json",
+        "quiz": "topics/variables-and-types/quiz.json",
+        "vocabulary": "topics/variables-and-types/vocabulary.json",
+        "cheatsheet": "topics/variables-and-types/cheatsheet.json",
+        "pseudocode": "topics/variables-and-types/pseudocode.json",
+        "teaching": "topics/variables-and-types/teaching.json"
+      }
+    },
+    {
+      "name": "Loops",
+      "index": 5,
+      "files": {
+        "fullContent": "topics/loops/content.json",
+        "quiz": "topics/loops/quiz.json",
+        "vocabulary": "topics/loops/vocabulary.json",
+        "cheatsheet": "topics/loops/cheatsheet.json",
+        "pseudocode": "topics/loops/pseudocode.json",
+        "teaching": "topics/loops/teaching.json"
+      }
+    },
+    {
+      "name": "Conditions",
+      "index": 6,
+      "files": {
+        "fullContent": "topics/conditions/content.json",
+        "quiz": "topics/conditions/quiz.json",
+        "vocabulary": "topics/conditions/vocabulary.json",
+        "cheatsheet": "topics/conditions/cheatsheet.json",
+        "pseudocode": "topics/conditions/pseudocode.json",
+        "teaching": "topics/conditions/teaching.json"
+      }
+    },
+    {
+      "name": "Strings",
+      "index": 7,
+      "files": {
+        "fullContent": "topics/strings/content.json",
+        "quiz": "topics/strings/quiz.json",
+        "vocabulary": "topics/strings/vocabulary.json",
+        "cheatsheet": "topics/strings/cheatsheet.json",
+        "pseudocode": "topics/strings/pseudocode.json",
+        "teaching": "topics/strings/teaching.json"
+      }
+    },
+    {
+      "name": "Arrays and ArrayLists",
+      "index": 8,
+      "files": {
+        "fullContent": "topics/arrays-and-arraylists/content.json",
+        "quiz": "topics/arrays-and-arraylists/quiz.json",
+        "vocabulary": "topics/arrays-and-arraylists/vocabulary.json",
+        "cheatsheet": "topics/arrays-and-arraylists/cheatsheet.json",
+        "pseudocode": "topics/arrays-and-arraylists/pseudocode.json",
+        "teaching": "topics/arrays-and-arraylists/teaching.json"
+      }
+    },
+    {
+      "name": "Object-Oriented Programming",
+      "index": 9,
+      "files": {
+        "fullContent": "topics/object-oriented-programming/content.json",
+        "quiz": "topics/object-oriented-programming/quiz.json",
+        "vocabulary": "topics/object-oriented-programming/vocabulary.json",
+        "cheatsheet": "topics/object-oriented-programming/cheatsheet.json",
+        "pseudocode": "topics/object-oriented-programming/pseudocode.json",
+        "teaching": "topics/object-oriented-programming/teaching.json"
+      }
+    },
+    {
+      "name": "Graphics and Animation",
+      "index": 10,
+      "files": {
+        "fullContent": "topics/graphics-and-animation/content.json",
+        "quiz": "topics/graphics-and-animation/quiz.json",
+        "vocabulary": "topics/graphics-and-animation/vocabulary.json",
+        "cheatsheet": "topics/graphics-and-animation/cheatsheet.json",
+        "pseudocode": "topics/graphics-and-animation/pseudocode.json",
+        "teaching": "topics/graphics-and-animation/teaching.json"
+      }
+    },
+    {
+      "name": "Event-Driven Programming",
+      "index": 11,
+      "files": {
+        "fullContent": "topics/event-driven-programming/content.json",
+        "quiz": "topics/event-driven-programming/quiz.json",
+        "vocabulary": "topics/event-driven-programming/vocabulary.json",
+        "cheatsheet": "topics/event-driven-programming/cheatsheet.json",
+        "pseudocode": "topics/event-driven-programming/pseudocode.json",
+        "teaching": "topics/event-driven-programming/teaching.json"
+      }
+    },
+    {
+      "name": "Memory Model",
+      "index": 12,
+      "files": {
+        "fullContent": "topics/memory-model/content.json",
+        "quiz": "topics/memory-model/quiz.json",
+        "vocabulary": "topics/memory-model/vocabulary.json",
+        "cheatsheet": "topics/memory-model/cheatsheet.json",
+        "pseudocode": "topics/memory-model/pseudocode.json",
+        "teaching": "topics/memory-model/teaching.json"
+      }
+    },
+    {
+      "name": "File I/O",
+      "index": 13,
+      "files": {
+        "fullContent": "topics/file-io/content.json",
+        "quiz": "topics/file-io/quiz.json",
+        "vocabulary": "topics/file-io/vocabulary.json",
+        "cheatsheet": "topics/file-io/cheatsheet.json",
+        "pseudocode": "topics/file-io/pseudocode.json",
+        "teaching": "topics/file-io/teaching.json"
+      }
+    },
+    {
+      "name": "Collections and HashMaps",
+      "index": 14,
+      "files": {
+        "fullContent": "topics/collections-and-hashmaps/content.json",
+        "quiz": "topics/collections-and-hashmaps/quiz.json",
+        "vocabulary": "topics/collections-and-hashmaps/vocabulary.json",
+        "cheatsheet": "topics/collections-and-hashmaps/cheatsheet.json",
+        "pseudocode": "topics/collections-and-hashmaps/pseudocode.json",
+        "teaching": "topics/collections-and-hashmaps/teaching.json"
+      }
+    },
+    {
+      "name": "Interactors and GUIs",
+      "index": 15,
+      "files": {
+        "fullContent": "topics/interactors-and-guis/content.json",
+        "quiz": "topics/interactors-and-guis/quiz.json",
+        "vocabulary": "topics/interactors-and-guis/vocabulary.json",
+        "cheatsheet": "topics/interactors-and-guis/cheatsheet.json",
+        "pseudocode": "topics/interactors-and-guis/pseudocode.json",
+        "teaching": "topics/interactors-and-guis/teaching.json"
+      }
+    }
+  ]
+}
