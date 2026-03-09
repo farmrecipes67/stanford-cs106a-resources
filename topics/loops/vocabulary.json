@@ -1,0 +1,81 @@
+{
+  "topic": "Loops",
+  "totalTerms": 15,
+  "terms": [
+    {
+      "term": "for loop",
+      "definition": "A definite loop with initialization, condition, and update in one header; ideal for counter-controlled repetition.",
+      "example": "for (int i = 0; i < 10; i++) { System.out.print(i); }"
+    },
+    {
+      "term": "while loop",
+      "definition": "An indefinite loop that repeats while a boolean condition remains true; condition checked before each iteration.",
+      "example": "while (n > 0) { sum += n % 10; n /= 10; }"
+    },
+    {
+      "term": "do-while loop",
+      "definition": "A loop that executes the body at least once, then repeats while the condition remains true.",
+      "example": "do { input = readInt(\"Enter (0 to quit): \"); } while (input != 0);"
+    },
+    {
+      "term": "enhanced for loop",
+      "definition": "Also called for-each; iterates over elements of arrays/collections without explicit indices.",
+      "example": "for (int x : arr) { System.out.println(x); }"
+    },
+    {
+      "term": "iteration",
+      "definition": "One execution of the loop body.",
+      "example": "// After 5 iterations of for(i=0;i<5;i++), i == 5"
+    },
+    {
+      "term": "loop variable (counter)",
+      "definition": "A variable that tracks the current iteration number or position.",
+      "example": "for (int i = 1; i <= 100; i++) { count++; }"
+    },
+    {
+      "term": "accumulator",
+      "definition": "A variable that aggregates results across iterations (sum, product, string build).",
+      "example": "int sum = 0; for (int x : arr) { sum += x; }"
+    },
+    {
+      "term": "sentinel value",
+      "definition": "A special value signaling the end of input or termination of a loop.",
+      "example": "while ((x = scan.nextInt()) != -1) { total += x; }"
+    },
+    {
+      "term": "loop condition",
+      "definition": "The boolean expression controlling whether the loop continues.",
+      "example": "while (index < names.length) { ... }"
+    },
+    {
+      "term": "loop body",
+      "definition": "The block of statements executed each iteration.",
+      "example": "for (...) { System.out.println(\"Hello\"); }"
+    },
+    {
+      "term": "nested loop",
+      "definition": "A loop inside another loop, often for 2D traversal or pattern generation.",
+      "example": "for (int r=0;r<3;r++){ for(int c=0;c<4;c++){ System.out.print(\"*\"); } }"
+    },
+    {
+      "term": "off-by-one error",
+      "definition": "A boundary mistake causing one too few or too many iterations.",
+      "example": "for (int i = 0; i <= arr.length; i++) { /* i == arr.length crashes */ }"
+    },
+    {
+      "term": "infinite loop",
+      "definition": "A loop that never terminates because the condition never becomes false or there is no exit.",
+      "example": "while (true) { /* missing break or return */ }"
+    },
+    {
+      "term": "break statement",
+      "definition": "Immediately exits the nearest enclosing loop or switch.",
+      "example": "for (int x : arr) { if (x == 0) break; }"
+    },
+    {
+      "term": "continue statement",
+      "definition": "Skips the rest of the current iteration and jumps to the next condition check.",
+      "example": "for (int i=0;i<10;i++){ if(i%2==0) continue; odds++; }"
+    }
+  ]
+}
