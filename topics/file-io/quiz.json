@@ -1,0 +1,126 @@
+{
+  "topic": "File I/O",
+  "totalQuestions": 10,
+  "questions": [
+    {
+      "question": "Which class is most convenient for reading space-separated integers from a text file?",
+      "options": [
+        "A) Scanner",
+        "B) PrintWriter",
+        "C) FileWriter",
+        "D) StringBuilder"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Scanner tokenizes input and provides nextInt(), making it ideal for space-separated numbers.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What does try-with-resources ensure when used with a BufferedReader?",
+      "options": [
+        "A) The file is closed automatically even if an exception occurs",
+        "B) The file path is automatically created if missing",
+        "C) The file is read entirely into memory",
+        "D) Encoding is automatically detected"
+      ],
+      "correctAnswer": "A",
+      "explanation": "try-with-resources closes all AutoCloseable resources at scope exit, success or failure.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which method reads all lines of a small text file into a List<String>?",
+      "options": [
+        "A) Files.readAllLines(path)",
+        "B) Scanner.readAllLines(path)",
+        "C) FileReader.readLines(path)",
+        "D) Paths.getLines(path)"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Files.readAllLines(Path) returns a List<String> with the file’s lines.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What happens if you forget to close a PrintWriter?",
+      "options": [
+        "A) Nothing; Java closes it instantly",
+        "B) Data may remain unflushed and be missing from the file",
+        "C) The file is deleted automatically",
+        "D) The program will not compile"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Buffered output might not be flushed, so some data may not reach the file.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which snippet correctly writes two lines to output.txt?",
+      "options": [
+        "A) PrintWriter pw = new PrintWriter(\"output.txt\"); pw.println(\"A\"); pw.println(\"B\"); pw.close();",
+        "B) FileWriter fw = new FileWriter(\"output.txt\"); fw.println(\"A\\nB\"); fw.close();",
+        "C) new Scanner(\"output.txt\").println(\"A\");",
+        "D) new File(\"output.txt\").write(\"A\\nB\");"
+      ],
+      "correctAnswer": "A",
+      "explanation": "PrintWriter supports println; FileWriter has write but not println; other options are invalid.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "If a method opens a file with new FileReader(\"in.txt\"), what must it do regarding exceptions?",
+      "options": [
+        "A) Nothing; FileReader cannot throw",
+        "B) Catch or declare IOException",
+        "C) Catch only RuntimeException",
+        "D) Declare Error"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Constructing FileReader can throw FileNotFoundException, a subclass of IOException, which is checked.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "When using Scanner, nextLine() differs from next() because:",
+      "options": [
+        "A) nextLine() reads until a space; next() reads a full line",
+        "B) nextLine() reads an entire line; next() reads the next token",
+        "C) Both read tokens; there is no difference",
+        "D) nextLine() trims whitespace tokens; next() does not"
+      ],
+      "correctAnswer": "B",
+      "explanation": "nextLine() returns the remainder of the current line; next() returns the next delimited token.",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Relative path \"data/input.txt\" is resolved relative to:",
+      "options": [
+        "A) The user’s home directory",
+        "B) The project’s src folder",
+        "C) The program’s current working directory",
+        "D) The Java installation directory"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Relative paths use the JVM’s working directory, which may differ from the project folder.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "For large files where memory is a concern, which approach is best?",
+      "options": [
+        "A) Files.readAllLines then process",
+        "B) Read line-by-line with BufferedReader in a loop",
+        "C) Read the entire file into a String with Files.readString",
+        "D) Copy to a new file using PrintWriter without reading"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Streaming line-by-line minimizes memory usage compared to loading the entire file.",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which construction adds buffering to improve performance when reading text?",
+      "options": [
+        "A) new Scanner(new File(\"in.txt\"))",
+        "B) new BufferedReader(new FileReader(\"in.txt\"))",
+        "C) new File(\"in.txt\")",
+        "D) new PrintWriter(\"in.txt\")"
+      ],
+      "correctAnswer": "B",
+      "explanation": "BufferedReader wraps a Reader to buffer input and provide readLine().",
+      "difficulty": "beginner"
+    }
+  ]
+}
