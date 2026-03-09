@@ -1,0 +1,81 @@
+{
+  "topic": "Karel the Robot",
+  "totalTerms": 15,
+  "terms": [
+    {
+      "term": "Karel",
+      "definition": "A simple robot that executes primitive commands in a grid world.",
+      "example": "public class MyKarel extends Karel { public void run() { move(); } }"
+    },
+    {
+      "term": "World",
+      "definition": "A grid of streets (rows) and avenues (columns) containing walls and beepers.",
+      "example": "// Karel starts at 1st Street, 1st Avenue, facing East by default (typical)."
+    },
+    {
+      "term": "Street",
+      "definition": "A horizontal row in Karel’s world; street numbers increase northward.",
+      "example": "// Move north one street:\nturnLeft();\nmove();\nturnRight();"
+    },
+    {
+      "term": "Avenue",
+      "definition": "A vertical column in Karel’s world; avenue numbers increase eastward.",
+      "example": "// Move east along a street:\nwhile (frontIsClear()) { move(); }"
+    },
+    {
+      "term": "Beeper",
+      "definition": "An object Karel can place on or pick up from a corner.",
+      "example": "if (!beepersPresent()) { putBeeper(); }"
+    },
+    {
+      "term": "Wall",
+      "definition": "An impassable barrier that blocks Karel’s forward movement.",
+      "example": "if (frontIsBlocked()) { turnLeft(); }"
+    },
+    {
+      "term": "move()",
+      "definition": "Moves Karel forward one corner in the direction it is facing; errors if blocked.",
+      "example": "if (frontIsClear()) { move(); }"
+    },
+    {
+      "term": "turnLeft()",
+      "definition": "Rotates Karel 90 degrees to the left.",
+      "example": "turnLeft(); // face north if starting east"
+    },
+    {
+      "term": "turnRight()",
+      "definition": "Rotates Karel 90 degrees to the right (available in SuperKarel or via helper).",
+      "example": "// In base Karel, implement:\nprivate void turnRight() { turnLeft(); turnLeft(); turnLeft(); }"
+    },
+    {
+      "term": "putBeeper()",
+      "definition": "Places one beeper from Karel’s bag onto the current corner.",
+      "example": "putBeeper(); // leave a marker"
+    },
+    {
+      "term": "pickBeeper()",
+      "definition": "Picks up one beeper from the current corner into Karel’s bag (if present).",
+      "example": "if (beepersPresent()) { pickBeeper(); }"
+    },
+    {
+      "term": "frontIsClear()",
+      "definition": "True if there is no wall directly in front of Karel.",
+      "example": "while (frontIsClear()) { move(); }"
+    },
+    {
+      "term": "beepersPresent()",
+      "definition": "True if one or more beepers are on Karel’s current corner.",
+      "example": "if (beepersPresent()) { pickBeeper(); }"
+    },
+    {
+      "term": "while loop",
+      "definition": "Repeatedly executes a block of code while a boolean condition remains true.",
+      "example": "while (frontIsClear()) { move(); }"
+    },
+    {
+      "term": "if/else",
+      "definition": "Chooses between two code paths based on a boolean condition.",
+      "example": "if (frontIsClear()) { move(); } else { turnLeft(); }"
+    }
+  ]
+}
