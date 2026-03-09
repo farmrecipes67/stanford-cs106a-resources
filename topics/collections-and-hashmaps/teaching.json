@@ -1,0 +1,24 @@
+{
+  "topic": "Collections and HashMaps",
+  "materials": {
+    "keyConceptsSummary": "Collections are interfaces and classes that manage groups of objects. The core interfaces are Collection (root), List (ordered, allows duplicates), Set (no duplicates), and Map (key–value associations, not a Collection). Implementations differ in performance characteristics: ArrayList offers fast random access and amortized O(1) append; LinkedList offers O(1) insert/remove at ends but O(n) access; HashSet/HashMap provide expected O(1) add/contains/get/put but do not preserve order. TreeSet/TreeMap maintain sorted order with O(log n) operations.\n\nHashMap stores entries in buckets indexed by the key’s hashCode. When multiple keys map to the same bucket, collisions are handled via chaining (linked lists or trees in modern JDKs). Correctness and performance rely on the equals/hashCode contract: equal objects must have equal hash codes. Key operations include put (insert/replace), get (lookup), containsKey, remove, keySet, values, and entrySet. Common idioms include counting occurrences (getOrDefault), inverting a map, grouping values in a Map<K, List<V>>, and using a Set to track seen items.\n\nIteration is typically done with enhanced for loops: for (E e : collection) and for (Map.Entry<K,V> entry : map.entrySet()). When you need to mutate while iterating over a Collection (not a Map view), use an Iterator and its remove method to avoid ConcurrentModificationException. Be mindful of generic types for type safety and readability.",
+    "learningObjectives": [
+      "Choose the appropriate Collection type (List, Set, Map) for a given problem.",
+      "Use HashMap and HashSet to achieve expected O(1) lookups, inserts, and membership tests.",
+      "Implement frequency counting, grouping, and deduplication patterns with Maps and Sets.",
+      "Correctly override equals and hashCode for custom key types used in hash-based collections.",
+      "Iterate over Collections and Maps safely and efficiently using enhanced for loops and Iterators."
+    ],
+    "commonMistakes": [
+      "Overriding equals without overriding hashCode for keys used in HashMap/HashSet, causing lookups to fail.",
+      "Modifying a Collection inside an enhanced for loop (e.g., calling remove) and triggering ConcurrentModificationException.",
+      "Using the wrong iteration view of a Map (e.g., iterating keySet then calling get repeatedly instead of iterating entrySet)."
+    ],
+    "tipsForSuccess": [
+      "Pick the simplest structure that meets your performance needs; default to ArrayList, HashSet, and HashMap unless order or sorting is required.",
+      "Leverage helper methods like getOrDefault, putIfAbsent, and computeIfAbsent to simplify map updates.",
+      "Write small tests to confirm map/set behavior with edge cases (missing keys, duplicates, nulls) before integrating into larger programs."
+    ]
+  },
+  "overview": "In CS106A, Collections give you flexible, resizable containers beyond primitive arrays. They help you store, search, and organize data using standard interfaces like List, Set, and Map. Lists preserve order and allow duplicates, Sets enforce uniqueness, and Maps associate keys with values. You will use concrete implementations such as ArrayList, HashSet, and HashMap to build real programs like word counters, contact books, and recommendation helpers.\n\nHashMap is a workhorse structure that lets you look up values by key in expected constant time. Understanding how hashing works (keys map to buckets using hashCode) and how equality is determined (equals) allows you to store custom objects correctly and efficiently. With a few patterns—like counting frequencies with getOrDefault, using a Set to deduplicate, and iterating entrySet for performance—you can express powerful algorithms with concise, readable code."
+}
