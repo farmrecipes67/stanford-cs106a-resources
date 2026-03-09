@@ -1,0 +1,24 @@
+{
+  "topic": "Event-Driven Programming",
+  "cheatsheet": {
+    "syntaxReference": [
+      "Register for button events: add(new JButton(\"Go\"), SOUTH); addActionListeners();",
+      "Handle button click: public void actionPerformed(ActionEvent e) { if (e.getActionCommand().equals(\"Go\")) { /* ... */ } }",
+      "Register for mouse events: addMouseListeners(); // Implement mousePressed/Dragged/Released",
+      "Hit-test object under cursor: GObject obj = getElementAt(e.getX(), e.getY());",
+      "Drag offset pattern: dx = e.getX() - obj.getX(); dy = e.getY() - obj.getY(); obj.setLocation(e.getX() - dx, e.getY() - dy);",
+      "Create a timer: Timer t = new Timer(20, this); t.start(); // Fires ActionEvents every 20 ms",
+      "Keyboard events: addKeyListeners(); public void keyPressed(KeyEvent e) { /* ... */ }"
+    ],
+    "commonPatterns": [
+      "Toggle Start/Stop: if (e.getSource() == startBtn) timer.start(); else if (e.getSource() == stopBtn) timer.stop();",
+      "Dispatch by command string: switch(e.getActionCommand()) { case \"Add\": /* ... */ break; case \"Clear\": /* ... */ break; }",
+      "Guarded dragging: if (selected != null) { selected.setLocation(e.getX() - dx, e.getY() - dy); }"
+    ],
+    "quickTips": [
+      "Use .equals for comparing action commands; == compares object references.",
+      "Keep event handlers short; move heavy work outside the event thread.",
+      "Prefer a Timer for animation over manual loops to keep the UI responsive."
+    ]
+  }
+}
