@@ -1,0 +1,24 @@
+{
+  "topic": "File I/O",
+  "materials": {
+    "keyConceptsSummary": "File I/O centers on streams that move data between your program and storage. For text files, you typically use readers/writers (character streams) such as BufferedReader and PrintWriter or convenience classes like Scanner that tokenize input. Buffering improves performance by reducing the number of operating system calls, so a common pattern is new BufferedReader(new FileReader(...)). The java.nio.file.Files and Paths utilities provide concise, modern APIs for common tasks such as reading all lines, walking directories, and creating writers/readers.\n\nPaths can be absolute or relative; relative paths are resolved against the program’s working directory. Since I/O can fail (missing files, permission errors, encoding issues), Java requires you to handle checked exceptions like IOException. The try-with-resources construct ensures files are closed even if errors occur, preventing resource leaks and ensuring data is flushed to disk. Parsing strategies include reading line-by-line and splitting, or using Scanner with custom delimiters for token-based processing. Choosing the right approach depends on data structure, memory constraints, and performance needs.",
+    "learningObjectives": [
+      "Open, read, and write text files using Scanner, BufferedReader, PrintWriter, and Files",
+      "Use try-with-resources to manage file handles and guarantee closure",
+      "Choose appropriate parsing strategies (line-based vs token-based) for structured text",
+      "Handle file-related exceptions and report errors gracefully to users",
+      "Work with paths (relative/absolute) and understand the program’s working directory"
+    ],
+    "commonMistakes": [
+      "Forgetting to close writers/readers, leading to unflushed output or file handle leaks",
+      "Using the wrong method for parsing (e.g., mixing next() and nextLine() incorrectly) causing skipped input",
+      "Assuming relative paths point to the project folder when the working directory differs"
+    ],
+    "tipsForSuccess": [
+      "Start with small test files and print intermediate results to verify parsing logic",
+      "Encapsulate file operations in helper methods that clearly document the format they expect",
+      "Prefer try-with-resources and specify character encodings (e.g., UTF-8) to avoid subtle bugs"
+    ]
+  },
+  "overview": "In CS106A, File I/O (input/output) lets your programs work with persistent data instead of just the console. You read information from files (like data sets, configuration, or logs) and write results back to new files for later use or sharing. This is essential for tasks such as analyzing datasets, transforming text, or saving the state of a program.\n\nYou will use Java classes such as Scanner, BufferedReader, PrintWriter, and Files to read and write text files efficiently. Along the way you will manage file paths, handle exceptions (e.g., FileNotFoundException, IOException), use try-with-resources to close files automatically, and parse structured text (lines, tokens, CSV/TSV). By the end, you should be comfortable building programs that load data from disk, process it, and save results safely and predictably."
+}
