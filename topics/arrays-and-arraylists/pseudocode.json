@@ -1,0 +1,23 @@
+{
+  "topic": "Arrays and ArrayLists",
+  "examples": [
+    {
+      "title": "Find maximum in an int array",
+      "description": "Iterate through an array to compute the maximum element; demonstrates indexed traversal and handling empty arrays.",
+      "pseudocode": "if array length is 0 then\n  return error or sentinel\nset max to array[0]\nfor i from 1 to array.length - 1 do\n  if array[i] > max then\n    max <- array[i]\nreturn max",
+      "javaCode": "public static int max(int[] a) {\n    if (a == null || a.length == 0) {\n        throw new IllegalArgumentException(\"empty array\");\n    }\n    int max = a[0];\n    for (int i = 1; i < a.length; i++) {\n        if (a[i] > max) {\n            max = a[i];\n        }\n    }\n    return max;\n}"
+    },
+    {
+      "title": "Filter positives from an array into an ArrayList",
+      "description": "Convert a primitive array to an ArrayList by selecting only positive numbers; demonstrates iteration, autoboxing, and dynamic growth.",
+      "pseudocode": "create empty list L\nfor each value v in input array A do\n  if v > 0 then\n    append v to L\nreturn L",
+      "javaCode": "public static ArrayList<Integer> positives(int[] a) {\n    ArrayList<Integer> list = new ArrayList<>();\n    for (int v : a) {\n        if (v > 0) {\n            list.add(v); // autoboxing\n        }\n    }\n    return list;\n}"
+    },
+    {
+      "title": "Transpose a square matrix (2D array)",
+      "description": "Swap elements across the diagonal in-place; demonstrates nested loops and 2D indexing.",
+      "pseudocode": "let n be number of rows (and columns)\nfor i from 0 to n - 1 do\n  for j from i + 1 to n - 1 do\n    swap matrix[i][j] and matrix[j][i]",
+      "javaCode": "public static void transposeInPlace(int[][] m) {\n    int n = m.length;\n    for (int i = 0; i < n; i++) {\n        for (int j = i + 1; j < n; j++) {\n            int tmp = m[i][j];\n            m[i][j] = m[j][i];\n            m[j][i] = tmp;\n        }\n    }\n}"
+    }
+  ]
+}
