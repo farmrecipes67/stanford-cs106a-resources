@@ -1,0 +1,23 @@
+{
+  "topic": "Event-Driven Programming",
+  "examples": [
+    {
+      "title": "Button-Triggered Counter",
+      "description": "Registers an ActionListener and updates a label when a button is clicked.",
+      "pseudocode": "initialize counter = 0\ncreate JButton(\"Count\") and GLabel(\"0\")\nadd button to SOUTH, label to canvas\ncall addActionListeners()\nwhen actionPerformed fires and command == \"Count\":\n  counter++\n  update label text",
+      "javaCode": "import acm.program.*;\nimport acm.graphics.*;\nimport java.awt.event.*;\nimport javax.swing.*;\n\npublic class ButtonCounter extends GraphicsProgram {\n    private int counter = 0;\n    private GLabel display;\n\n    public void init() {\n        add(new JButton(\"Count\"), SOUTH);\n        addActionListeners();\n        display = new GLabel(\"0\", 20, 40);\n        add(display);\n    }\n\n    public void actionPerformed(ActionEvent e) {\n        if (e.getActionCommand().equals(\"Count\")) {\n            counter++;\n            display.setLabel(Integer.toString(counter));\n        }\n    }\n}\n"
+    },
+    {
+      "title": "Drag-and-Drop a GObject",
+      "description": "Implements hit-testing and drag offsets to move a shape smoothly with the mouse.",
+      "pseudocode": "create a GOval and add to canvas\ncall addMouseListeners()\non mousePressed:\n  selected = getElementAt(mouse.x, mouse.y)\n  if selected != null:\n    dx = mouse.x - selected.x\n    dy = mouse.y - selected.y\non mouseDragged and selected != null:\n  selected.setLocation(mouse.x - dx, mouse.y - dy)\non mouseReleased:\n  selected = null",
+      "javaCode": "import acm.program.*;\nimport acm.graphics.*;\nimport java.awt.event.*;\n\npublic class DragDemo extends GraphicsProgram {\n    private GObject selected;\n    private double dx, dy;\n\n    public void run() {\n        GOval ball = new GOval(50, 50, 60, 60);\n        ball.setFilled(true);\n        add(ball);\n        addMouseListeners();\n    }\n\n    public void mousePressed(MouseEvent e) {\n        selected = getElementAt(e.getX(), e.getY());\n        if (selected != null) {\n            dx = e.getX() - selected.getX();\n            dy = e.getY() - selected.getY();\n        }\n    }\n\n    public void mouseDragged(MouseEvent e) {\n        if (selected != null) {\n            selected.setLocation(e.getX() - dx, e.getY() - dy);\n        }\n    }\n\n    public void mouseReleased(MouseEvent e) {\n        selected = null;\n    }\n}\n"
+    },
+    {
+      "title": "Start/Stop Timer Animation",
+      "description": "Uses a javax.swing.Timer to animate a rectangle and buttons to control it.",
+      "pseudocode": "create GOval or GRect and place on canvas\ncreate Start and Stop buttons, add to SOUTH\ncreate Timer(20, this) but start only on Start\nin actionPerformed:\n  if source is Start button -> timer.start()\n  else if source is Stop button -> timer.stop()\n  else if source is timer -> update object position and bounce at edges",
+      "javaCode": "import acm.program.*;\nimport acm.graphics.*;\nimport java.awt.event.*;\nimport javax.swing.*;\n\npublic class TimerBounce extends GraphicsProgram {\n    private GRect box;\n    private JButton startBtn, stopBtn;\n    private Timer timer;\n    private double vx = 3, vy = 2;\n\n    public void init() {\n        box = new GRect(20, 20, 40, 40);\n        box.setFilled(true);\n        add(box);\n        startBtn = new JButton(\"Start\");\n        stopBtn = new JButton(\"Stop\");\n        add(startBtn, SOUTH);\n        add(stopBtn, SOUTH);\n        addActionListeners();\n        timer = new Timer(20, this);\n    }\n\n    public void actionPerformed(ActionEvent e) {\n        Object src = e.getSource();\n        if (src == startBtn) {\n            timer.start();\n        } else if (src == stopBtn) {\n            timer.stop();\n        } else if (src == timer) {\n            step();\n        }\n    }\n\n    private void step() {\n        box.move(vx, vy);\n        if (box.getX() < 0 || box.getX() + box.getWidth() > getWidth()) {\n            vx = -vx;\n        }\n        if (box.getY() < 0 || box.getY() + box.getHeight() > getHeight()) {\n            vy = -vy;\n        }\n    }\n}\n"
+    }
+  ]
+}
