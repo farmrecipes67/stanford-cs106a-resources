@@ -1,0 +1,24 @@
+{
+  "topic": "Conditions",
+  "materials": {
+    "keyConceptsSummary": "A condition is a boolean expression whose value controls program flow. Core building blocks include relational operators (<, <=, >, >=), equality/inequality (==, !=) for primitives, and logical operators (&&, ||, !). Java evaluates && and || with short-circuit semantics: the right-hand side is evaluated only if needed, which you can use to guard against NullPointerException (e.g., s != null && s.length() > 0). Precedence rules place ! above && above ||; parentheses make intent explicit and prevent bugs.\n\nUse if, if-else, and else-if chains to select among alternatives; prefer mutually exclusive, ordered checks for ranges. Nesting ifs is sometimes necessary but can often be replaced with clearer combined conditions. For multi-way selection on a single expression (typically integral, enum, or string), switch can be more readable than long else-if chains. Compare Strings with equals or equalsIgnoreCase, not ==. When negating complex conditions, apply De Morgan's laws to maintain correctness. For readability and safety, use guard clauses (early returns) to handle invalid states before the main logic.",
+    "learningObjectives": [
+      "Write correct if, if-else, and else-if chains to implement branching logic",
+      "Combine relational and logical operators to express complex boolean conditions",
+      "Apply short-circuit evaluation to write safe null checks and guard clauses",
+      "Choose correct comparison methods for primitives vs. objects (e.g., equals for String)",
+      "Refactor nested or verbose conditions into clear, maintainable code using patterns like range checks and De Morgan's laws"
+    ],
+    "commonMistakes": [
+      "Using == to compare Strings instead of equals, causing unexpected false results",
+      "Incorrect range ordering in else-if chains (e.g., checking lower thresholds before higher ones and shadowing later cases)",
+      "Forgetting short-circuit or null checks before dereferencing objects, leading to NullPointerException"
+    ],
+    "tipsForSuccess": [
+      "Add parentheses liberally to document precedence and intention, even when not strictly required",
+      "Write and run tests around boundary values (e.g., 0, 1, -1, exact thresholds) to catch off-by-one and ordering bugs",
+      "Prefer early returns (guard clauses) to reduce nesting and make exceptional cases obvious"
+    ]
+  },
+  "overview": "Conditions let your program make decisions by evaluating boolean expressions that are either true or false. In CS106A, you use conditions to branch control flow with if, else-if, and else blocks, enabling different behavior based on user input, sensor data, or computed values. You’ll learn to combine comparisons (like <, <=, >, >=, ==, !=) with logical operators (&&, ||, !) to express complex rules clearly and correctly.\n\nBeyond basic syntax, you’ll practice reasoning about order of evaluation and short-circuit behavior, which affect performance and correctness (e.g., checking for null before accessing an object). You’ll compare Strings properly with equals, avoid pitfalls with floating-point comparisons, and write readable chains of conditions for classification tasks. Mastery of conditions is essential for input validation, guard clauses, robust error handling, and laying the groundwork for loops and algorithms later in the course."
+}
